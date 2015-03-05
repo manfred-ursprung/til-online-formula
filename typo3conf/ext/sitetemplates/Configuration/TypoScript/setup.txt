@@ -1,0 +1,30 @@
+plugin.tx_sitetemplates.view {
+	templateRootPath = {$plugin.tx_sitetemplates.view.templateRootPath}
+	partialRootPath = {$plugin.tx_sitetemplates.view.partialRootPath}
+	layoutRootPath = {$plugin.tx_sitetemplates.view.layoutRootPath}
+}
+
+
+
+#################
+#### CONTENT ####
+#################
+#
+#  0  = content 1
+#  1  = left
+#  2  = right
+#  3  = border
+#  4  = content 2
+#
+#  10 = footer1
+#  11 = footer2
+#  12 = footer3
+#
+#  20 = middle1
+#  21 = middle2
+#  22 = middle3
+#
+#  30 = special1
+
+#
+#################

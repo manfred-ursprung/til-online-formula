@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" product-name="sitetemplates" date="2015-02-27T12:49:28+01:00">
+		<header/>
+		<body>
+			<trans-unit id="flux.fluidcontent">
+				<source>Fluid content element example</source>
+			</trans-unit>
+			<trans-unit id="flux.fluidcontent.description">
+				<source>Description can be entered in LLL file locallang.xlf of extension sitetemplates</source>
+			</trans-unit>
+			<trans-unit id="flux.fluidpage">
+				<source>Standard fluid page</source>
+			</trans-unit>
+			<trans-unit id="flux.fluidpage.description">
+				<source>Description can be entered in LLL file locallang.xlf of extension sitetemplates</source>
+			</trans-unit>
+            <trans-unit id="flux.homepage">
+                <source>Startseite</source>
+            </trans-unit>
+            <trans-unit id="flux.homepage.description">
+                <source>Startseite mit Slider</source>
+            </trans-unit>
+            <trans-unit id="flux.defaultpage">
+                <source>Folgeseite</source>
+            </trans-unit>
+
+            <trans-unit id="flux.2columns">
+                <source>2 gleich breite Spalten</source>
+            </trans-unit>
+            <trans-unit id="flux.2columns.description">
+                <source>2 Spalten jeweils 50%</source>
+            </trans-unit>
+            <trans-unit id="flux.twoColConfig">
+                <source>2   Spalten</source>
+            </trans-unit>
+            <trans-unit id="flux.twoColConfig.description">
+                <source>2 Spalten variabel einstellbar</source>
+            </trans-unit>
+
+		</body>
+	</file>
+</xliff>

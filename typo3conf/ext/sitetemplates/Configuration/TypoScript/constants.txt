@@ -1,0 +1,5 @@
+plugin.tx_sitetemplates.view {
+	templateRootPath = EXT:sitetemplates/Resources/Private/Templates/
+	partialRootPath = EXT:sitetemplates/Resources/Private/Partials/
+	layoutRootPath = EXT:sitetemplates/Resources/Private/Layouts/
+}
