@@ -46,7 +46,8 @@
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-@font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+//@font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-sans-serif:  "Open Sans", sans-serif;
 @font-family-serif:       Georgia, "Times New Roman", Times, serif;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 @font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
@@ -96,6 +97,11 @@
 
 @padding-large-vertical:    10px;
 @padding-large-horizontal:  16px;
+
+@padding-super-large-vertical:    20px;
+@padding-super-large-horizontal:  26px;
+
+
 
 @padding-small-vertical:    5px;
 @padding-small-horizontal:  10px;
@@ -767,7 +773,8 @@
 
 @badge-color:                 #fff;
 //** Linked badge text color on hover
-@badge-link-hover-color:      #fff;
+/* @badge-link-hover-color:      #fff; */
+@badge-link-hover-color:      @brand-primary;
 @badge-bg:                    @gray-light;
 
 //** Badge text color in active nav link

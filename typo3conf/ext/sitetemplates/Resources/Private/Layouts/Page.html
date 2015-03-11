@@ -1,0 +1,79 @@
+<f:layout name="Page" />
+
+<v:page.header>
+    <f:render partial="PageObjects" section="SharedResources" optional="TRUE" arguments="{_all}" />
+</v:page.header>
+
+<!--Header Section-->
+<div id='wrap_all'>
+
+    <header class="top-header">
+        <f:render partial="PageObjects" section="TopMenu" optional="TRUE" arguments="{_all}" />
+
+    </header>
+    <div class="clearfix"></div>
+    <div id="subheader">
+
+    </div>
+    <section class="content">
+        <div class="container">
+            <div class="row margin-30">
+
+
+                <!-- Sidebar -->
+                <div id="sidebar-wrapper" class="col-md-3">
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-brand">
+                            <a href="#">
+                                Start Bootstrap
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#">Shortcuts</a>
+                        </li>
+                        <li>
+                            <a href="#">Overview</a>
+                        </li>
+                        <li>
+                            <a href="#">Events</a>
+                        </li>
+                        <li>
+                            <a href="#">About</a>
+                        </li>
+                        <li>
+                            <a href="#">Services</a>
+                        </li>
+                        <li>
+                            <a href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /#sidebar-wrapper -->
+
+
+                <!-- Page Content -->
+                <div id="page-content-wrapper" class="col-md-9">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <f:render section="Content" optional="TRUE" arguments="{_all}" />
+                                <!--<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /#page-content-wrapper -->
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <f:render partial="PageObjects" section="Footer" optional="TRUE" arguments="{_all}" />
+    </footer>
+
+</div>
+

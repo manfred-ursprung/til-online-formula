@@ -1,16 +1,23 @@
 // Customize Anpassungen
 // bzw. eigenes Classe
+.margin-30{
+  margin-top: @padding-super-large-vertical;
+}
 
 
-#head-slider{
-  height: 250px;
+#head-slider,
+#subheader{
+  height: 350px;
   background-color: @brand-logo;
   width: 100%;
+}
+#subheader{
+  height: 50px;
 }
 footer{
   margin: 30px 0 0 0;
   border-top: 1px solid @brand-primary;
-  padding-top: 20px;
+  padding-top: @padding-super-large-vertical;
 }
 .footerCol{
   padding: 10px 20px;
@@ -21,3 +28,4 @@ footer{
 .footerColFirst{
   padding-left: 0px !important;
 }
+

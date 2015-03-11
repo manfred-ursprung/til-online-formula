@@ -1,0 +1,187 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+
+
+
+<f:section name="SharedResources">
+
+
+
+    <v:asset.style path="EXT:sitetemplates/Resources/Public/Css/bootstrap.css" name="css-bootstrap" standalone="1" />
+    <v:asset.style path="EXT:sitetemplates/Resources/Public/Css/main.css" name="css-main" standalone="1" />
+
+    <!-- JS -->
+    <v:asset.script path="EXT:sitetemplates/Resources/Public/Js/modernizr-2.6.2-respond-1.1.0.min.js" name="js-modernizr" standalone="1" />
+
+
+    <v:asset.script path="EXT:sitetemplates/Resources/Public/Js/jquery-1.10.1.min.js" name="jquery" standalone="1" allowMoveToFooter="1" />
+    <v:asset.script path="EXT:sitetemplates/Resources/Public/Js/bootstrap.min.js" name="js-bootstrap" standalone="1" allowMoveToFooter="1" />
+
+    <v:asset.script path="EXT:sitetemplates/Resources/Public/Js/main.js" name="js-main" standalone="1" allowMoveToFooter="1" />
+    <!-- rsaauth -->
+    <v:asset.script path="EXT:rsaauth/resources/jsbn/jsbn.js" name="js-jsbn" standalone="1" allowMoveToFooter="0" />
+    <v:asset.script path="EXT:rsaauth/resources/jsbn/prng4.js" name="js-prng4" standalone="1" allowMoveToFooter="0" />
+    <v:asset.script path="EXT:rsaauth/resources/jsbn/rng.js" name="js-rng" standalone="1" allowMoveToFooter="0" />
+    <v:asset.script path="EXT:rsaauth/resources/jsbn/rsa.js" name="js-rsa" standalone="1" allowMoveToFooter="0" />
+    <v:asset.script path="EXT:rsaauth/resources/jsbn/base64.js" name="js-base64" standalone="1" allowMoveToFooter="0" />
+    <v:asset.script path="EXT:rsaauth/resources/FrontendLoginFormRsaEncryption.min.js" name="js-rsaencrypt" standalone="1" allowMoveToFooter="0" />
+    <v:asset.script name="inlinejs"  standalone="1">
+        var TYPO3FrontendLoginFormRsaEncryptionPublicKeyUrl = 'index.php?eID=FrontendLoginRsaPublicKey';
+    </v:asset.script>
+
+
+
+
+</f:section>
+
+<f:section name="TopMenu">
+
+    <nav class="navbar navbar-default  navbar-fixed-top" itemscope="itemscope" itemtype="https://schema.org/SiteNavigationElement">
+        <div class="container">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{f:cObject(typoscriptObjectPath: 'lib.homelink')}">
+                        <f:image src="{f:uri.resource(path:'Img/til_logo_head.png')}" alt="Logo" title="Logo" height='100' />
+                    </a>
+                </div>
+
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <v:page.menu as="myMenuVariable" levels="2">
+                            <f:for each="{myMenuVariable}" as="menuPage" iteration="iteration">
+                                <f:if condition="{menuPage.hasSubPages}">
+                                    <f:then>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{menuPage.title} <b class="caret"></b></a>
+                                            <ul class="dropdown-menu">
+                                            <v:page.menu pageUid="{menuPage.uid}"  >
+                                                <f:for each="{menu}" as="subItem">
+                                                    <li>
+                                                        <f:link.page pageUid="{subItem.uid}" title="{subItem.title}">{subItem.title}</f:link.page>
+                                                    </li>
+                                                </f:for>
+                                            </v:page.menu>
+                                            </ul>
+                                    </f:then>
+                                    <f:else>
+                                        <li>
+                                            <f:link.page pageUid="{menuPage.uid}" title="{menuPage.linktext}">{menuPage.linktext}</f:link.page>
+                                    </f:else>
+                                </f:if>
+
+                                </li>
+                            </f:for>
+
+                        </v:page.menu>
+                        <!-- class="btn btn-primary btn-lg" -->
+                        <li  id="loginBtn" data-toggle="modal" data-target="#loginDialog">
+                            Login
+                        </li>
+                    </ul>
+                </div><!--/.navbar-collapse -->
+
+            <div class="modal fade" id="loginDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Login Form</h4>
+                        </div>
+                        <f:form action="index.php?id=5"  name="felogin" enctype="multipart/form-data" method="post"
+                                onsubmit="return TYPO3FrontendLoginFormRsaEncryption.submitForm(this, TYPO3FrontendLoginFormRsaEncryptionPublicKeyUrl);; return true;"
+                                additionalAttributes="{_lpchecked: '1'}">
+                            <div class="modal-body">
+
+                                    <f:form.textfield id="user" name="user" value="" additionalAttributes="{autocomplete: 'off'}"  />
+                                    <f:form.password id="pass" name="pass" value="" additionalAttributes="{autocomplete: 'off'}" />
+                                    <div class="felogin-hidden">
+                                        <f:form.hidden name="logintype" value="login" />
+                                        <f:form.hidden name="pid" value="8" />
+                                        <f:form.hidden name="redirect_url" value="" />
+                                        <f:form.hidden name="tx_felogin_pi1[noredirect]" value="0" />
+
+                                    </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <input type="submit" name="submit" value="Login">
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </f:form>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+         </div>
+    </nav>
+
+</f:section>
+
+<f:section name="Bottom">
+    <f:cObject typoscriptObjectPath="lib.bottom" />
+</f:section>
+
+<f:section name="Footer">
+    <section id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-xs-12 footerCol footerColFirst">
+                    <p>Ein Programm der:</p>
+                    <f:image src="{f:uri.resource(path:'Img/stmbkwk_red.jpg')}" alt="Logo" title="Logo" />
+                </div>
+                <div class="col-md-3 col-xs-12 footerCol">
+                    <!-- Logo der Robert Bosch Stiftung -->
+                    <p>¬&nbsp;</p>
+                    <f:image src="{f:uri.resource(path:'Img/rbs_logo_RGB_reduziert.jpg')}" alt="Logo" title="Logo" />
+                </div>
+                <div class="col-md-3 col-xs-12 footerCol">
+                    <!-- social media -->
+                    <p>Social :</p>
+                </div>
+                <div class="col-md-3 col-xs-12 footerCol footerColLast">
+                    <!-- Impressum -->
+                    <p>Zum Impressum</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</f:section>
+
+
+<!-- Page Title -->
+<f:section name="PageTitle">
+    <div class="row">
+        <div class="col-md-12 title-white">
+            <h2>
+                <v:page.info field="title" />
+            </h2>
+        </div>
+    </div>
+</f:section>
+
+<f:section name="LoginForm">
+    <form action="index.php?id=5" target="_top" method="post"
+          onsubmit="return TYPO3FrontendLoginFormRsaEncryption.submitForm(this, TYPO3FrontendLoginFormRsaEncryptionPublicKeyUrl);; return true;">
+</f:section>
+
+
+<f:section name="UnusedTemplate">
+    <!-- Login Form -->
+    <f:form action=""  name="felogin" enctype="multipart/form-data" method="post"
+            onsubmit="return TYPO3FrontendLoginFormRsaEncryption.submitForm(this, TYPO3FrontendLoginFormRsaEncryptionPublicKeyUrl);; return true;"
+            additionalAttributes="{_lpchecked: '1'}">
+        <f:form.textfield id="user" name="user" value="" additionalAttributes="{autocomplete: 'off'}"  />
+        <f:form.password id="pass" name="pass" value="" additionalAttributes="{autocomplete: 'off'}" />
+    </f:form>
+
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginDialog">
+        Login
+    </button>
+
+
+</f:section>

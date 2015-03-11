@@ -21,7 +21,7 @@
             <trans-unit id="flux.homepage.description">
                 <source>Startseite mit Slider</source>
             </trans-unit>
-            <trans-unit id="flux.defaultpage">
+            <trans-unit id="flux.defaultPage">
                 <source>Folgeseite</source>
             </trans-unit>
 
