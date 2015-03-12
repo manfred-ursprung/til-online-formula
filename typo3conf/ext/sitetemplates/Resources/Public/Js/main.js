@@ -6,7 +6,13 @@
 $(document).ready(function(){
     $('[data-toggle="login"]').on('click', function(){
         $(this).modal('toggle');
-    })
+    });
+
+    //hide searchbox
+    $('#searchform').toggle();
+    $('#searchform-link').on('click', function(){
+        $('#searchform').toggle();
+    });
 
 });
 /*

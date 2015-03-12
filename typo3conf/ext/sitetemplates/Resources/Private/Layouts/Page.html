@@ -1,3 +1,4 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
 <f:layout name="Page" />
 
 <v:page.header>
@@ -15,7 +16,7 @@
     <div id="subheader">
 
     </div>
-    <section class="content">
+    <section id="content-area" class="content">
         <div class="container">
             <div class="row margin-30">
 
@@ -23,32 +24,15 @@
                 <!-- Sidebar -->
                 <div id="sidebar-wrapper" class="col-md-3">
                     <ul class="sidebar-nav">
-                        <li class="sidebar-brand">
-                            <a href="#">
-                                Start Bootstrap
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">Dashboard</a>
-                        </li>
-                        <li>
-                            <a href="#">Shortcuts</a>
-                        </li>
-                        <li>
-                            <a href="#">Overview</a>
-                        </li>
-                        <li>
-                            <a href="#">Events</a>
-                        </li>
-                        <li>
-                            <a href="#">About</a>
-                        </li>
-                        <li>
-                            <a href="#">Services</a>
-                        </li>
-                        <li>
-                            <a href="#">Contact</a>
-                        </li>
+                        <v:page.menu.directory as="myMenuVariable"  pages="{f:cObject(typoscriptObjectPath: 'lib.parentUid')}">
+                            <f:for each="{myMenuVariable}" as="menuPage" iteration="iteration">
+
+                                <li>
+                                    <f:link.page pageUid="{menuPage.uid}" title="{menuPage.linktext}">{menuPage.linktext}</f:link.page>
+                                </li>
+                            </f:for>
+
+                        </v:page.menu.directory>
                     </ul>
                 </div>
                 <!-- /#sidebar-wrapper -->
@@ -68,6 +52,7 @@
                 <!-- /#page-content-wrapper -->
             </div>
         </div>
+
     </section>
 
 

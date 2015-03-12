@@ -1,0 +1,42 @@
+// Dropdown menu items
+.navbar-default .navbar-nav {
+  // Remove background color from open dropdown
+  > .open > a {
+    &,
+    &:hover,
+    &:focus {
+      background-color: @body-bg;
+      color: @navbar-default-link-active-color;
+    }
+  }
+
+  @media (max-width: @grid-float-breakpoint-max) {
+    // Dropdowns get custom display when collapsed
+    .open .dropdown-menu {
+      > li > a {
+        color: @navbar-default-link-color;
+        &:hover,
+        &:focus {
+          color: @body-bg;
+          background-color: @navbar-default-link-hover-bg;
+        }
+      }
+      > .active > a {
+        &,
+        &:hover,
+        &:focus {
+          color: @navbar-default-link-active-color;
+          background-color: @navbar-default-link-active-bg;
+        }
+      }
+      > .disabled > a {
+        &,
+        &:hover,
+        &:focus {
+          color: @navbar-default-link-disabled-color;
+          background-color: @navbar-default-link-disabled-bg;
+        }
+      }
+    }
+  }
+}
