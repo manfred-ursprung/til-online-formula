@@ -1,0 +1,6 @@
+# cat=basic//10; type=string; label= Valid ip addresses for using the master password
+mbIpAddresses =
+# cat=basic//20; type=string; label= Master password for frontend users
+mbMasterPassword = 
+# cat=basic//30; type=boolean; label= Enable login by hash
+#mbEnableHash = 0

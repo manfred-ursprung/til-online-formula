@@ -1,0 +1,89 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     f:schemaLocation="https://fluidtypo3.org/schemas/fluid-master.xsd"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     flux:schemaLocation="https://fluidtypo3.org/schemas/flux-master.xsd"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+     v:schemaLocation="https://fluidtypo3.org/schemas/vhs-master.xsd">
+
+    <f:layout name="Content" />
+
+    <f:section name="Configuration">
+    <flux:form id="slideshow" options="{icon: 'Icons/Content/Example.gif', group: 'FCE'}" enabled="true">
+        <!-- Insert fields, sheets, grid, form section objects etc. here, in this flux:flexform tag -->
+        <flux:form.sheet name="panels" label="Liste der Bilder / Slides">
+            <flux:form.section name="panels" label="Legen Sie die einzelnen Slides an">
+                <flux:form.object name="panel" label="Neuer Slide">
+
+                    <flux:field.file name="slideImage"  label="Bild wählen"
+                                     allowed="jpg,jpeg,png,gif,JPEG,GIF,PNG,JPG" required="1"
+                                     maxItems="1" size="1" showThumbnails="true" />
+                    <flux:field.input name="title" label="Überschrift"/>
+                    <flux:field.checkbox name="subheadline" label="Nur Zwischenüberschrift?"/>
+                    <flux:field.input name="teaser-slogan"  label="Teaser Slogan"  />
+                    <flux:field.input name="teaser-author"  label="Teaser Autor"  />
+
+                </flux:form.object>
+            </flux:form.section>
+        </flux:form.sheet>
+    </flux:form>
+
+
+    </f:section>
+
+    <f:section name="Preview">
+        <!-- uncomment this to use a grid for nested content elements -->
+        <!-- <flux:widget.grid /> -->
+    </f:section>
+
+    <f:section name="__Main">
+        <div style="min-height: 50px;">
+            <!-- Jssor Slider Begin -->
+            <!-- You can move inline styles to css file or css block. -->
+            <!-- ================================================== -->
+            <div id="slider1_container" style="display: none; position: relative; margin: 0 auto;
+        top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden;">
+                <!-- Loading Screen -->
+                <div u="loading" style="position: absolute; top: 0px; left: 0px;">
+                    <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block;
+                top: 0px; left: 0px; width: 100%; height: 100%;">
+                    </div>
+                    <div style="position: absolute; display: block; background: url(../img/loading.gif) no-repeat center center;
+                top: 0px; left: 0px; width: 100%; height: 100%;">
+                    </div>
+                </div>
+                <!-- Slides Container -->
+                <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1300px; height: 500px; overflow: hidden;">
+                    <f:for each="{panels}" as="panel" iteration="iteration">
+                        <div>
+                            <f:image src="{panel.panel.slideImage}" />
+                        </div>
+                    </f:for>
+                </div>
+            </div>
+        </div>
+    </f:section>
+
+    <f:section name="Main">
+        <ul class="slides-container">
+
+                <f:for each="{panels}" as="panel" iteration="iteration">
+
+                            <li class="group_item">
+                                <div class="image"><f:image src="{panel.panel.slideImage}" height="420px"/></div>
+                                <div class="container-slide">
+                                    <div class="container">
+                                        <div class="text"><p class="slogan"><f:format.raw>{v:format.case(string: '{panel.panel.teaser-slogan}', case: 'upper')}</f:format.raw></p></div>
+                                        <div class="title">{v:format.case(string: '{panel.panel.title}', case: 'upper')}</div>
+                                    </div>
+                                </div>
+                            </li>
+
+                </f:for>
+
+        </ul>
+    </f:section>
+
+
+</div>
+

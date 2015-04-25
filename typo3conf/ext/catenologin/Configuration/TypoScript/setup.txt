@@ -1,0 +1,14 @@
+plugin.tx_catenologin {
+	view {
+		templateRootPath = {$plugin.tx_catenologin.view.templateRootPath}
+		partialRootPath = {$plugin.tx_catenologin.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_catenologin.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_catenologin.persistence.storagePid}
+	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
+}

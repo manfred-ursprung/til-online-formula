@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-02-13T16:31:33Z" product-name="catenologin">
+		<header/>
+		<body>
+            <trans-unit id="tx_catenologin_username_label">
+                <source>Username</source>
+            </trans-unit>
+            <trans-unit id="tx_catenologin_password_label">
+                <source>Passwort</source>
+            </trans-unit>
+            <trans-unit id="tx_catenologin_login_label">
+                <source>Login</source>
+            </trans-unit>
+
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,14 @@
+plugin.tx_catenologin {
+	view {
+		# cat=plugin.tx_catenologin/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:catenologin/Resources/Private/Templates/
+		# cat=plugin.tx_catenologin/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:catenologin/Resources/Private/Partials/
+		# cat=plugin.tx_catenologin/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:catenologin/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_catenologin//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}

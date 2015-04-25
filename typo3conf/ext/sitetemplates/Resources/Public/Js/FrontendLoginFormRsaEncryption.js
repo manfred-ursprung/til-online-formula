@@ -14,163 +14,128 @@
 /**
  * Object that handles RSA encryption and submission of the FE login form
  */
-TYPO3FrontendLoginFormRsaEncryption = function() {
+IsbFrontendLoginFormRsaEncryption = function() {
 
-	var rsaFrontendLogin = function(form, publicKeyEndpointUrl) {
+	var isbRsaFrontendLogin = function(form, publicKeyEndpointUrl) {
 
-		/**
-		 * Submitted form element
-		 */
-		this.form = form;
+        /**
+         * Submitted form element
+         */
+        this.form = form;
 
-		/**
-		 * XMLHttpRequest
-		 */
-		this.xhr = null;
+        /**
+         * XMLHttpRequest
+         */
+        this.xhr = null;
 
-		/**
-		 * Endpoint URL to fetch the public key for encryption
-		 */
-		this.publicKeyEndpointUrl = publicKeyEndpointUrl;
+        /**
+         * Endpoint URL to fetch the public key for encryption
+         */
+        this.publicKeyEndpointUrl = publicKeyEndpointUrl;
 
-		/**
-		 * Field in which users enter their password
-		 */
-		this.userPasswordField = form.pass;
+        /**
+         * Field in which users enter their password
+         */
+        this.userPasswordField = form.pass;
 
-		/**
-		 * Fetches a new public key by Ajax and encrypts the password for transmission
-		 */
-		this.handleFormSubmitRequest = function() {
-			var rsaFrontendLogin = this;
-			this.ajaxCall(
-				this.publicKeyEndpointUrl,
-				function(response) {
-					rsaFrontendLogin.handlePublicKeyResponse(response, rsaFrontendLogin);
-				}
-			);
-		};
+        /**
+         * Field in which system writes rsa key
+         */
+        this.rsaField = form.rsa;
 
-		/**
-		 * Do Ajax call to fetch RSA public key
-		 */
-		this.ajaxCall = function(url, callback) {
 
-			// abort previous request, only last request/generated key pair can be used
-			if (this.xhr) {
-				this.xhr.abort();
-			}
+        /**
+         * Uses the public key with the RSA library to encrypt the password.
+         *
+         * @param publicKeyModulus
+         * @param exponent
+         */
+        this.encryptPassword = function(publicKeyModulus, exponent) {
+            var rsa, encryptedPassword;
 
-			if (typeof XMLHttpRequest !== 'undefined') {
-				this.xhr = new XMLHttpRequest();
-			} else {
-				var versions = [
-					"MSXML2.XmlHttp.5.0",
-					"MSXML2.XmlHttp.4.0",
-					"MSXML2.XmlHttp.3.0",
-					"MSXML2.XmlHttp.2.0",
-					"Microsoft.XmlHttp"
-				];
-				for (var i = 0, len = versions.length; i < len; i++) {
-					try {
-						this.xhr = new ActiveXObject(versions[i]);
-						break;
-					} catch(e) {}
-				}
-			}
+            rsa = new RSAKey();
+            rsa.setPublic(publicKeyModulus, exponent);
+            encryptedPassword = rsa.encrypt(this.userPasswordField.value);
 
-			this.xhr.onreadystatechange = function() {
-				// only process requests that are ready and have a status (not aborted)
-				if (this.readyState === 4 && this.status > 0) {
-					callback(this);
-				}
-			};
+            // replace password value with encrypted password
+            //this.userPasswordField.value = hex2b64(encryptedPassword);
+            $.ajax({
+                async: 'true',
+                url: 'index.php',
+                type: 'POST',
+                data: {
+                    eID: "catenologin",
+                    request: {
+                        pluginName:  'Pi1',
+                        controller:  'Login',
+                        action:      'authenticate',
+                        arguments: {
+                            'pass': encryptedPassword,
+                            'user': user
+                        }
+                    }
+                },
+                //dataType: "json",
+                dataType: 'html',
 
-			this.xhr.open('GET', url, false); //Synchronous request
-			this.xhr.send('');
-		};
+                success: function(result) {
+                    console.log(result);
+                    $('#result').html(result);
+                },
+                error: function(error) {
+                    console.log(error);
+                    $('#result').html((error.responseText));
+                }
+            });
+            return false;
 
-		/**
-		 * Parses the response and triggers submission of the form
-		 *
-		 * @param response Ajax response object
-		 * @param rsaFrontendLogin current processed object
-		 */
-		this.handlePublicKeyResponse = function(response, rsaFrontendLogin) {
-			var publicKey = response.responseText.split(':');
-			if (publicKey[0] && publicKey[1]) {
-				rsaFrontendLogin.encryptPasswordAndSubmitForm(publicKey[0], publicKey[1]);
-			} else {
-				alert('No public key could be generated. Please inform your TYPO3 administrator to check the OpenSSL settings.');
-			}
-		};
+        };
 
-		/**
-		 * Uses the public key with the RSA library to encrypt the password.
-		 *
-		 * @param publicKeyModulus
-		 * @param exponent
-		 */
-		this.encryptPasswordAndSubmitForm = function(publicKeyModulus, exponent) {
-			var rsa, encryptedPassword;
+    }
 
-			rsa = new RSAKey();
-			rsa.setPublic(publicKeyModulus, exponent);
-			encryptedPassword = rsa.encrypt(this.userPasswordField.value);
-
-			// replace password value with encrypted password
-			this.userPasswordField.value = 'rsa:' + hex2b64(encryptedPassword);
-
-			// Submit the form again but now with encrypted pass
-			document.createElement("form").submit.call(this.form);
-		};
-	};
-
-	/**
-	 * Encrypt password on submit
-	 *
-	 * @param form
-	 * @param publicKeyEndpointUrl
-	 * @return boolean
-	 */
-	this.submitForm = function(form, publicKeyEndpointUrl) {
-
-		if (!form.rsaFrontendLogin) {
-			form.rsaFrontendLogin = new rsaFrontendLogin(form, publicKeyEndpointUrl);
-		}
-
-		// if pass is not encrypted yet fetch public key and encrypt pass
-		if (!form.pass.value.match(/^rsa:/) ) {
-			form.rsaFrontendLogin.handleFormSubmitRequest();
-            //Prüfung noch mal
-            if(form.pass.value.match(/^rsa:/)){
-               //this.ajaxSubmitForm(form);
-                return true;
-            }
-			return false;
-
-		// pass is encrypted so form can be submitted
-		} else {
-			return true;
-		}
-	};
-
-    this.ajaxSubmitForm = function(form){
-        var data = $(form).serialize();
-        var data2 = $('form.felogin').serialize();
+    this.prepareForm = function(form, publicKeyEndpointUrl){
+        if (!form.isbRsaFrontendLogin) {
+            form.isbRsaFrontendLogin = new isbRsaFrontendLogin(form, publicKeyEndpointUrl);
+        }
+        var url = publicKeyEndpointUrl;
         $.ajax({
-            type: "POST",
-            url: "index.php?id=5",
-            data: $('form.felogin').serialize(),
-            success: function(msg){
-                console.log('Success is reached.')
-                $("#loginDialog").modal('hide');
+            url: publicKeyEndpointUrl,
+            //dataType: "json",
+            dataType: 'html',
+
+            success: function(result) {
+                console.log(result);
+                var publicKey = result;
+
+                form.isbRsaFrontendLogin.rsaField.value = publicKey;
+
             },
-            error: function(xhr, status, error){
-                alert("failure");
+            error: function(error) {
+                console.log(error);
+                $('#loginDialog').html((error.responseText));
             }
         });
+
     }
+
+    this.encryptPassword = function(form){
+        var ret = false;
+        if (!form.isbRsaFrontendLogin) {
+            alert("Form ist nicht initialisiert!");
+            return ret;
+        }
+        var rsa =   form.isbRsaFrontendLogin.rsaField.value;
+        var publicKey = rsa.split(':');
+        if (publicKey[0] && publicKey[1]) {
+            form.isbRsaFrontendLogin.encryptPassword(publicKey[0], publicKey[1]);
+            ret = true;
+        } else {
+            alert('No public key could be generated. Please inform your TYPO3 administrator to check the OpenSSL settings.');
+        }
+        return ret;
+    };
+
 
 	return this;
 }();
+

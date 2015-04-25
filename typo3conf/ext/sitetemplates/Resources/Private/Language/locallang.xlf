@@ -37,6 +37,12 @@
             <trans-unit id="flux.twoColConfig.description">
                 <source>2 Spalten variabel einstellbar</source>
             </trans-unit>
+            <trans-unit id="flux.slideshow">
+                <source>Slideshow</source>
+            </trans-unit>
+            <trans-unit id="flux.slideshow">
+                <source>Slideshow über die ganze Breite</source>
+            </trans-unit>
 
 		</body>
 	</file>

@@ -1,0 +1,97 @@
+<f:layout name="Default" />
+
+
+<f:section name="main">
+    <f:form action="index" name="loginform" id="loginform">
+
+        <f:debug title="paarams">{params}</f:debug>
+        <div class="form-element">
+            <label for="user"><f:translate key="tx_catenologin_username_label" /></label>
+            <input type="text" id="user" name="tx_catenologin_pi1[user]"  value="" />
+        </div>
+        <div class="form-element">
+            <label for="pass"><f:translate key="tx_catenologin_password_label" /></label>
+            <input type="password" id="pass" name="tx_catenologin_pi1[pass]" value="" />
+        </div>
+
+        <f:if condition="{params.permalogin}">
+            <!--###PERMALOGIN_VALID###-->
+            <div>
+                <label for="permalogin">###PERMALOGIN###</label>
+                <input name="permalogin" value="0" type="hidden" ###PERMALOGIN_HIDDENFIELD_ATTRIBUTES### id="permaloginHiddenField" />
+                <input name="permalogin" value="1" type="checkbox" ###PERMALOGIN_CHECKBOX_ATTRIBUTES### id="permalogin"  onclick="document.getElementById('permaloginHiddenField').disabled = this.checked;" />
+            </div>
+            <!--###PERMALOGIN_VALID###-->
+        </f:if>
+
+        <div>
+            <input type="submit" name="submit" value="Login" />
+        </div>
+
+        <div class="felogin-hidden">
+            <input type="hidden" name="logintype" value="login" />
+            <input type="hidden" name="pid" value="{params.storagePid}" />
+            <input type="hidden" name="redirect_url" value="{params.redirectUrl}" />
+            <input type="hidden" name="###PREFIXID###[noredirect]" value="###NOREDIRECT###" />
+
+        </div>
+        </fieldset>
+    </f:form>
+    <p id="result"></p>
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+
+            var konsole = function(message){
+                console.log(message);
+            }
+
+            $('#loginform').submit(function(){
+                console.log('Submit Event');
+                var user = $('#user').val().trimLeft(),
+                        pageId = 10; //$('#salesman_pageId').val();
+                //$('#search_country').val(sword);
+
+                $.ajax({
+                    async: 'true',
+                    url: 'index.php',
+                    type: 'POST',
+                    data: {
+                        eID: "catenologin",
+                        request: {
+                            pluginName:  'Pi1',
+                            controller:  'Login',
+                            action:      'getUserName',
+                            arguments: {
+                                'pageId': pageId,
+                                'user': user
+                            }
+                        }
+                    },
+                    //dataType: "json",
+                    dataType: 'html',
+
+                    success: function(result) {
+                        konsole(result);
+                        $('#result').html(result);
+                    },
+                    error: function(error) {
+                        konsole(error);
+                        $('#result').html((error.responseText));
+                    }
+                });
+                return false;
+            });
+
+
+
+
+        });
+
+
+    </script>
+
+    <!--###FORGOTP_VALID###
+    <p><!--###FORGOT_PASSWORD_LINK######FORGOT_PASSWORD###<!--###FORGOT_PASSWORD_LINK### ></p>
+    <!--###FORGOTP_VALID###-->
+</f:section>
