@@ -13,16 +13,27 @@
 
     </header>
     <div class="clearfix"></div>
-    <div id="subheader">
 
-    </div>
+        <div id="subheader">
+            <v:page.info  as="page" >
+
+                    <v:resource.record.fal table="pages" field="media" uid="{page.uid}" as="resources">
+                        <f:for each="{resources}" as="resource">
+                            <v:resource.image identifier="{resource.id}" />
+                        </f:for>
+                    </v:resource.record.fal>
+
+
+            </v:page.info>
+        </div>
+
     <section id="content-area" class="content">
         <div class="container">
             <div class="row margin-30">
 
 
                 <!-- Sidebar -->
-                <div id="sidebar-wrapper" class="col-md-3">
+                <div id="sidebar-wrapper" class="col-md-2">
                     <ul class="sidebar-nav">
                         <v:page.menu.directory as="myMenuVariable"  pages="{f:cObject(typoscriptObjectPath: 'lib.parentUid')}">
                             <f:for each="{myMenuVariable}" as="menuPage" iteration="iteration">
@@ -42,7 +53,7 @@
                 <div id="page-content-wrapper" class="col-md-9">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-12 content-wrap">
                                 <f:render section="Content" optional="TRUE" arguments="{_all}" />
                                 <!--<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a> -->
                             </div>

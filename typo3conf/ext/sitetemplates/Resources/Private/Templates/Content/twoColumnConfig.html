@@ -1,0 +1,43 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     f:schemaLocation="https://fluidtypo3.org/schemas/fluid-master.xsd"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     flux:schemaLocation="https://fluidtypo3.org/schemas/flux-master.xsd"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+     v:schemaLocation="https://fluidtypo3.org/schemas/vhs-master.xsd">
+    
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="twoColConfig" options="{group: 'FCE', icon: '{f:uri.resource(path: \'Icons/Content/Example.gif\')}'}">
+            <flux:grid>
+                <flux:grid.row>
+                    <flux:grid.column name="leftCol"
+                                      style="width: {f:if(condition: '{layout} == 0', then: '23%')}{f:if(condition: '{layout} == 1', then: '31%')}{f:if(condition: '{layout} == 2', then: '48%')}{f:if(condition: '{layout} == 3', then: '64%')}{f:if(condition: '{layout} == 4', then: '73%')}; margin-right: .5em;">
+                        <flux:form.content name="leftContent" />
+                    </flux:grid.column>
+                    <flux:grid.column name="rightCol" style="width: {f:if(condition: '{layout} == 4', then: '23%')}{f:if(condition: '{layout} == 3', then: '31%')}{f:if(condition: '{layout} == 2', then: '48%')}{f:if(condition: '{layout} == 1', then: '64%')}{f:if(condition: '{layout} == 0', then: '73%')};">
+                        <flux:form.content name="rightContent" />
+                    </flux:grid.column>
+                </flux:grid.row>
+            </flux:grid>
+            <flux:field.select name="layout" items="{0: '25/75', 1: '33/66', 2: '50/50', 3: '66/33', 4: '75/25'}" default="0" />
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        <flux:widget.grid />
+    </f:section>
+
+    <f:section name="Main">
+        <article class="columns" id="{record.uid}">
+            <div class="left {f:if(condition: '{layout} == 0', then: 'quarter')}{f:if(condition: '{layout} == 1', then: 'onethird')}{f:if(condition: '{layout} == 2', then: 'half')}{f:if(condition: '{layout} == 3', then: 'twothirds')}{f:if(condition: '{layout} == 4', then: 'threequarters')}">
+                <flux:content.render area="leftCol" />
+            </div>
+            <div class="right {f:if(condition: '{layout} == 4', then: 'quarter')}{f:if(condition: '{layout} == 3', then: 'onethird')}{f:if(condition: '{layout} == 2', then: 'half')}{f:if(condition: '{layout} == 1', then: 'twothirds')}{f:if(condition: '{layout} == 0', then: 'threequarters')}">
+                <flux:content.render area="rightCol" />
+            </div>
+        </article>
+    </f:section>
+
+</div>

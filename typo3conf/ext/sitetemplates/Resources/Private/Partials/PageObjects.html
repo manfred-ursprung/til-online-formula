@@ -11,8 +11,8 @@
 
 <f:section name="SharedResources">
 
-
-
+    <v:asset.style path="EXT:sitetemplates/Resources/Public/fonts/googleFontOpenSans.css" name="fonts-openSans" standalone="1" />
+    <v:asset.style path="EXT:sitetemplates/Resources/Public/fonts/googleFontExo.css" name="fonts-exo" standalone="1" />
     <v:asset.style path="EXT:sitetemplates/Resources/Public/Css/bootstrap.css" name="css-bootstrap" standalone="1" />
     <v:asset.style path="EXT:sitetemplates/Resources/Public/Css/main.css" name="css-main" standalone="1" />
 
@@ -49,6 +49,7 @@
                     </button>
                     <a class="navbar-brand" href="{f:cObject(typoscriptObjectPath: 'lib.homelink')}">
                         <f:image src="{f:uri.resource(path:'Img/til_logo_head.png')}" alt="Logo" title="Logo" height='80' />
+
                     </a>
                 </div>
 
@@ -84,41 +85,42 @@
 
                         </v:page.menu>
                         <!-- class="btn btn-primary btn-lg" -->
-                        
-                        <li class="searchform-link">
-                            <a href="#" id="searchform-link">
-                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                            </a>
-                            <div id="searchform">
-                                <f:form action="" pageUid="17" class="form-inline" name="search">
-                                    <input type="hidden" name="tx_indexedsearch[_sections]" value="0" />
-                                    <input type="hidden" name="tx_indexedsearch[_freeIndexUid]" id="tx_indexedsearch_freeIndexUid" value="_" />
-                                    <input type="hidden" name="tx_indexedsearch[pointer]" id="tx_indexedsearch_pointer" value="0" />
-                                    <input type="hidden" name="tx_indexedsearch[ext]" value="" />
-                                    <input type="hidden" name="tx_indexedsearch[type]" value="1" />
-                                    <input type="hidden" name="tx_indexedsearch[defOp]" value="0" />
-                                    <input type="hidden" name="tx_indexedsearch[media]" value="-1" />
-                                    <input type="hidden" name="tx_indexedsearch[order]" value="rank_flag" />
-                                    <input type="hidden" name="tx_indexedsearch[group]" value="flat" />
-                                    <input type="hidden" name="tx_indexedsearch[lang]" value="-1" />
-                                    <input type="hidden" name="tx_indexedsearch[desc]" value="0" />
-                                    <input type="hidden" name="tx_indexedsearch[results]" value="10" />
-                                    <div class="input-group">
-                                        <label class="sr-only" for="search-text">Suchbegriff</label>
-                                        <input type="text" name="tx_indexedsearch[sword]" id="search-text" class="form-control" placeholder="Suchbegriff">
-                                        <input type="hidden" name="tx_indexedsearch[sections]" value="0">
-                                    <span class="input-group-btn">
-                                        <button type="submit" id="search-button" class="btn btn-primary">
-                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                        </button>
-                                    </span>
-                                    </div>
-                                </f:form>
+                        <f:comment>
+                            <li class="searchform-link">
+                                <a href="#" id="searchform-link">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                </a>
+                                <div id="searchform">
+                                    <f:form action="" pageUid="17" class="form-inline" name="search">
+                                        <input type="hidden" name="tx_indexedsearch[_sections]" value="0" />
+                                        <input type="hidden" name="tx_indexedsearch[_freeIndexUid]" id="tx_indexedsearch_freeIndexUid" value="_" />
+                                        <input type="hidden" name="tx_indexedsearch[pointer]" id="tx_indexedsearch_pointer" value="0" />
+                                        <input type="hidden" name="tx_indexedsearch[ext]" value="" />
+                                        <input type="hidden" name="tx_indexedsearch[type]" value="1" />
+                                        <input type="hidden" name="tx_indexedsearch[defOp]" value="0" />
+                                        <input type="hidden" name="tx_indexedsearch[media]" value="-1" />
+                                        <input type="hidden" name="tx_indexedsearch[order]" value="rank_flag" />
+                                        <input type="hidden" name="tx_indexedsearch[group]" value="flat" />
+                                        <input type="hidden" name="tx_indexedsearch[lang]" value="-1" />
+                                        <input type="hidden" name="tx_indexedsearch[desc]" value="0" />
+                                        <input type="hidden" name="tx_indexedsearch[results]" value="10" />
+                                        <div class="input-group">
+                                            <label class="sr-only" for="search-text">Suchbegriff</label>
+                                            <input type="text" name="tx_indexedsearch[sword]" id="search-text" class="form-control" placeholder="Suchbegriff">
+                                            <input type="hidden" name="tx_indexedsearch[sections]" value="0">
+                                        <span class="input-group-btn">
+                                            <button type="submit" id="search-button" class="btn btn-primary">
+                                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                            </button>
+                                        </span>
+                                        </div>
+                                    </f:form>
 
 
 
-                            </div>
-                        </li>
+                                </div>
+                            </li>
+                        </f:comment>
                     </ul>
                 </div><!--/.navbar-collapse -->
 
@@ -165,38 +167,13 @@
     <f:cObject typoscriptObjectPath="lib.bottom" />
 </f:section>
 
-<f:section name="__Footer">
-    <section id="__footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-xs-12 footerCol footerColFirst">
-                    <p>Ein Programm der:</p>
-                    <f:image src="{f:uri.resource(path:'Img/stmbkwk_red.jpg')}" alt="Logo" title="Logo" />
-                </div>
-                <div class="col-md-3 col-xs-12 footerCol">
-                    <!-- Logo der Robert Bosch Stiftung -->
-                    <p>¬&nbsp;</p>
-                    <f:image src="{f:uri.resource(path:'Img/rbs_logo_RGB_reduziert.jpg')}" alt="Logo" title="Logo" />
-                </div>
-                <div class="col-md-3 col-xs-12 footerCol">
-                    <!-- social media -->
-                    <p>Social :</p>
-                </div>
-                <div class="col-md-3 col-xs-12 footerCol footerColLast">
-                    <!-- Impressum -->
-                    <p>Zum Impressum</p>
-                </div>
-            </div>
-        </div>
-    </section>
-</f:section>
 
 <f:section name="Footer">
     <section id="footer">
     <div class="container container-footer">
         <div class="row">
             <div class="outside-container-left">
-                <f:image src="{f:uri.resource(path:'Img/ISB-Logo.png')}" alt="Logo" title="Logo" height='80' />
+
             </div>
             <v:page.menu.directory as="myMenuVariable" levels="2" pages="24">
                 <f:for each="{myMenuVariable}" as="menuPage" iteration="iteration">
@@ -229,15 +206,48 @@
                     </div>
                 </f:for>
             </v:page.menu.directory>
-            <div class="outside-container-right">
-                <div>
-                <f:image src="{f:uri.resource(path:'Img/robert-bosch-logo.png')}" alt="Logo" title="Logo" width='180' />
+
+        </div>
+        <div class="row">
+            <div class="container sponsor-logos table">
+                <div class="table-row table-row-1">
+                    <div class="bodytext table-cell">
+                        Ein Programm von:
+                    </div>
+                    <div class="bodytext table-cell"></div>
+                    <div class="bodytext table-cell">
+                        Kooperationspartner:
+                    </div>
                 </div>
-                <div>
-                <f:image src="{f:uri.resource(path:'Img/bayerisches-kulturministerum-logo.png')}" alt="Logo" title="Logo" width='267' />
+                <div class="table-row table-row-2">
+                    <div class="image-wrap robert-koch-stiftung table-cell">
+                        <f:image src="{f:uri.resource(path:'Img/robert-bosch-logo.png')}" alt="Logo" title="Logo" width='180' />
+                    </div>
+                    <div class="image-wrap table-cell">
+                        <f:image src="{f:uri.resource(path:'Img/bayerisches-kulturministerum-logo.png')}" alt="Logo" title="Logo" width='267' />
+                    </div>
+
+                    <div class="image-wrap isb-til table-cell">
+                        <f:image src="{f:uri.resource(path:'Img/ISB-Logo.png')}" alt="Logo" title="Logo" width='50' />
+                    </div>
                 </div>
             </div>
         </div>
+
+
+        <f:comment>
+            <div class="row">
+                <div class="container sponsor-logos">
+                    <div class="bodytext">
+                        Kooperationspartner:
+                    </div>
+                    <div class="image-wrap">
+
+                        <f:image src="{f:uri.resource(path:'Img/ISB-Logo.png')}" alt="Logo" title="Logo" width='180' />
+                    </div>
+                </div>
+            </div>
+        </f:comment>
     </div>
     </section>
 </f:section>

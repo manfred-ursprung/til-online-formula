@@ -1,0 +1,79 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     f:schemaLocation="https://fluidtypo3.org/schemas/fluid-master.xsd"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     flux:schemaLocation="https://fluidtypo3.org/schemas/flux-master.xsd"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+     v:schemaLocation="https://fluidtypo3.org/schemas/vhs-master.xsd">
+
+    <f:layout name="Home" />
+
+    <f:section name="Configuration">
+        <flux:form id="homepage" options="{icon: 'Icons/Page/Home.png'}">
+            <!-- Insert fields, sheets, grid, form section objects etc. here, in this flux:form tag -->
+            <!-- Edit this grid to change the "backend layout" structure -->
+            <flux:field.input name="headerLeft" label="Überschrift linke Spalte"/>
+            <flux:field.input name="headerRight" label="Überschrift rechte Spalte"/>
+            <flux:grid>
+                <flux:grid.row>
+                    <flux:grid.column colPos="5"  name="Slider" />
+                </flux:grid.row>
+
+                <flux:grid.row>
+                    <flux:grid.column colPos="0"  name="Content 1" />
+                    <flux:grid.column colPos="4"  name="Content 2" />
+                </flux:grid.row>
+
+            </flux:grid>
+        </flux:form>
+    </f:section>
+
+
+
+    <f:section name="Preview">
+
+        <table width="100%" >
+            <tr>
+                <td colspan="2" width="100%">
+                    Slider
+                </td>
+            </tr>
+            <tr>
+                <td width="50%">
+                    <f:format.crop maxCharacters="50">{Content 1}</f:format.crop>
+                </td>
+                <td width="50%">
+                    <f:format.crop maxCharacters="50">{Content 2}</f:format.crop>
+                </td>
+            </tr>
+        </table>
+
+    </f:section>
+
+    <f:section name="Slider">
+        <v:content.render column="5"/>
+    </f:section>
+
+    <f:section name="Content">
+        <section class="content ">
+            <div class="container">
+
+                <div class="row margin-30">
+                    <div class="col-md-6 col-xs-12" id="home-content-left">
+                        <h2 class="centered headerDefault"><f:format.raw>{headerLeft}</f:format.raw></h2>
+                        <v:content.render column="0"/>
+                    </div>
+                    <div class="col-md-6 col-xs-12" id="home-content-right">
+                        <h2 class="centered headerDefault"><f:format.raw>{headerRight}</f:format.raw></h2>
+                        <v:content.render column="4"/>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </f:section>
+
+<f:section name="test">
+
+</f:section>
+
+</div>

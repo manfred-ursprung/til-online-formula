@@ -58,7 +58,7 @@ IsbFrontendLoginFormRsaEncryption = function() {
             encryptedPassword = rsa.encrypt(this.userPasswordField.value);
 
             // replace password value with encrypted password
-            //this.userPasswordField.value = hex2b64(encryptedPassword);
+            this.userPasswordField.value = hex2b64(encryptedPassword);
             $.ajax({
                 async: 'true',
                 url: 'index.php',

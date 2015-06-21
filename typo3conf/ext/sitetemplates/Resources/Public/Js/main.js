@@ -40,9 +40,10 @@ $(document).ready(function(){
 
         slides.superslides({
             inherit_height_from: '#head-slider',
-            play: 6000000,
+            play: 10000,
             slide_speed: 800,
-            pagination: true
+            pagination: true,
+            fit_landscape: 1
         });
         /*
          $document.on('animated.slides', function() {

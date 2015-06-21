@@ -1,0 +1,57 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	f:schemaLocation="https://fluidtypo3.org/schemas/fluid-master.xsd"
+	xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+	flux:schemaLocation="https://fluidtypo3.org/schemas/flux-master.xsd"
+    xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+    v:schemaLocation="https://fluidtypo3.org/schemas/vhs-master.xsd">
+
+	<f:layout name="Content" />
+
+	<f:section name="Configuration">
+		<flux:form id="2columns" options="{icon: 'Icons/Content/Example.gif', group: 'FCE'}" enabled="true">
+            <flux:grid.row>
+			    <flux:grid.column name="col1"  label="Text für Spalte links" colPos="20" />
+            </flux:grid.row>
+            <flux:grid.row>
+			    <flux:grid.column name="col2"  label="Text für Spalte rechts" colPos="21" />
+            </flux:grid.row>
+		</flux:form>
+
+	</f:section>
+
+	<f:section name="Preview">
+
+		<table width="100%">
+			<tr>
+				<td width="50%">
+					<f:format.crop maxCharacters="50">{col1}</f:format.crop>
+				</td>
+				<td width="50%">
+					<f:format.crop maxCharacters="50">{col2}</f:format.crop>
+				</td>
+			</tr>
+		</table>
+
+	</f:section>
+
+	<f:section name="Main">
+
+		<section class="content ">
+			<div class="container">
+
+				<div class="row margin-30">
+					<div class="col-md-6">
+                        <v:content.render column="20"/>
+					</div>
+
+					<div class="col-md-6">
+                        <v:content.render column="21"/>
+					</div>
+				</div><!--End Row-->
+
+
+			</div>
+		</section>
+	</f:section>
+</div>
