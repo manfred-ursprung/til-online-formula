@@ -1,0 +1,65 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     f:schemaLocation="https://fluidtypo3.org/schemas/fluid-master.xsd"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     flux:schemaLocation="https://fluidtypo3.org/schemas/flux-master.xsd"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+     v:schemaLocation="https://fluidtypo3.org/schemas/vhs-master.xsd">
+    
+    <f:layout name="Content"/>
+
+    <f:section name="Configuration">
+        <flux:form id="kooperationspartner" options="{group: 'FCE', icon: '{f:uri.resource(path: \'Icons/Content/Example.gif\')}'}">
+
+            <flux:field.input name="cssClass"  label="CSS-Klasse für gesamtes Konstrukt(optional)"  />
+            <flux:field.input name="cssId"  label="CSS-Id für gesamtes Konstrukt (optional)"  />
+
+
+            <flux:form.sheet name="panels" label="Liste der Kooperationspartner">
+                <flux:form.section name="panels" label="Legen Sie einen neuen Kooperationspartner an">
+                    <flux:form.object name="partner" label="Neuer Kooperationspartner">
+
+                        <flux:field.file name="logo"  label="Logo wählen"
+                                         allowed="jpg,jpeg,png,gif,JPEG,GIF,PNG,JPG" required="1"
+                                         maxItems="1" size="1" showThumbnails="true" />
+                        <flux:field.input name="width" label="Breite des Logo"/>
+                        <flux:field.input name="height" label="Höhe des Logo"/>
+                        <flux:field.input name="title" label="Überschrift"/>
+                        <flux:field.input name="cssClass"  label="CSS-Klasse für Element(optional)"  />
+
+                    </flux:form.object>
+                </flux:form.section>
+            </flux:form.sheet>
+        </flux:form>
+    </f:section>
+
+    <f:section name="Preview">
+        {record.header} <br />
+        <flux:widget.grid />
+    </f:section>
+
+    <f:section name="Main">
+        <div class="row">
+            <div class="container sponsor-logos table">
+                <f:comment>Zuerst zeigen wir die Texte an</f:comment>
+                <div class="table-row table-row-1">
+                    <f:for each="{panels}" as="panel" iteration="iteration">
+
+                        <div class="bodytext table-cell">
+                            {panel.partner.title}
+                        </div>
+                    </f:for>
+                </div>
+                <f:comment>Nun die Logos in der 2. Zeile</f:comment>
+                <div class="table-row table-row-2">
+                <f:for each="{panels}" as="panel" iteration="iteration">
+                    <div class="image-wrap {f:if(condition: '{panel.partner.cssClass}', then: '{panel.partner.cssClass}')} table-cell">
+                        <f:image src="{panel.partner.logo}" alt="Logo" title="Logo" width="{panel.partner.width}" height="{panel.partner.height}" />
+                    </div>
+                </f:for>
+                </div>
+            </div>
+        </div>
+    </f:section>
+
+</div>

@@ -169,8 +169,7 @@
 
 
 <f:section name="Footer">
-    <section id="footer">
-    <div class="container container-footer">
+
         <div class="row">
             <div class="outside-container-left">
 
@@ -208,31 +207,8 @@
             </v:page.menu.directory>
 
         </div>
-        <div class="row">
-            <div class="container sponsor-logos table">
-                <div class="table-row table-row-1">
-                    <div class="bodytext table-cell">
-                        Ein Programm von:
-                    </div>
-                    <div class="bodytext table-cell"></div>
-                    <div class="bodytext table-cell">
-                        Kooperationspartner:
-                    </div>
-                </div>
-                <div class="table-row table-row-2">
-                    <div class="image-wrap robert-koch-stiftung table-cell">
-                        <f:image src="{f:uri.resource(path:'Img/robert-bosch-logo.png')}" alt="Logo" title="Logo" width='180' />
-                    </div>
-                    <div class="image-wrap table-cell">
-                        <f:image src="{f:uri.resource(path:'Img/bayerisches-kulturministerum-logo.png')}" alt="Logo" title="Logo" width='267' />
-                    </div>
+        <f:cObject typoscriptObjectPath="lib.footer"  />
 
-                    <div class="image-wrap isb-til table-cell">
-                        <f:image src="{f:uri.resource(path:'Img/ISB-Logo.png')}" alt="Logo" title="Logo" width='50' />
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
         <f:comment>
@@ -248,8 +224,7 @@
                 </div>
             </div>
         </f:comment>
-    </div>
-    </section>
+
 </f:section>
 
 <!-- Page Title -->

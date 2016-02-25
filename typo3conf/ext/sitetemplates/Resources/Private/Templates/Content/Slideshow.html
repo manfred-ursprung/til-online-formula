@@ -9,7 +9,7 @@
     <f:layout name="Content" />
 
     <f:section name="Configuration">
-    <flux:form id="slideshow" options="{icon: 'Icons/Content/Example.gif', group: 'FCE'}" enabled="true">
+    <flux:form id="slideshow" options="{group: 'FCE', icon: '{f:uri.resource(path: \'Icons/Content/Example.gif\')}'}" enabled="true">
         <!-- Insert fields, sheets, grid, form section objects etc. here, in this flux:flexform tag -->
         <flux:form.sheet name="panels" label="Liste der Bilder / Slides">
             <flux:form.section name="panels" label="Legen Sie die einzelnen Slides an">

@@ -43,6 +43,12 @@
             <trans-unit id="flux.slideshow">
                 <source>Slideshow über die ganze Breite</source>
             </trans-unit>
+            <trans-unit id="flux.kooperationspartner">
+                <source>Logos und Text als Tabelle dartellen</source>
+            </trans-unit>
+            <trans-unit id="flux.kooperationspartner.description">
+                <source>Tabelle per CSS, Text in oberer Zeile, Logos in Zeile darunter</source>
+            </trans-unit>
 
 		</body>
 	</file>

@@ -27,6 +27,15 @@
     <f:render section="Content" optional="TRUE" arguments="{_all}" />
 
     <footer>
-        <f:render partial="PageObjects" section="Footer" optional="TRUE" arguments="{_all}" />
+        <section id="footer">
+            <div class="container container-footer">
+                <f:render partial="PageObjects" section="Footer" optional="TRUE" arguments="{_all}" />
+                <f:comment>
+                    Der Inhalt in "Footer" wird über Typoscript in PageObjects eingebunden für jede Seite
+                    <f:render section="Footer" optional="TRUE" arguments="{_all}" />
+
+                </f:comment>
+            </div>
+        </section>
     </footer>
 
