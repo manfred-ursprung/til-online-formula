@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-02-28T13:12:40Z" product-name="til_application">
+		<header/>
+		<body>
+			<trans-unit id="gross_salary.description">
+				<source>grossSalary</source>
+			</trans-unit>
+			<trans-unit id="net_salary.description">
+				<source>netSalary</source>
+			</trans-unit>
+			<trans-unit id="self_employed_salary.description">
+				<source>selfEmployedSalary</source>
+			</trans-unit>
+			<trans-unit id="welfare.description">
+				<source>welfare</source>
+			</trans-unit>
+			<trans-unit id="unemployment_benefit.description">
+				<source>unemploymentBenefit</source>
+			</trans-unit>
+			<trans-unit id="housing_benefit.description">
+				<source>housingBenefit</source>
+			</trans-unit>
+			<trans-unit id="pension.description">
+				<source>pension</source>
+			</trans-unit>
+			<trans-unit id="other_incomes.description">
+				<source>otherIncomes</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

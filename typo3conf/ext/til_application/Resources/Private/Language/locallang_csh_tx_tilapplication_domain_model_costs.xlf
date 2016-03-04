@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-02-28T13:12:40Z" product-name="til_application">
+		<header/>
+		<body>
+			<trans-unit id="living_costs.description">
+				<source>livingCosts</source>
+			</trans-unit>
+			<trans-unit id="credit_costs.description">
+				<source>creditCosts</source>
+			</trans-unit>
+			<trans-unit id="other_outgoings.description">
+				<source>otherOutgoings</source>
+			</trans-unit>
+			<trans-unit id="travel_costs.description">
+				<source>travelCosts</source>
+			</trans-unit>
+			<trans-unit id="further_education_costs.description">
+				<source>furtherEducationCosts</source>
+			</trans-unit>
+			<trans-unit id="private_coaching_costs.description">
+				<source>privateCoachingCosts</source>
+			</trans-unit>
+			<trans-unit id="rental.description">
+				<source>rental</source>
+			</trans-unit>
+			<trans-unit id="living_costs_single.description">
+				<source>livingCostsSingle</source>
+			</trans-unit>
+			<trans-unit id="other_costs.description">
+				<source>otherCosts</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

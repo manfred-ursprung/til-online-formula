@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-02-28T13:12:40Z" product-name="til_application">
+		<header/>
+		<body>
+			<trans-unit id="family_status.description">
+				<source>familyStatus</source>
+			</trans-unit>
+			<trans-unit id="migration_background.description">
+				<source>migrationBackground</source>
+			</trans-unit>
+			<trans-unit id="nationality.description">
+				<source>nationality</source>
+			</trans-unit>
+			<trans-unit id="resident_since.description">
+				<source>residentSince</source>
+			</trans-unit>
+			<trans-unit id="residence_status.description">
+				<source>residenceStatus</source>
+			</trans-unit>
+			<trans-unit id="residence_misc.description">
+				<source>residenceMisc</source>
+			</trans-unit>
+			<trans-unit id="family_addon.description">
+				<source>familyAddon</source>
+			</trans-unit>
+			<trans-unit id="asset_real_estate.description">
+				<source>assetRealEstate</source>
+			</trans-unit>
+			<trans-unit id="asset_savings.description">
+				<source>assetSavings</source>
+			</trans-unit>
+			<trans-unit id="asset_misc_estate.description">
+				<source>assetMiscEstate</source>
+			</trans-unit>
+			<trans-unit id="integrity.description">
+				<source>integrity</source>
+			</trans-unit>
+			<trans-unit id="fe_user.description">
+				<source>feUser</source>
+			</trans-unit>
+			<trans-unit id="address.description">
+				<source>address</source>
+			</trans-unit>
+			<trans-unit id="school_career.description">
+				<source>schoolCareer</source>
+			</trans-unit>
+			<trans-unit id="family.description">
+				<source>family</source>
+			</trans-unit>
+			<trans-unit id="costs.description">
+				<source>costs</source>
+			</trans-unit>
+			<trans-unit id="income.description">
+				<source>income</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

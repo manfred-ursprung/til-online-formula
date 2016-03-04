@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-02-28T13:12:40Z" product-name="til_application">
+		<header/>
+		<body>
+			<trans-unit id="name.description">
+				<source>name</source>
+			</trans-unit>
+			<trans-unit id="type_of_school.description">
+				<source>typeOfSchool</source>
+			</trans-unit>
+			<trans-unit id="school_year.description">
+				<source>schoolYear</source>
+			</trans-unit>
+			<trans-unit id="actual.description">
+				<source>actual</source>
+			</trans-unit>
+			<trans-unit id="school_order.description">
+				<source>schoolOrder</source>
+			</trans-unit>
+			<trans-unit id="visit_from.description">
+				<source>visitFrom</source>
+			</trans-unit>
+			<trans-unit id="visit_til.description">
+				<source>visitTil</source>
+			</trans-unit>
+			<trans-unit id="planned_graduation_select.description">
+				<source>plannedGraduationSelect</source>
+			</trans-unit>
+			<trans-unit id="planned_graduation_text.description">
+				<source>plannedGraduationText</source>
+			</trans-unit>
+			<trans-unit id="planned_graduation_finish.description">
+				<source>plannedGraduationFinish</source>
+			</trans-unit>
+			<trans-unit id="school_certificate_points.description">
+				<source>schoolCertificatePoints</source>
+			</trans-unit>
+			<trans-unit id="school_certificate_date.description">
+				<source>schoolCertificateDate</source>
+			</trans-unit>
+			<trans-unit id="address.description">
+				<source>address</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
