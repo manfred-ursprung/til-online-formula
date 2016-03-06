@@ -1,0 +1,16 @@
+{
+  "name": "til-websitee",
+  "version": "0.1.0",
+  "description": "My Package",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-less": "^1.2.0",
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "grunt-contrib-uglify": "^0.5.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-ftp": "^2.0.0",
+    "grunt-ftp-push": "^0.4.4",
+    "load-grunt-tasks": "^3.4.1"
+  }
+}

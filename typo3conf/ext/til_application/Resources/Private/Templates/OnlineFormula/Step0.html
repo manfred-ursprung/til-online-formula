@@ -1,0 +1,27 @@
+
+<f:layout name="Default" />
+
+<f:section name="main">
+<h1>Step 0 des Onlineformulars für Stipendienbewerber</h1>
+
+<f:flashMessages renderMode="div" />
+<f:if condition="{isNew}">
+    <f:then>
+        <p>Sie haben im Online Formular bisher noch keine Angaben gemacht.<br />
+        Als erstes geben Sie Ihre persönlichen Daten ein, im zweiten Schritt werden Daten über Ihre
+        berufliche Laufbahn erhoben, im dritten Schritt über Ihre Familienmitglieder und zum Schluss
+        wird nach Einkommen, Vermögen und monatliche Kosten gefragt.</p>
+        <p>
+            <f:link.page pageUid="{settings.pageStep1}">
+                Zum ersten Schritt
+            </f:link.page>
+        </p>
+    </f:then>
+    <f:else>
+        <p>Sie haben im Online Formular bisher schon Angaben gemacht.<br />
+        Weiter zu Schritt 1, Schritt 2, Schritt 3 </p>
+    </f:else>
+</f:if>
+
+
+</f:section>

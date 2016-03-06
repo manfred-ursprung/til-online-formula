@@ -19,14 +19,14 @@ return array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'street,housenumber,city,zip,phone,mobile,email,at_parent,own_room,sibling_room,',
+		'searchFields' => 'street,housenumber,city,zip,phone,mobile,email,at_parent,own_room,sibling_room,sibling_room_number,',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('til_application') . 'Resources/Public/Icons/tx_tilapplication_domain_model_address.gif'
 	),
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, street, housenumber, city, zip, phone, mobile, email, at_parent, own_room, sibling_room',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, street, housenumber, city, zip, phone, mobile, email, at_parent, own_room, sibling_room, sibling_room_number',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, street, housenumber, city, zip, phone, mobile, email, at_parent, own_room, sibling_room, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, street, housenumber, city, zip, phone, mobile, email, at_parent, own_room, sibling_room, sibling_room_number, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -201,6 +201,13 @@ return array(
 				'default' => 0
 			)
 		),
-		
+		'sibling_room_number' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:til_application/Resources/Private/Language/locallang_db.xlf:tx_tilapplication_domain_model_address.sibling_room_number',
+			'config' => array(
+				'type' => 'check',
+				'default' => 0
+			)
+		),
 	),
 );

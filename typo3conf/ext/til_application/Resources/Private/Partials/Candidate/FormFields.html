@@ -1,8 +1,102 @@
+<fieldset>
+	<legend>Angaben über den Antragsteller</legend>
+	<div class="row form-group">
+		<label for="firstName">
+			<f:translate key="tx_tilapplication_domain_model_candidate.first_name" />
+		</label>
+		<f:form.textfield property="feUser.firstName" />
 
-<label for="familyStatus">
-	<f:translate key="tx_tilapplication_domain_model_candidate.family_status" />
-</label><br />
-	<f:form.textfield property="familyStatus" /><br />
+		<label for="lastName">
+			<f:translate key="tx_tilapplication_domain_model_candidate.last_name" />
+		</label>
+		<f:form.textfield property="feUser.lastName" /><br />
+	</div>
+
+	<div class="row form-group">
+		<label for="familyStatus">
+			<f:translate key="tx_tilapplication_domain_model_candidate.family_status" />
+		</label>
+			<f:comment><f:form.select property="familyStatus" options="{ledig: 'Ledig', verheiratet: 'Verheiratet'}"/><br /></f:comment>
+			<span class="form-radio-first form-radio"><f:form.radio property="familyStatus" value="ledig" />Ledig</span>
+			<span class="form-radio-last form-radio"><f:form.radio property="familyStatus" value="verheiratet" />Verheiratet</span>
+
+		<label for="gender">
+			<f:translate key="tx_tilapplication_domain_model_candidate.gender" />
+		</label>
+		<span class="form-radio-first form-radio"><f:form.radio property="gender" value="0" />männlich</span>
+		<span class="form-radio-last form-radio"><f:form.radio property="gender" value="1" />weiblich</span>
+	</div>
+
+	<div class="row form-group">
+		<label for="birthdate">
+			<f:translate key="tx_tilapplication_domain_model_candidate.birthdate" />
+		</label>
+		<f:form.textfield property="birthdate" />
+
+		<label for="countryOfBirth">
+			<f:translate key="tx_tilapplication_domain_model_candidate.countrv_of_birth" />
+		</label>
+		<f:form.textfield property="countryOfBirth" /><br />
+	</div>
+</fieldset>
+
+<fieldset>
+	<legend>Anschrift des Antragsteller</legend>
+	<div class="row form-group">
+		<label for="address">
+			Strasse, Nr
+		</label>
+		<f:form.textfield property="address.street" />
+		<f:form.textfield property="address.housenumber" /><br />
+
+		<label for="zip">
+			Postleitzahl, Ort
+		</label>
+		<f:form.textfield property="address.zip" />
+		<f:form.textfield property="address.city" />
+	</div>
+	<div class="row form-group">
+		<label for="phone">
+			<f:translate key="tx_tilapplication_domain_model_address.phone" />
+		</label>
+		<f:form.textfield property="address.phone" /><br />
+	</div>
+	<div class="row form-group">
+		<label for="mobile">
+			<f:translate key="tx_tilapplication_domain_model_address.mobile" />
+		</label>
+		<f:form.textfield property="address.mobile" /><br />
+	</div>
+	<div class="row form-group">
+		<label for="email">
+			<f:translate key="tx_tilapplication_domain_model_address.email" />
+		</label>
+		<f:form.textfield property="address.email" /><br />
+	</div>
+	<br />
+	<div class="row form-group">
+
+		<f:form.checkbox property="address.atParent" value="0"/>
+		<label for="atParent">
+			Wohnhaft bei den Eltern, wenn ja ...
+		</label>
+	</div>
+	<div class="row form-group">
+		<label for="ownRoom">
+			<f:form.checkbox property="address.ownRoom" value="0"/>
+			...eigenes Zimmer
+		</label>
+
+		<label for="ownRoom">
+			...oder
+		</label>
+		<f:form.checkbox property="address.siblingRoom" value="0"/>
+		Zimmer mit Geschwistern
+		<f:form.textfield name="siblingNumber" />
+	</div>
+
+</fieldset>
+
 <label for="migrationBackground">
 	<f:translate key="tx_tilapplication_domain_model_candidate.migration_background" />
 </label><br />

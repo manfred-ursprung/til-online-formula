@@ -25,6 +25,7 @@ namespace MUM\TilApplication\Domain\Model;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 
 /**
  * Is the root of all. Al data are here collected.
@@ -34,9 +35,19 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * familyStatus
 	 *
-	 * @var int
+	 * @var \string
 	 */
-	protected $familyStatus = 0;
+	protected $familyStatus = '';
+
+	/**
+	 * @var  \DateTime
+	 */
+	protected $birthdate;
+
+	/**
+	 * @var  \string
+	 */
+	protected $countryOfBirth;
 
 	/**
 	 * migrationBackground
@@ -104,7 +115,7 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * feUser
 	 *
-	 * @var
+	 * @var   \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
 	 */
 	protected $feUser = NULL;
 
@@ -155,7 +166,7 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the familyStatus
 	 *
-	 * @return int $familyStatus
+	 * @return \string $familyStatus
 	 */
 	public function getFamilyStatus() {
 		return $this->familyStatus;
@@ -164,7 +175,7 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the familyStatus
 	 *
-	 * @param int $familyStatus
+	 * @param \string $familyStatus
 	 * @return void
 	 */
 	public function setFamilyStatus($familyStatus) {
@@ -202,7 +213,7 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the feUser
 	 *
-	 * @return $feUser
+	 * @return \TYPO3\CMS\Extbase\Domain\Model\FrontendUser $feUser
 	 */
 	public function getFeUser() {
 		return $this->feUser;
@@ -211,10 +222,10 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the feUser
 	 *
-	 * @param string $feUser
+	 * @param \TYPO3\CMS\Extbase\Domain\Model\FrontendUser $feUser
 	 * @return void
 	 */
-	public function setFeUser($feUser) {
+	public function setFeUser(\TYPO3\CMS\Extbase\Domain\Model\FrontendUser $feUser) {
 		$this->feUser = $feUser;
 	}
 
@@ -553,5 +564,40 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setIncome(\MUM\TilApplication\Domain\Model\Income $income) {
 		$this->income = $income;
 	}
+
+	/**
+	 * @return \DateTime
+	 */
+	public function getBirthdate()
+	{
+		return $this->birthdate;
+	}
+
+	/**
+	 * @param \DateTime $birthdate
+	 */
+	public function setBirthdate($birthdate)
+	{
+		$this->birthdate = $birthdate;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getCountryOfBirth()
+	{
+		return $this->countryOfBirth;
+	}
+
+	/**
+	 * @param string $countryOfBirth
+	 */
+	public function setCountryOfBirth($countryOfBirth)
+	{
+		$this->countryOfBirth = $countryOfBirth;
+	}
+
+
+
 
 }

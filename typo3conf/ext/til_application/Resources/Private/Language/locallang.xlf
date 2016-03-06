@@ -6,8 +6,38 @@
 			<trans-unit id="tx_tilapplication_domain_model_candidate">
 				<source>Candidate</source>
 			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.first_name">
+				<source>Vorname</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.last_name">
+				<source>Nachname</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.gender">
+				<source>Geschlecht</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.gender.male">
+				<source>männlich</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.gender.female">
+				<source>weiblich</source>
+			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.family_status">
 				<source>Family Status</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.family_status.single">
+				<source>Ledig</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.family_status.married">
+				<source>Verheiratet</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.family_status.married_since">
+				<source>Verheiratet seit</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.birthdate">
+				<source>Geburtstag</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.countrv_of_birth">
+				<source>Geburtsland</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.migration_background">
 				<source>Migration Background</source>
@@ -73,19 +103,19 @@
 				<source>Zip</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.phone">
-				<source>Phone</source>
+				<source>Telefon</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.mobile">
-				<source>Mobile</source>
+				<source>Handy</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.email">
 				<source>Email</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.at_parent">
-				<source>At Parent</source>
+				<source>Wohnhaft bei den Eltern</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.own_room">
-				<source>Own Room</source>
+				<source>Eigenes Zimmer</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.sibling_room">
 				<source>Sibling Room</source>

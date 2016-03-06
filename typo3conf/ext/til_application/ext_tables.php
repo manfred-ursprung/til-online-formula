@@ -6,7 +6,7 @@ if (!defined('TYPO3_MODE')) {
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
 	'MUM.' . $_EXTKEY,
 	'Form',
-	'Form'
+	'Online Bewerbungsformular'
 );
 
 if (TYPO3_MODE === 'BE') {
@@ -31,6 +31,11 @@ if (TYPO3_MODE === 'BE') {
 
 }
 
+$pluginSignature = str_replace('_','',$_EXTKEY) . '_form';
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_form.xml');
+
+
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'TIL Online Bewerbungsformular');
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_tilapplication_domain_model_candidate', 'EXT:til_application/Resources/Private/Language/locallang_csh_tx_tilapplication_domain_model_candidate.xlf');
@@ -50,3 +55,11 @@ if (TYPO3_MODE === 'BE') {
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_tilapplication_domain_model_income', 'EXT:til_application/Resources/Private/Language/locallang_csh_tx_tilapplication_domain_model_income.xlf');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_tilapplication_domain_model_income');
+
+
+/***************
+ * Wizard pi1
+
+$GLOBALS['TBE_MODULES_EXT']['xMOD_db_new_content_el']['addElClasses'][$pluginSignature . '_wizicon'] =
+	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Resources/Private/Php/class.' . $_EXTKEY . '_wizicon.php';
+*/

@@ -102,6 +102,10 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $siblingRoom = FALSE;
 
 	/**
+	 * @var \int
+	 */
+	protected $siblingRoomNumber;
+	/**
 	 * Returns the street
 	 *
 	 * @return string $street
@@ -317,5 +321,23 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setHousenumber($housenumber) {
 		$this->housenumber = $housenumber;
 	}
+
+	/**
+	 * @return int
+	 */
+	public function getSiblingRoomNumber()
+	{
+		return $this->siblingRoomNumber;
+	}
+
+	/**
+	 * @param int $siblingRoomNumber
+	 */
+	public function setSiblingRoomNumber($siblingRoomNumber)
+	{
+		$this->siblingRoomNumber = $siblingRoomNumber;
+	}
+
+
 
 }

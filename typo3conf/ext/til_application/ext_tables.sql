@@ -6,7 +6,11 @@ CREATE TABLE tx_tilapplication_domain_model_candidate (
 	uid int(11) NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
-	family_status int(11) DEFAULT '0' NOT NULL,
+  gender varchar(20) DEFAULT '' NOT NULL,
+	family_status varchar(20) DEFAULT '' NOT NULL,
+	married_since varchar(255) DEFAULT '' NOT NULL,
+	birthdate int(11) unsigned DEFAULT '0' NOT NULL,
+	country_of_birth varchar(255) DEFAULT '' NOT NULL,
 	migration_background tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	nationality varchar(255) DEFAULT '' NOT NULL,
 	resident_since varchar(255) DEFAULT '' NOT NULL,
@@ -71,6 +75,7 @@ CREATE TABLE tx_tilapplication_domain_model_address (
 	at_parent tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	own_room tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	sibling_room tinyint(1) unsigned DEFAULT '0' NOT NULL,
+	sibling_room_number int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

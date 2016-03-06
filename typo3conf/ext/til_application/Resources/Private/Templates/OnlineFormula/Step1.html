@@ -1,0 +1,29 @@
+
+<f:layout name="Default" />
+
+<f:section name="main">
+	<h1>Edit Candidate</h1>
+
+	<f:flashMessages renderMode="div" />
+
+	<f:render partial="FormErrors" arguments="{object:Candidate}" />
+	<f:if condition="{isNew}">
+		<f:then>
+			<f:debug inline="true">{candidate}</f:debug>
+			<f:form action="create"  name="candidate" object="{candidate}">
+				<f:render partial="Candidate/FormFields" arguments="{_all}"/>
+
+			</f:form>
+		</f:then>
+		<f:else>
+			<f:form action="update" name="candidate" object="{candidate}" >
+				<f:render partial="Candidate/FormFields" arguments="{candidate:candidate}" />
+				<f:form.submit value="Save" />
+			</f:form>
+		</f:else>
+	</f:if>
+
+
+
+
+</f:section>
