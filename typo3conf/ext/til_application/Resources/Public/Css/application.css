@@ -1,0 +1,31 @@
+.form-group {
+  display: block;
+}
+.form-group .form-field {
+  width: 48%;
+}
+.form-group .form-field label {
+  width: 150px;
+}
+.form-group .form-line {
+  width: 100%;
+}
+.form-group .form-line label {
+  width: 200px;
+}
+.form-group .form-line .next {
+  padding-left: 20px;
+}
+.form-group .form-line label.over {
+  display: block;
+  width: auto;
+}
+.form-group .form-field-left {
+  float: left;
+}
+.form-group .form-field-right {
+  float: right;
+}
+.form-group input[type=radio] {
+  margin-right: 10px;
+}

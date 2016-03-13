@@ -19,15 +19,15 @@
 									</numIndex>
 									<numIndex index="1">
 										<numIndex index="0">Step 1</numIndex>
-										<numIndex index="1">OnlineFormula->step1</numIndex>
+										<numIndex index="1">OnlineFormula->step1;OnlineFormula->create;OnlineFormula->updateStep1;OnlineFormula->step0;OnlineFormula->step2</numIndex>
 									</numIndex>
 									<numIndex index="3">
 										<numIndex index="0">Step 2</numIndex>
-										<numIndex index="1">OnlineFormula->step2</numIndex>
+										<numIndex index="1">OnlineFormula->step2;OnlineFormula->updateStep2;OnlineFormula->step1;OnlineFormula->step3</numIndex>
 									</numIndex>
 									<numIndex index="4">
 										<numIndex index="0">Step 3</numIndex>
-										<numIndex index="1">OnlineFormula->step3</numIndex>
+										<numIndex index="1">OnlineFormula->step3;OnlineFormula->updateStep3</numIndex>
 									</numIndex>
 								</items>
 							</config>

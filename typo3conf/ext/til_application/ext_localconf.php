@@ -8,11 +8,11 @@ if (!defined('TYPO3_MODE')) {
 	'Form',
 	array(
 		'Candidate' => 'new, edit, show, list ',
-		'OnlineFormula'	=> 'step0, step1, step2, step3',
+		'OnlineFormula'	=> 'step0, step1, step2, step3,create,updateStep1,updateStep2,updateStep3',
 	),
 	// non-cacheable actions
 	array(
 		'Candidate' => 'create, update',
-		'OnlineFormula'	=> 'step1, step2, step3',
+		'OnlineFormula'	=> 'step1, step2, step3, create,updateStep1,updateStep2,updateStep3',
 	)
 );

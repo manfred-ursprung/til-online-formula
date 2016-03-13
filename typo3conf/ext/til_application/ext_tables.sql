@@ -1,3 +1,4 @@
+# noinspection SqlNoDataSourceInspectionForFile
 #
 # Table structure for table 'tx_tilapplication_domain_model_candidate'
 #

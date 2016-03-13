@@ -40,17 +40,27 @@
 				<source>Geburtsland</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.migration_background">
-				<source>Migration Background</source>
+				<source>Migrations Hintergrund</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.nationality">
 				<source>Nationality</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.resident_since">
-				<source>Resident Since</source>
+				<source>Wohnhaft in Deutschland seit</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.residence_status">
-				<source>Residence Status</source>
+				<source>Aufenthaltsstatus</source>
 			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.residence_status.niederlassung">
+				<source>Niederlassungserlaubnis</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.residence_status.aufenthalt">
+				<source>Aufenthaltserlaubnis</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.residence_status.sonstiges">
+				<source>Sonstiges</source>
+			</trans-unit>
+
 			<trans-unit id="tx_tilapplication_domain_model_candidate.residence_misc">
 				<source>Residence Misc</source>
 			</trans-unit>
@@ -91,10 +101,10 @@
 				<source>Address</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.street">
-				<source>Street</source>
+				<source>Straße</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.housenumber">
-				<source>Housenumber</source>
+				<source>Housenummer</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.city">
 				<source>City</source>
@@ -124,34 +134,34 @@
 				<source>School</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.name">
-				<source>Name</source>
+				<source>Name der Schule </source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.type_of_school">
-				<source>Type Of School</source>
+				<source>Schulart</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.school_year">
-				<source>School Year</source>
+				<source>Jahrgangsstufe</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.actual">
-				<source>Actual</source>
+				<source>Aktuelle Schule</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.school_order">
 				<source>School Order</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.visit_from">
-				<source>Visit From</source>
+				<source>Besuch von </source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.visit_til">
-				<source>Visit Til</source>
+				<source>Besuch bis</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.planned_graduation_select">
-				<source>Planned Graduation Select</source>
+				<source>Bezeichnung des Schulabschlusses</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.planned_graduation_text">
-				<source>Planned Graduation Text</source>
+				<source>Schulabschluss als Freitext</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.planned_graduation_finish">
-				<source>Planned Graduation Finish</source>
+				<source>Geplanter Schulabschluss</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.school_certificate_points">
 				<source>School Certificate Points</source>

@@ -1,0 +1,95 @@
+<fieldset xmlns:f="http://www.w3.org/1999/html" xmlns:f="http://www.w3.org/1999/html">
+    <legend>II. Derzeitige Schule des Antragstellers</legend>
+    <div class="row form-group clearfix">
+        <f:form.hidden name="actual" value="1"/>
+        <div class="form-field form-field-left">
+            <label for="name">
+                <f:translate key="tx_tilapplication_domain_model_school.name" />
+            </label>
+            <f:form.textfield property="name" />
+        </div>
+        <div class="form-field form-field-right">
+            <label for="typeOfSchool">
+                <f:translate key="tx_tilapplication_domain_model_school.type_of_school" />
+            </label>
+            <f:form.textfield property="$typeOfSchool" />
+        </div>
+    </div>
+    <label for="schoolYear">
+        <f:translate key="tx_tilapplication_domain_model_school.school_year" />
+    </label>
+    <f:form.textfield property="schoolYear" />
+    <div class="row form-group clearfix">
+        <div class="form-field form-field-left">
+            <label for="address">
+                <f:translate key="tx_tilapplication_domain_model_address.street" />
+            </label>
+            <f:form.textfield property="address.street" />
+        </div>
+        <div class="form-field form-field-right">
+            <label for="housenumber">
+                <f:translate key="tx_tilapplication_domain_model_address.housenumber" />
+            </label>
+            <f:form.textfield property="address.housenumber" />
+        </div>
+    </div>
+
+    </div>
+    <div class="row form-group clearfix">
+        <div class="form-field form-field-left">
+            <label for="zip">
+                <f:translate key="tx_tilapplication_domain_model_address.zip" />
+            </label>
+            <f:form.textfield property="address.zip" /><br />
+        </div>
+
+        <div class="form-field form-field-right">
+            <label for="city">
+                <f:translate key="tx_tilapplication_domain_model_address.city" />
+            </label>
+            <f:form.textfield property="address.city" />
+        </div>
+    </div>
+    <div class="row form-group clearfix">
+        <div class="form-field form-field-left">
+            <label for="phone">
+                <f:translate key="tx_tilapplication_domain_model_address.phone" />
+            </label>
+            <f:form.textfield property="address.phone" /><br />
+        </div>
+
+        <div class="form-field form-field-right">
+            <label for="mobile">
+                <f:translate key="tx_tilapplication_domain_model_address.mobile" />
+            </label>
+            <f:form.textfield property="address.mobile" />
+        </div>
+    </div>
+    <div class="row form-group  clearfix">
+        <div class="form-field form-field-left">
+            <label for="email">
+                <f:translate key="tx_tilapplication_domain_model_address.email" />
+            </label>
+            <f:form.textfield property="address.email" />
+        </div>
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend>Angestrebter Schulabschluss</legend>
+    <div class="row form-group  clearfix">
+        <label for="planned_graduation_select">
+            <f:translate key="tx_tilapplication_domain_model_school.planned_graduation_select" />
+        </label>
+        <span class="form-radio-first form-radio"><f:form.radio property="'planned_graduation_select" value="Abitur" />Abitur</span>
+        <span class="form-radio-middle form-radio"><f:form.radio property="'planned_graduation_select" value="Fachhochschulreife" />Fachhochschulreife</span>
+        <span class="form-radio-last form-radio"><f:form.radio property="'planned_graduation_select" value="Sonstiges" />Sonstiges</span>
+        <f:form.textfield property="plannedGraduationText" />
+    </div>
+    <div class="row form-group  clearfix">
+        <label for="plannedGraduationFinish">
+            <f:translate key="tx_tilapplication_domain_model_school.planned_graduation_finish" />
+        </label>
+        <f:form.textfield property="plannedGraduationFinish" />
+    </div>
+</fieldset>

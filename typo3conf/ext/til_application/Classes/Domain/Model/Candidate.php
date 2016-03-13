@@ -26,11 +26,17 @@ namespace MUM\TilApplication\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
+use MUM\TilApplication\Domain\Model\School;
 
 /**
  * Is the root of all. Al data are here collected.
  */
 class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+
+	/**
+	 * @var \string
+	 */
+	protected $gender;
 
 	/**
 	 * familyStatus
@@ -133,6 +139,12 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @cascade remove
 	 */
 	protected $schoolCareer = NULL;
+
+	/**
+	 * @var  \MUM\TilApplication\Domain\Model\School
+	 * @transient
+	 */
+	protected $actualSchool;
 
 	/**
 	 * family
@@ -403,6 +415,15 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		$this->schoolCareer = $schoolCareer;
 	}
 
+	public function hasActualSchool(){
+		$founded = false;
+		if($this->schoolCareer->count() > 0){
+			$founded = is_object($this->getActualSchool());
+
+		}
+		return $founded;
+	}
+
 	/**
 	 * Returns the assetRealEstate
 	 *
@@ -595,6 +616,42 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setCountryOfBirth($countryOfBirth)
 	{
 		$this->countryOfBirth = $countryOfBirth;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getGender()
+	{
+		return $this->gender;
+	}
+
+	/**
+	 * @param string $gender
+	 */
+	public function setGender($gender)
+	{
+		$this->gender = $gender;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function getActualSchool()
+	{
+		if(isset($this->actualSchool)){
+			return $this->actualSchool;
+		}else {
+			/** @var  $school School */
+			foreach ($this->schoolCareer as $school) {
+				if ($school->isActual()) {
+					$this->actualSchool = $school;
+					return $this->actualSchool;
+					break;
+				}
+			}
+		}
+		return false;
 	}
 
 

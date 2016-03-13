@@ -209,6 +209,10 @@ return array(
 				'type' => 'select',
 				'items' => array(
 					array('-- Label --', 0),
+					array('LLL:EXT:til_application/Resources/Private/Language/locallang_db.xlf:tx_tilapplication_domain_model_candidate.residence_status.niederlassung', '1'),
+					array('LLL:EXT:til_application/Resources/Private/Language/locallang_db.xlf:tx_tilapplication_domain_model_candidate.residence_status.aufenthalt', '2'),
+					array('LLL:EXT:til_application/Resources/Private/Language/locallang_db.xlf:tx_tilapplication_domain_model_candidate.residence_status.sonstiges', '3'),
+
 				),
 				'size' => 1,
 				'maxitems' => 1,

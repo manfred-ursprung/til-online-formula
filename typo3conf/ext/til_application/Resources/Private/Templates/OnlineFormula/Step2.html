@@ -1,0 +1,20 @@
+
+<f:layout name="Default" />
+
+<f:section name="main">
+	<h1>Edit Candidate</h1>
+
+	<f:flashMessages renderMode="div" />
+
+	<f:render partial="FormErrors" arguments="{object:Candidate}" />
+	<p>Kandidate angelegt</p>
+
+	<f:form action="updateStep2" name="actualSchool" object="{actualSchool}" arguments="{candidate: candidate}"
+			additionalAttributes="{role: 'form'}">
+		<f:render partial="Candidate/FormFieldsSchool" arguments="{candidate:candidate,
+															actualSchool: actualSchool, settings: settings}" />
+		<f:form.submit value="Save" />
+	</f:form>
+
+
+</f:section>
