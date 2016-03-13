@@ -421,7 +421,7 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 			$founded = is_object($this->getActualSchool());
 
 		}
-		return $founded;
+		return !is_null($founded);
 	}
 
 	/**
@@ -635,7 +635,7 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * @return bool
+	 * @return \MUM\TilApplication\Domain\Model\School
 	 */
 	public function getActualSchool()
 	{
@@ -651,10 +651,22 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 				}
 			}
 		}
-		return false;
+		return null;
 	}
 
+	/**
+	 * @param \MUM\TilApplication\Domain\Model\School $school
+	 */
+	public function setActualSchool(\MUM\TilApplication\Domain\Model\School $school){
+		if($this->hasActualSchool()){
 
-
+			if($this->actualSchool->getUid() != $school->getUid()){
+				$this->removeSchoolCareer($this->actualSchool);
+				$this->addSchoolCareer($school);
+			}
+		}else{
+			$this->addSchoolCareer($school);
+		}
+	}
 
 }

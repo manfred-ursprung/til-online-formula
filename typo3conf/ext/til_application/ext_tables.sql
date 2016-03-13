@@ -124,7 +124,7 @@ CREATE TABLE tx_tilapplication_domain_model_school (
 	school_order int(11) DEFAULT '0' NOT NULL,
 	visit_from varchar(255) DEFAULT '' NOT NULL,
 	visit_til varchar(255) DEFAULT '' NOT NULL,
-	planned_graduation_select int(11) DEFAULT '0' NOT NULL,
+	planned_graduation_select varchar(255) DEFAULT '' NOT NULL,
 	planned_graduation_text varchar(255) DEFAULT '' NOT NULL,
 	planned_graduation_finish varchar(255) DEFAULT '' NOT NULL,
 	school_certificate_points double(11,2) DEFAULT '0.00' NOT NULL,

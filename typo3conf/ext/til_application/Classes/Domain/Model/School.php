@@ -83,7 +83,7 @@ class School extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * plannedGraduationSelect
 	 *
-	 * @var int
+	 * @var \string
 	 */
 	protected $plannedGraduationSelect = 0;
 
@@ -267,7 +267,7 @@ class School extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the plannedGraduationSelect
 	 *
-	 * @return int $plannedGraduationSelect
+	 * @return \string $plannedGraduationSelect
 	 */
 	public function getPlannedGraduationSelect() {
 		return $this->plannedGraduationSelect;
@@ -276,7 +276,7 @@ class School extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the plannedGraduationSelect
 	 *
-	 * @param int $plannedGraduationSelect
+	 * @param \string $plannedGraduationSelect
 	 * @return void
 	 */
 	public function setPlannedGraduationSelect($plannedGraduationSelect) {

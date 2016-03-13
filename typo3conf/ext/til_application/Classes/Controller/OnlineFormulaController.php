@@ -29,7 +29,7 @@ use MUM\TilApplication\Domain\Model\Candidate;
 use TYPO3\CMS\Core\Utility\DebugUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-
+use MUM\TilApplication\Domain\Model\School;
 
 /**
  * CandidateController
@@ -193,10 +193,13 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 * action update
 	 *
 	 * @param \MUM\TilApplication\Domain\Model\Candidate $candidate
+	 * @param \MUM\TilApplication\Domain\Model\School $actualSchool
 	 * @return void
 	 */
-	public function updateStep2Action(\MUM\TilApplication\Domain\Model\Candidate $candidate) {
+	public function updateStep2Action(\MUM\TilApplication\Domain\Model\Candidate $candidate,
+									  \MUM\TilApplication\Domain\Model\School $actualSchool) {
 		if($this->isUserValid()) {
+			$candidate->setActualSchool($actualSchool);
 			$this->candidateRepository->update($candidate);
 			$this->redirect('step3');
 		}else{

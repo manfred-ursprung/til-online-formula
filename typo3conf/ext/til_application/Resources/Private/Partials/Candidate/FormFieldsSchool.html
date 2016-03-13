@@ -12,7 +12,7 @@
             <label for="typeOfSchool">
                 <f:translate key="tx_tilapplication_domain_model_school.type_of_school" />
             </label>
-            <f:form.textfield property="$typeOfSchool" />
+            <f:form.textfield property="typeOfSchool" />
         </div>
     </div>
     <label for="schoolYear">
@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    </div>
+
     <div class="row form-group clearfix">
         <div class="form-field form-field-left">
             <label for="zip">
@@ -91,5 +91,22 @@
             <f:translate key="tx_tilapplication_domain_model_school.planned_graduation_finish" />
         </label>
         <f:form.textfield property="plannedGraduationFinish" />
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend>Notendurchschnitt des letzten Zeugnisses bzw, Halbjahresinformation</legend>
+    <div class="row form-group  clearfix">
+        <label for="schoolCertificateDate">
+            <f:translate key="tx_tilapplication_domain_model_school.school_certificate_date" />
+        </label>
+
+        <f:form.textfield property="schoolCertificateDate" />
+    </div>
+    <div class="row form-group  clearfix">
+        <label for="schoolCertificatePoints">
+            <f:translate key="tx_tilapplication_domain_model_school.school_certificate_points" />
+        </label>
+        <f:form.textfield property="schoolCertificatePoints" />
     </div>
 </fieldset>

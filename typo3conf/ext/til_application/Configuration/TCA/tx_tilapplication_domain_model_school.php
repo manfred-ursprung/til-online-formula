@@ -183,6 +183,9 @@ return array(
 				'type' => 'select',
 				'items' => array(
 					array('-- Label --', 0),
+					array('Abitur', 'Abitur'),
+					array('Fachhochschulreife', 'Fachhochschulreife'),
+					array('Sonstiges', 'Sonstiges'),
 				),
 				'size' => 1,
 				'maxitems' => 1,
