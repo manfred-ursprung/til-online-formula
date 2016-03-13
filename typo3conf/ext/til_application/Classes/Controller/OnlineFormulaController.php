@@ -189,6 +189,22 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	}
 
 
+	public function initializeUpdateStep2Action() {
+		if ($this->arguments->hasArgument('actualSchool')) {
+			$this->arguments['actualSchool']
+				->getPropertyMappingConfiguration()
+				->forProperty('schoolCertificateDate')
+				->setTypeConverterOption('TYPO3\\CMS\\Extbase\\Property\\TypeConverter\\DateTimeConverter',
+					\TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'd.m.Y');
+			//	->setTargetTypeForSubProperty('schoolCertificateDate', '\DateTime');
+		//	$this->arguments['leisure']
+		//		->getPropertyMappingConfiguration()->forProperty('price')
+		//		->setTypeConverter( $this->objectManager->get( 'MUM\\BjrFreizeit\\TypeConverter\\FloatConverter' ) );
+
+		}
+	}
+
+
 	/**
 	 * action update
 	 *
