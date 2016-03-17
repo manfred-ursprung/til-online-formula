@@ -10,7 +10,7 @@ CREATE TABLE tx_tilapplication_domain_model_candidate (
   gender varchar(20) DEFAULT '' NOT NULL,
 	family_status varchar(20) DEFAULT '' NOT NULL,
 	married_since varchar(255) DEFAULT '' NOT NULL,
-	birthdate int(11) unsigned DEFAULT '0' NOT NULL,
+	birthdate date DEFAULT '0000-00-00',
 	country_of_birth varchar(255) DEFAULT '' NOT NULL,
 	migration_background tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	nationality varchar(255) DEFAULT '' NOT NULL,

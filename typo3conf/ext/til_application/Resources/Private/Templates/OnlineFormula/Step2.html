@@ -9,7 +9,7 @@
 	<f:render partial="FormErrors" arguments="{object:Candidate}" />
 	<p>Kandidate angelegt</p>
 
-	<f:form action="updateStep2" name="actualSchool" object="{actualSchool}" arguments="{candidate: candidate}"
+	<f:form action="updateStep2" name="actualSchool" object="{actualSchool}" arguments="{candidate: candidate, otherSchool: ''}"
 			pageUid="{settings.pageStep3}" additionalAttributes="{role: 'form'}">
 		<f:render partial="Candidate/FormFieldsSchool" arguments="{candidate:candidate,
 															actualSchool: actualSchool, settings: settings}" />

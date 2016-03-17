@@ -1,5 +1,6 @@
 .form-group {
   display: block;
+  margin-left: 15px;
 }
 .form-group .form-field {
   width: 48%;
@@ -23,9 +24,19 @@
 .form-group .form-field-left {
   float: left;
 }
+.form-group .form-field-left input {
+  width: 100%;
+}
 .form-group .form-field-right {
   float: right;
 }
+.form-group .form-field-right input {
+  width: 100%;
+}
 .form-group input[type=radio] {
   margin-right: 10px;
+}
+fieldset {
+  color: inherit;
+  font-weight: bold;
 }

@@ -45,6 +45,15 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	protected $candidateRepository = NULL;
 
 	/**
+	 * schoolRepository
+	 *
+	 * @var \MUM\TilApplication\Domain\Repository\SchoolRepository
+	 * @inject
+	 */
+	protected $schoolRepository = NULL;
+
+
+	/**
 	 * FrontendUserRepository
 	 *
 	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
@@ -100,7 +109,7 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 */
 	public function step1Action() {
 		//DebugUtility::debug($GLOBALS['TSFE']->fe_user, 'Frontenduser');
-		DebuggerUtility::var_dump($this->candidate, 'Step1');
+		//DebuggerUtility::var_dump($this->candidate, 'Step1');
 		if($this->candidate->_isNew()){
 			$feUser = $this->frontendUserRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
 			if(is_a($feUser, '\TYPO3\CMS\Extbase\Domain\Model\FrontendUser')) {
@@ -121,11 +130,13 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 
 	/**
 	 * action step2
+	 * shows all schools of candidate
 	 *
 	 * @param \MUM\TilApplication\Domain\Model\Candidate $newCandidate
 	 * @return void
 	 */
 	public function step2Action() {
+		DebuggerUtility::var_dump($this->candidate, 'Step2');
 		//has candidate an actual school entry?
 		if($this->candidate->hasActualSchool()){
 			$actualSchool = $this->candidate->getActualSchool();
@@ -142,12 +153,22 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 
 	/**
 	 * action step3
-	 *
+	 * shows the famoly of candidate
 	 *
 	 * @return void
 	 */
 	public function step3Action() {
 		//$this->view->assign('candidate', $candidate);
+		if(!$this->isUserValid()) {
+			$this->redirect('step0');
+		}
+		$params = array(
+			'candidate'	=> $this->candidate,
+			'family'  => $actualSchool,
+			'settings'	=> $this->settings,
+		);
+		$this->view->assignMultiple($params);
+
 	}
 
 
@@ -168,6 +189,19 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	}
 
 
+	public function initializeUpdateStep1Action() {
+		if ($this->arguments->hasArgument('candidate')) {
+			$this->arguments['candidate']
+				->getPropertyMappingConfiguration()
+				->forProperty('birthdate')
+				->setTypeConverterOption('TYPO3\\CMS\\Extbase\\Property\\TypeConverter\\DateTimeConverter',
+					\TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'd.m.Y');
+			//	->setTargetTypeForSubProperty('schoolCertificateDate', '\DateTime');
+
+		}
+
+	}
+
 	/**
 	 * action update
 	 *
@@ -182,6 +216,12 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 			$persistenceManager = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
 			$persistenceManager->persistAll();
 			$this->addFlashMessage('Ihre Daten wurden gespeichert.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
+		/*	print '<pre>';
+			var_dump($this->arguments);
+			//var_dump($candidate);
+			print '</pre>';
+			exit;
+		*/
 			$this->redirect('step2');
 		}else{
 			$this->redirect('step0');
@@ -197,11 +237,14 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 				->setTypeConverterOption('TYPO3\\CMS\\Extbase\\Property\\TypeConverter\\DateTimeConverter',
 					\TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'd.m.Y');
 			//	->setTargetTypeForSubProperty('schoolCertificateDate', '\DateTime');
-		//	$this->arguments['leisure']
-		//		->getPropertyMappingConfiguration()->forProperty('price')
-		//		->setTypeConverter( $this->objectManager->get( 'MUM\\BjrFreizeit\\TypeConverter\\FloatConverter' ) );
-
+			$this->arguments['actualSchool']
+				->getPropertyMappingConfiguration()
+				->forProperty('schoolCertificatePoints')
+				->setTypeConverter( $this->objectManager->get( 'MUM\\TilApplication\\TypeConverter\\FloatConverter' ) );
 		}
+
+
+
 	}
 
 
@@ -215,11 +258,32 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	public function updateStep2Action(\MUM\TilApplication\Domain\Model\Candidate $candidate,
 									  \MUM\TilApplication\Domain\Model\School $actualSchool) {
 		if($this->isUserValid()) {
+			$actualSchool->setCandidate($candidate);
+			$this->schoolRepository->add($actualSchool);
 			$candidate->setActualSchool($actualSchool);
+
+			//Weitere Schulen schoolCareer
+			$otherSchools = $_REQUEST['tx_tilapplication_form']['otherSchool'];
+			foreach($otherSchools as $oSchool){
+				if(strlen($oSchool['name']) > 0){
+					/** @var  $tmpSchool \MUM\TilApplication\Domain\Model\School */
+					$tmpSchool = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\School');
+					$tmpSchool->setName($oSchool['name']);
+					$tmpSchool->setActual(false);
+					$tmpSchool->setCandidate($candidate);
+					if(strlen($oSchool['duration']) > 0){
+						$tmpSchool->setVisitFrom($oSchool['duration']);
+					}
+					$this->schoolRepository->add($tmpSchool);
+					$candidate->addSchoolCareer($tmpSchool);
+				}
+			}
+
 			$this->candidateRepository->update($candidate);
+
 			$this->redirect('step3');
 		}else{
-			$this->redirect('step1');
+			$this->redirect('step0');
 		}
 	}
 

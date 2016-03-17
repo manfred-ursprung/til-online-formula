@@ -19,7 +19,7 @@ return array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'gender,family_status,marribirthdate,country_of_birth,migration_background,nationality,resident_since,residence_status,residence_misc,family_addon,asset_real_estate,asset_savings,asset_misc_estate,integrity,fe_user,address,school_career,family,costs,income,',
+		'searchFields' => 'gender,family_status,married_since, birthdate,country_of_birth,migration_background,nationality,resident_since,residence_status,residence_misc,family_addon,asset_real_estate,asset_savings,asset_misc_estate,integrity,fe_user,address,school_career,family,costs,income,',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('til_application') . 'Resources/Public/Icons/tx_tilapplication_domain_model_candidate.gif'
 	),
 	'interface' => array(
@@ -156,15 +156,12 @@ return array(
 			'l10n_mode' => 'mergeIfNotBlank',
 			'label' => 'LLL:EXT:til_application/Resources/Private/Language/locallang_db.xlf:tx_tilapplication_domain_model_candidate.birtdate',
 			'config' => array(
+				'dbType' => 'date',
 				'type' => 'input',
-				'size' => 13,
-				'max' => 20,
-				'eval' => 'datetime',
+				'size' => 7,
+				'eval' => 'date',
 				'checkbox' => 0,
-				'default' => 0,
-				'range' => array(
-					'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
-				),
+				'default' => '0000-00-00'
 			),
 		),
 		'country_of_birth' => array(

@@ -46,7 +46,7 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $familyStatus = '';
 
 	/**
-	 * @var  \DateTime
+	 * @var  \string
 	 */
 	protected $birthdate;
 
@@ -587,7 +587,7 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * @return \DateTime
+	 * @return \string
 	 */
 	public function getBirthdate()
 	{
@@ -595,7 +595,7 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * @param \DateTime $birthdate
+	 * @param \string $birthdate
 	 */
 	public function setBirthdate($birthdate)
 	{
@@ -658,10 +658,12 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @param \MUM\TilApplication\Domain\Model\School $school
 	 */
 	public function setActualSchool(\MUM\TilApplication\Domain\Model\School $school){
+		$school->setActual(true);
 		if($this->hasActualSchool()){
 
-			if($this->actualSchool->getUid() != $school->getUid()){
+			if(is_object($this->actualSchool) && ($this->actualSchool->getUid() != $school->getUid())){
 				$this->removeSchoolCareer($this->actualSchool);
+
 				$this->addSchoolCareer($school);
 			}
 		}else{

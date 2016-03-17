@@ -123,6 +123,14 @@ class School extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $address = NULL;
 
 	/**
+	 * candidate
+	 *
+	 * @var \MUM\TilApplication\Domain\Model\Candidate
+	 */
+	protected $candidate;
+
+
+	/**
 	 * Returns the name
 	 *
 	 * @return string $name
@@ -352,10 +360,10 @@ class School extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the schoolCertificateDate
 	 *
-	 * @param \DateTime $schoolCertificateDate
+	 * @param \DateTime $schoolCertificateDate | null
 	 * @return void
 	 */
-	public function setSchoolCertificateDate(\DateTime $schoolCertificateDate) {
+	public function setSchoolCertificateDate(\DateTime $schoolCertificateDate = null) {
 		$this->schoolCertificateDate = $schoolCertificateDate;
 	}
 
@@ -377,5 +385,22 @@ class School extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setAddress(\MUM\TilApplication\Domain\Model\Address $address) {
 		$this->address = $address;
 	}
+
+	/**
+	 * @return \MUM\TilApplication\Domain\Model\Candidate
+	 */
+	public function getCandidate()
+	{
+		return $this->candidate;
+	}
+
+	/**
+	 * @param \MUM\TilApplication\Domain\Model\Candidate $candidate
+	 */
+	public function setCandidate($candidate)
+	{
+		$this->candidate = $candidate;
+	}
+
 
 }

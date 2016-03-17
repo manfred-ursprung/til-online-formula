@@ -161,7 +161,7 @@
 				<source>Schulabschluss als Freitext</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.planned_graduation_finish">
-				<source>Geplanter Schulabschluss</source>
+				<source>Geplanter Schulabschluss (Monat / Jahr)</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.school_certificate_points">
 				<source>School Certificate Points</source>
@@ -171,6 +171,12 @@
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.address">
 				<source>Address</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_school.other_school">
+				<source>Schule</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_school.other_school_duration">
+				<source>von / bis</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_relative">
 				<source>Relative</source>
