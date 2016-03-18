@@ -20,7 +20,7 @@
             <label for="schoolYear">
                 <f:translate key="tx_tilapplication_domain_model_school.school_year" />
             </label>
-            <f:form.textfield property="schoolYear" />
+            <f:form.textfield property="schoolYear" size="5" placeholder="Klasse"/>
         </div>
     </div>
     <div class="row form-group clearfix">
@@ -82,45 +82,54 @@
 <fieldset class="planned-graduation">
     <legend>Angestrebter Schulabschluss</legend>
     <div class="row form-group  clearfix">
-        <label for="plannedGraduationSelect">
-            <f:translate key="tx_tilapplication_domain_model_school.planned_graduation_select" />
-        </label>
-        <p>
-        <span class="form-radio-first form-radio"><f:form.radio property="plannedGraduationSelect" value="Abitur" />Abitur</span>
-        <span class="form-radio-middle form-radio"><f:form.radio property="plannedGraduationSelect" value="Fachhochschulreife" />Fachhochschulreife</span>
-        <span class="form-radio-last form-radio"><f:form.radio property="plannedGraduationSelect" value="Sonstiges" />Sonstiges</span>
-        </p>
-        <p>
+        <div class="form-field form-field-left">
+            <label for="plannedGraduationSelect">
+                <f:translate key="tx_tilapplication_domain_model_school.planned_graduation_select" />
+            </label>
+        </div>
+        <div class="form-field form-field-right">
+            <span class="form-radio-first form-radio"><f:form.radio property="plannedGraduationSelect" value="Abitur" />Abitur</span>
+            <span class="form-radio-middle form-radio"><f:form.radio property="plannedGraduationSelect" value="Fachhochschulreife" />Fachhochschulreife</span>
+            <br /><span class="form-radio-last form-radio"><f:form.radio property="plannedGraduationSelect" value="Sonstiges" />Sonstiges</span>
+        </div>
+    </div>
+    <div class="row form-group  clearfix">
+        <div class="form-line">
             <label for="plannedGraduationText">
                 <f:translate key="tx_tilapplication_domain_model_school.planned_graduation_text" />
             </label>
             <f:form.textfield property="plannedGraduationText" />
-        </p>
 
+        </div>
     </div>
 
     <div class="row form-group  clearfix">
-        <label for="plannedGraduationFinish">
-            <f:translate key="tx_tilapplication_domain_model_school.planned_graduation_finish" />
-        </label>
-        <f:form.textfield property="plannedGraduationFinish" />
+        <div class="form-line">
+            <label for="plannedGraduationFinish">
+                <f:translate key="tx_tilapplication_domain_model_school.planned_graduation_finish" />
+            </label>
+            <f:form.textfield property="plannedGraduationFinish" />
+        </div>
     </div>
 </fieldset>
 
 <fieldset class="schoolcertificate">
     <legend>Notendurchschnitt des letzten Zeugnisses bzw, Halbjahresinformation</legend>
     <div class="row form-group  clearfix">
-        <label for="schoolCertificateDate">
-            <f:translate key="tx_tilapplication_domain_model_school.school_certificate_date" />
-        </label>
+        <div class="form-field form-field-left">
+            <label for="schoolCertificateDate" class="over">
+                <br /><f:translate key="tx_tilapplication_domain_model_school.school_certificate_date" />
+            </label>
 
-        <f:form.textfield property="schoolCertificateDate" />
-    </div>
-    <div class="row form-group  clearfix">
-        <label for="schoolCertificatePoints">
-            <f:translate key="tx_tilapplication_domain_model_school.school_certificate_points" />
-        </label>
-        <f:form.textfield property="schoolCertificatePoints" />
+            <f:form.textfield property="schoolCertificateDate" />
+        </div>
+
+        <div class="form-field form-field-right">
+            <label for="schoolCertificatePoints" class="over">
+                <f:translate key="tx_tilapplication_domain_model_school.school_certificate_points" />
+            </label>
+            <f:form.textfield property="schoolCertificatePoints" size="5"/>
+        </div>
     </div>
 </fieldset>
 
@@ -129,17 +138,18 @@
     <legend>Bisheriger Schulbesuch / Ausbildung</legend>
     <f:for each="{0: '1', 1: '2', 2: '3'}" as="number">
         <div class="row form-group  clearfix">
-                <label for="">
+            <div class="form-field form-field-left">
+                <label for="" class="over">
                     <f:translate key="tx_tilapplication_domain_model_school.other_school" />
                 </label>
-                <f:form.textfield name="otherSchool[{number}][name]"  size="60"/>
-
-                <br />
-                <label for="duration">
+                <f:form.textfield name="otherSchool[{number}][name]"  size="60" placeholder="Name, Anschrift"/>
+            </div>
+            <div class="form-field form-field-right">
+                <label for="duration" class="over">
                     <f:translate key="tx_tilapplication_domain_model_school.other_school_duration" />
                 </label>
-                <f:form.textfield name="otherSchool[{number}][duration]"  />
-
+                <f:form.textfield name="otherSchool[{number}][duration]" placeholder="Monat / Jahr" />
+            </div>
         </div>
     </f:for>
     <div class="row form-group  clearfix">

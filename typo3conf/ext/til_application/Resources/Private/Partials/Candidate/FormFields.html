@@ -20,16 +20,19 @@
 		<label for="familyStatus">
 			<f:translate key="tx_tilapplication_domain_model_candidate.family_status" />
 		</label>
-			<f:comment><f:form.select property="familyStatus" options="{ledig: 'Ledig', verheiratet: 'Verheiratet'}"/><br /></f:comment>
-			<span class="form-radio-first form-radio"><f:form.radio property="familyStatus" value="ledig" />Ledig</span>
-			<span class="form-radio-last form-radio"><f:form.radio property="familyStatus" value="verheiratet" />Verheiratet</span>
+			<div class="form-radio-group">
+				<span class="form-radio-first form-radio"><f:form.radio property="familyStatus" value="ledig" />Ledig</span>
+				<span class="form-radio-last form-radio"><f:form.radio property="familyStatus" value="verheiratet" />Verheiratet</span>
+			</div>
 		</div>
 		<div class="form-field form-field-right">
 			<label for="gender">
 				<f:translate key="tx_tilapplication_domain_model_candidate.gender" />
 			</label>
-			<span class="form-radio-first form-radio"><f:form.radio property="gender" value="male" />männlich</span>
-			<span class="form-radio-last form-radio"><f:form.radio property="gender" value="female" />weiblich</span>
+			<div class="form-radio-group">
+				<span class="form-radio-first form-radio"><f:form.radio property="gender" value="male" />männlich</span>
+				<span class="form-radio-last form-radio"><f:form.radio property="gender" value="female" />weiblich</span>
+			</div>
 		</div>
 	</div>
 
@@ -144,35 +147,48 @@
 		<p class="subline">Staatsangehörigkeit/Aufenthaltsstatus</p>
 	</legend>
 	<div class="row form-group clearfix">
-		<div class="form-line ">
+		<div class="form-field form-line">
 			<label for="nationality" class="over">
 				Staatsangehörigkeit (wenn Deutsch, Herkunftsland der Familie)
 			</label>
 			<f:form.textfield property="nationality" />
 		</div>
-	</div>
-	<div class="row form-group clearfix">
-		<div class="form-line ">
-		<label for="residentSince" class="over">
-			<f:translate key="tx_tilapplication_domain_model_candidate.resident_since" />
-		</label>
-			<f:form.textfield property="residentSince" />
+		<div class="form-field form-line">
+			<label for="residentSince" class="over">
+				<f:translate key="tx_tilapplication_domain_model_candidate.resident_since" />
+			</label>
+				<f:form.textfield property="residentSince" />
 		</div>
 	</div>
 	<div class="row form-group clearfix">
 		<div class="form-line ">
 			<label for="residenceStatus" class="over">
-			<f:translate key="tx_tilapplication_domain_model_candidate.residence_status" />
-		</label>
+				<f:translate key="tx_tilapplication_domain_model_candidate.residence_status" />
+			</label>
+			<div class="form-radio-group">
+				<span class="form-radio-first form-radio">
+					<f:form.radio property="residenceStatus" value="1" />
+					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.niederlassung" />
+				</span>
 
-			<f:form.radio property="residenceStatus" value="1" />
-				<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.niederlassung" /><br />
-			<f:form.radio property="residenceStatus" value="2" />
-				<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.aufenthalt" /><br />
-			<f:form.radio property="residenceStatus" value="3" />
-				<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.sonstiges" />
-			<f:form.textfield property="residenceMisc" /><br />
+				<span class="form-radio-first form-radio">
+					<f:form.radio property="residenceStatus" value="2" />
+					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.aufenthalt" />
+				</span>
+				<span class="form-radio-first form-radio">
+					<f:form.radio property="residenceStatus" value="3" />
+					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.sonstiges" />
+				</span>
+			</div>
+		</div>
+		<div class="row form-group clearfix">
+			<div class="form-field form-field-left">
+				<label for="residenceMisc">
+					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.sonstiges" />
+				</label>
 
+				<f:form.textfield property="residenceMisc" /><br />
+			</div>
 		</div>
 	</div>
 

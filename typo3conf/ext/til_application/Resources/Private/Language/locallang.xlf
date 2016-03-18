@@ -104,13 +104,13 @@
 				<source>Straße</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.housenumber">
-				<source>Housenummer</source>
+				<source>Hausnummer</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.city">
-				<source>City</source>
+				<source>Ort</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.zip">
-				<source>Zip</source>
+				<source>Postleitzahl</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.phone">
 				<source>Telefon</source>
@@ -164,10 +164,10 @@
 				<source>Geplanter Schulabschluss (Monat / Jahr)</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.school_certificate_points">
-				<source>School Certificate Points</source>
+				<source>Notendurchschnitt (ohne Mitarbeit und Verhalten)</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.school_certificate_date">
-				<source>School Certificate Date</source>
+				<source>Datum des Zeugnisses</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.address">
 				<source>Address</source>
@@ -182,25 +182,25 @@
 				<source>Relative</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_relative.first_name">
-				<source>First Name</source>
+				<source>Vorname</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_relative.last_name">
-				<source>Last Name</source>
+				<source>Nachname</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_relative.birthdate">
-				<source>Birthdate</source>
+				<source> Geburtstag</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_relative.nationality">
-				<source>Nationality</source>
+				<source>Nationaliäty</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_relative.educational_qualification">
-				<source>Educational Qualification</source>
+				<source>Bildungsabschluss</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_relative.job">
-				<source>Job</source>
+				<source>Beruf</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_relative.family_relation">
-				<source>Family Relation</source>
+				<source>Verwandschaftsgrad</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_relative.income">
 				<source>Income</source>

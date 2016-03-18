@@ -1,24 +1,32 @@
 .form-group{
   display: block;
-  margin-left: 15px;
+  margin-left: 0px;
   .form-field{
     width: 48%;
     label{
       width: 150px;
     }
+
+  }
+  label.over{
+    display: block;
+    width: auto;
   }
   .form-line{
     width: 100%;
+     padding-bottom: 10px;
     label{
-      width: 200px;
+      width: 50%;
+      padding-right: 2%;
+      display: inline-block;
+    }
+    input[type=text]{
+      width: 45%;
     }
     .next{
       padding-left: 20px;
     }
-    label.over{
-      display: block;
-      width: auto;
-    }
+
   }
   .form-field-left{
     float: left;
@@ -34,9 +42,20 @@
   }
   input[type=radio]{
     margin-right: 10px;
+    width: auto;
+  }
+  .form-radio{
+    padding-right: 15px;
   }
 }
 fieldset{
   color: inherit;
   font-weight: bold;
+  legend{
+    padding: 30px 0 20px 0;
+    margin-bottom: 0;
+    .subline{
+      font-size: 1.6rem;
+    }
+  }
 }

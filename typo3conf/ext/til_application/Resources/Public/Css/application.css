@@ -1,6 +1,6 @@
 .form-group {
   display: block;
-  margin-left: 15px;
+  margin-left: 0px;
 }
 .form-group .form-field {
   width: 48%;
@@ -8,18 +8,24 @@
 .form-group .form-field label {
   width: 150px;
 }
+.form-group label.over {
+  display: block;
+  width: auto;
+}
 .form-group .form-line {
   width: 100%;
+  padding-bottom: 10px;
 }
 .form-group .form-line label {
-  width: 200px;
+  width: 50%;
+  padding-right: 2%;
+  display: inline-block;
+}
+.form-group .form-line input[type=text] {
+  width: 45%;
 }
 .form-group .form-line .next {
   padding-left: 20px;
-}
-.form-group .form-line label.over {
-  display: block;
-  width: auto;
 }
 .form-group .form-field-left {
   float: left;
@@ -35,8 +41,19 @@
 }
 .form-group input[type=radio] {
   margin-right: 10px;
+  width: auto;
+}
+.form-group .form-radio {
+  padding-right: 15px;
 }
 fieldset {
   color: inherit;
   font-weight: bold;
+}
+fieldset legend {
+  padding: 30px 0 20px 0;
+  margin-bottom: 0;
+}
+fieldset legend .subline {
+  font-size: 1.6rem;
 }
