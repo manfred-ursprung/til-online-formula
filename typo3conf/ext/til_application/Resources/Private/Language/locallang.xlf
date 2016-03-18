@@ -65,7 +65,7 @@
 				<source>Residence Misc</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.family_addon">
-				<source>Family Addon</source>
+				<source>Sonstige Angaben zur Familie</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.asset_real_estate">
 				<source>Asset Real Estate</source>

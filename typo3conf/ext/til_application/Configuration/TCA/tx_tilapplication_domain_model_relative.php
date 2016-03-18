@@ -178,6 +178,9 @@ return array(
 				'type' => 'select',
 				'items' => array(
 					array('-- Label --', 0),
+					array('Vater', '0'),
+					array('Mutter', '1'),
+					array('Geschwister', '2'),
 				),
 				'size' => 1,
 				'maxitems' => 1,

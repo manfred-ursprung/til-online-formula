@@ -1,0 +1,82 @@
+<fieldset xmlns:f="http://www.w3.org/1999/html" xmlns:f="http://www.w3.org/1999/html" class="actual-school">
+    <legend>Family</legend>
+
+
+        <f:for each="{family}" as="member" iteration="iterator">
+            <div class="row form-group clearfix">
+                <input type="hidden" name="tx_tilapplication_form[family][familyRelation][]" value="{member.familyRelation}"/>
+                <input type="hidden" name="tx_tilapplication_form[family][uid][]" value="{member.uid}"/>
+                <f:switch expression="{member.familyRelation}">
+                    <f:case value="1">
+                        <p>Angaben zur Mutter</p>
+                    </f:case>
+                    <f:case value="0">
+                        <p>Angaben zum Vater</p>
+                    </f:case>
+                    <f:case value="2">
+                        <p>Angaben zu Geschwister</p>
+                    </f:case>
+                </f:switch>
+                <p>Verwandschaftsgrad: {member.familyRelation}</p>
+                <div class="form-field form-field-left">
+
+                    <label for="firstName">
+                        <f:translate key="tx_tilapplication_domain_model_relative.first_name" />
+                    </label>
+                    <input type="text" name="tx_tilapplication_form[family][firstName][]" value="{member.firstName}" />
+                </div>
+                <div class="form-field form-field-right">
+                    <label for="lastName">
+                        <f:translate key="tx_tilapplication_domain_model_relative.last_name" />
+                    </label>
+                    <input type="text" name="tx_tilapplication_form[family][lastName][]" value="{member.lastName}" />
+                </div>
+            </div>
+
+            <div class="row form-group clearfix">
+                <div class="form-field form-field-left">
+                    <label for="gebburtsdatum">
+                        <f:translate key="tx_tilapplication_domain_model_relative.birthdate" />
+                    </label>
+                    <input type="text" name="tx_tilapplication_form[family][birthdate][]" value="{member.birthdate}" />
+                </div>
+                <div class="form-field form-field-right">
+                    <label for="nationaltity">
+                        <f:translate key="tx_tilapplication_domain_model_relative.nationality" />
+                    </label>
+                    <input type="text" name="tx_tilapplication_form[family][nationality][]" value="{member.nationality}" />
+                </div>
+
+            </div>
+
+            <div class="row form-group clearfix">
+                <div class="form-field form-field-left">
+                    <label for="bildungsabschluss">
+                        <f:translate key="tx_tilapplication_domain_model_relative.educational_qualification" />
+                    </label>
+                    <input type="text" name="tx_tilapplication_form[family][educationalQualification][]" value="{member.educationalQualification}" />
+                </div>
+                <div class="form-field form-field-right">
+                    <label for="job">
+                        <f:translate key="tx_tilapplication_domain_model_relative.job" />
+                    </label>
+                    <input type="text" name="tx_tilapplication_form[family][job][]" value="{member.job}" />
+                </div>
+
+            </div>
+
+        </f:for>
+<f:comment>
+    <div class="row form-group clearfix">
+        <div class="form-field form-field-left">
+            <label for="familyAddon">
+                <f:translate key="tx_tilapplication_domain_model_candidate.family_addon" />
+            </label>
+            <textarea name="tx_tilapplication_form[candidate][familyAddon]" value="{candidate.familyAddon}"
+                    rows="4" cols="30" ></textarea>
+
+        </div>
+        </div>
+</f:comment>
+
+</fieldset>

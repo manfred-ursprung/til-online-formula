@@ -31,6 +31,10 @@ namespace MUM\TilApplication\Domain\Model;
  */
 class Relative extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
+	const RELATION_MOTHER = 1;
+	const RELATION_FATHER = 0;
+	const RELATION_SIBLING = 2;
+
 	/**
 	 * firstName
 	 *

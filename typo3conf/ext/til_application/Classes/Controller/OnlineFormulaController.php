@@ -26,6 +26,7 @@ namespace MUM\TilApplication\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 use MUM\TilApplication\Domain\Model\Candidate;
+use MUM\TilApplication\Domain\Repository\RelativeRepository;
 use TYPO3\CMS\Core\Utility\DebugUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
@@ -97,7 +98,7 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 * @return void
 	 */
 	public function step0Action() {
-		DebuggerUtility::var_dump($this->candidate, 'Step0');
+		//DebuggerUtility::var_dump($this->candidate, 'Step0');
 		$this->view->assign('isNew', $this->candidate->_isNew());
 		$this->view->assign('settings', $this->settings);
 	}
@@ -136,7 +137,7 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 * @return void
 	 */
 	public function step2Action() {
-		DebuggerUtility::var_dump($this->candidate, 'Step2');
+		//DebuggerUtility::var_dump($this->candidate, 'Step2');
 		//has candidate an actual school entry?
 		if($this->candidate->hasActualSchool()){
 			$actualSchool = $this->candidate->getActualSchool();
@@ -153,18 +154,45 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 
 	/**
 	 * action step3
-	 * shows the famoly of candidate
+	 * shows the family of candidate
 	 *
 	 * @return void
 	 */
 	public function step3Action() {
-		//$this->view->assign('candidate', $candidate);
 		if(!$this->isUserValid()) {
 			$this->redirect('step0');
 		}
+		$family = $this->candidate->getWholeFamily();
+		if(empty($family)){
+			$family = $this->candidate->createEmptyFamily();
+		}
+
 		$params = array(
 			'candidate'	=> $this->candidate,
-			'family'  => $actualSchool,
+			'family'  => $family,
+			'settings'	=> $this->settings,
+		);
+		$this->view->assignMultiple($params);
+
+	}
+
+	/**
+	 * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
+	 *
+	 * Einkommen und Vermögen
+	 */
+	public function step4Action() {
+		if(!$this->isUserValid()) {
+			$this->redirect('step0');
+		}
+		$family = $this->candidate->getWholeFamily();
+		if(empty($family)){
+			$family = $this->candidate->createEmptyFamily();
+		}
+
+		$params = array(
+			'candidate'	=> $this->candidate,
+			'family'  => $family,
 			'settings'	=> $this->settings,
 		);
 		$this->view->assignMultiple($params);
@@ -292,15 +320,31 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 * action update
 	 *
 	 * @param \MUM\TilApplication\Domain\Model\Candidate $candidate
+	 * @param \array  $family
 	 * @return void
 	 */
-	public function updateStep3Action(\MUM\TilApplication\Domain\Model\Candidate $candidate) {
+	public function updateStep3Action(\MUM\TilApplication\Domain\Model\Candidate $candidate,
+									  array $family = array()) {
+		//DebuggerUtility::var_dump($family, 'UpdateStep3');
+		//alle Angaben für die Familienmitglieder aus dem Array in Objekte transferieren
+		//speichern in candidate
+		$candidate = $this->createAndAddFamily($candidate, $family);
+
+	/*
+		$params = array(
+			'candidate'	=> $candidate,
+			'family'  => $family,
+			'settings'	=> $this->settings,
+		);
+		$this->view->assignMultiple($params);
+	*/
 		if($this->isUserValid()) {
 			$this->candidateRepository->update($candidate);
-			$this->redirect('step2');
+			$this->redirect('step4');
 		}else{
 			$this->redirect('step0');
 		}
+
 	}
 
 
@@ -318,5 +362,40 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 		return !is_null($user);
 
 
+	}
+
+	/**
+	 * @param \MUM\TilApplication\Domain\Model\Candidate $candidate
+	 * @param \array $family
+	 */
+	protected function createAndAddFamily( \MUM\TilApplication\Domain\Model\Candidate  $candidate, $family){
+		/** @var  $relativeRepository \MUM\TilApplication\Domain\Repository\RelativeRepository */
+		$relativeRepository = $this->objectManager->get('MUM\\TilApplication\\Domain\\Repository\\RelativeRepository');
+		foreach ($family['firstName'] as $key => $firstName) {
+			if (!empty($firstName)) {
+				if(isset($family['uid'][$key])){
+					$member = $relativeRepository->findByUid($family['uid'][$key]);
+				}else {
+					/** @var  $member \MUM\TilApplication\Domain\Model\Relative */
+					$member = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\Relative');
+				}
+				$member->setFirstName($firstName);
+				$member->setLastName($family['lastName'][$key]);
+				//$member->setBirthdate($family['birthdate'][$key]);
+
+				$member->setNationality($family['nationality'][$key]);
+				$member->setEducationalQualification($family['educationalQualification'][$key]);
+				$member->setJob($family['job'][$key]);
+				$member->setFamilyRelation($family['familyRelation'][$key]);
+
+				if($member->_isNew()) {
+					$relativeRepository->add($member);
+				}else{
+					$relativeRepository->update($member);
+				}
+				$candidate->addFamily($member);
+			}
+		}
+		return $candidate;
 	}
 }

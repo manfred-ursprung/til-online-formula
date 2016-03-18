@@ -29,6 +29,10 @@
 										<numIndex index="0">Step 3</numIndex>
 										<numIndex index="1">OnlineFormula->step3;OnlineFormula->updateStep3;OnlineFormula->updateStep2;OnlineFormula->step0;OnlineFormula->step1;</numIndex>
 									</numIndex>
+									<numIndex index="5">
+										<numIndex index="0">Step 4</numIndex>
+										<numIndex index="1">OnlineFormula->step4;OnlineFormula->updateStep4;OnlineFormula->updateStep3;OnlineFormula->step0;OnlineFormula->step3;</numIndex>
+									</numIndex>
 								</items>
 							</config>
 						</TCEforms>
@@ -129,7 +133,7 @@
 					<settings.pageStep4>
 						<TCEforms>
 							<exclude>1</exclude>
-							<label>Seite für Abschluss</label>
+							<label>Seite für Step4</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -145,5 +149,32 @@
 				</el>
 			</ROOT>
 		</sStep3>
+		<sStep4>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>Einstellungen für Step4</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+
+					<settings.pageStep5>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>Seite für Step5</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
+
+							</config>
+						</TCEforms>
+					</settings.pageStep5>
+				</el>
+			</ROOT>
+		</sStep4>
 	</sheets>
 </T3DataStructure>

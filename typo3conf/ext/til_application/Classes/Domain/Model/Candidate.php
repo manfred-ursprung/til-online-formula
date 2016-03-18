@@ -27,6 +27,8 @@ namespace MUM\TilApplication\Domain\Model;
  ***************************************************************/
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 use MUM\TilApplication\Domain\Model\School;
+use MUM\TilApplication\Domain\Model\Relative;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Is the root of all. Al data are here collected.
@@ -46,7 +48,7 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $familyStatus = '';
 
 	/**
-	 * @var  \string
+	 * @var  \DateTime
 	 */
 	protected $birthdate;
 
@@ -587,7 +589,7 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * @return \string
+	 * @return \DateTime
 	 */
 	public function getBirthdate()
 	{
@@ -595,7 +597,7 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * @param \string $birthdate
+	 * @param \DateTime $birthdate
 	 */
 	public function setBirthdate($birthdate)
 	{
@@ -669,6 +671,48 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		}else{
 			$this->addSchoolCareer($school);
 		}
+	}
+
+	public function getWholeFamily(){
+		//@TODO ein  Array mit allen Relatives in der Reihenfolge Mutter, vater, Geschwister, Geeschwister
+		$wholeFamily = array();
+		if($this->family->count() > 0){
+			$temp = array(
+				'mother' => array(),
+				'father' => array(),
+				'sibling'=> array()
+				);
+			/** @var  $member \MUM\TilApplication\Domain\Model\Relative */
+			foreach($this->family as $member){
+				switch($member->getFamilyRelation()){
+					case 0:
+					$temp['father'] = $member;
+						break;
+					case 1:
+						$temp['mother'] = $member;
+						break;
+					case 2:
+						$temp['sibling'][] = $member;
+						break;
+				}
+			}
+			$wholeFamily[] = $temp['mother'];
+			$wholeFamily[] = $temp['father'];
+			$wholeFamily = array_merge($wholeFamily, $temp['sibling']);
+		}
+		return $wholeFamily;
+	}
+
+	public function createEmptyFamily(){
+		$family = array();
+		foreach(array(Relative::RELATION_MOTHER, Relative::RELATION_FATHER, Relative::RELATION_SIBLING) as $relation){
+			/** @var  $relative \MUM\TilApplication\Domain\Model\Relative */
+			$relative = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\Relative');
+			$relative->setFamilyRelation($relation);
+			$family[] = $relative;
+		}
+
+		return $family;
 	}
 
 }
