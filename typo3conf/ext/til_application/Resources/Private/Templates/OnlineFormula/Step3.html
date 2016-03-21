@@ -8,8 +8,7 @@
 
 	<f:render partial="FormErrors" arguments="{object:Candidate}" />
 
-	<f:debug inline="true">{candidate}</f:debug>
-	<f:debug inline="true">{family}</f:debug>
+	
 	<f:form action="updateStep3" name="family" object="{family}" arguments="{candidate: candidate}"
 			pageUid="{settings.pageStep4}" additionalAttributes="{role: 'form'}" class="form-family">
 		<f:render partial="Candidate/FormFieldsRelatives" arguments="{family: family, candidate: candidate,

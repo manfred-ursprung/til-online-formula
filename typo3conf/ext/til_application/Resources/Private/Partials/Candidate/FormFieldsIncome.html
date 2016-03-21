@@ -1,0 +1,205 @@
+
+
+    <f:for each="{family}" as="member" iteration="iterator">
+
+        <fieldset class="family-{member.familyRelation}">
+
+            <input type="hidden" name="tx_tilapplication_form[family][familyRelation][]" value="{member.familyRelation}"/>
+            <input type="hidden" name="tx_tilapplication_form[family][uid][]" value="{member.uid}"/>
+            <f:switch expression="{member.familyRelation}">
+                <f:case value="1">
+                    <legend>Monatliche Einnahmen der  Mutter</legend>
+                </f:case>
+                <f:case value="0">
+                    <legend>Monatliche Einnahmen des Vater</legend>
+                </f:case>
+                <f:case value="2">
+                    <legend>Monatliche Einnahmen der Geschwister</legend>
+                </f:case>
+            </f:switch>
+            <div class="row form-group clearfix">
+                <div class="form-field form-field-left">
+
+                    <label for="grossSalary" class="over">
+                        <f:translate key="tx_tilapplication_domain_model_income.gross_salary" />
+                    </label>
+                    <input type="text" name="tx_tilapplication_form[family][grossSalary][]" value="{member.income.grossSalary}" />
+                </div>
+                <div class="form-field form-field-right">
+                    <label for="netSalary" class="over">
+                        <f:translate key="tx_tilapplication_domain_model_income.net_salary" />
+                    </label>
+                    <input type="text" name="tx_tilapplication_form[family][netSalary][]" value="{member.income.netSalary}" />
+                </div>
+            </div>
+
+            <div class="row form-group clearfix">
+                <div class="form-field form-field-left">
+                    <label for="selfEmployedSalary" class="over">
+                        <f:translate key="tx_tilapplication_domain_model_income.self_employed_salary" />
+                    </label>
+                    <input type="text" name="tx_tilapplication_form[family][selfEmployedSalary][]" value="{member.income.selfEmployedSalary}" />
+                </div>
+                <div class="form-field form-field-right">
+                    <label for="welfare" class="over">
+                        <f:translate key="tx_tilapplication_domain_model_income.welfare" />
+                    </label>
+                    <input type="text" name="tx_tilapplication_form[family][welfare][]" value="{member.income.welfare}" />
+                </div>
+
+            </div>
+
+            <div class="row form-group clearfix">
+                <div class="form-field form-field-left">
+                    <label for="unemploymentBenefit" class="over">
+                        <f:translate key="tx_tilapplication_domain_model_income.unemployment_benefit" />
+                    </label>
+                    <input type="text" name="tx_tilapplication_form[family][unemploymentBenefit][]" value="{member.income.unemploymentBenefit}" />
+                </div>
+                <div class="form-field form-field-right">
+                    <label for="housingBenefit" class="over">
+                        <f:translate key="tx_tilapplication_domain_model_income.housing_benefit" />
+                    </label>
+                    <input type="text" name="tx_tilapplication_form[family][housingBenefit][]" value="{member.income.housingBenefit}" />
+                </div>
+
+            </div>
+
+            <div class="row form-group clearfix">
+                <div class="form-field form-field-left">
+                    <label for="pension" class="over">
+                        <f:translate key="tx_tilapplication_domain_model_income.pension" />
+                    </label>
+                    <input type="text" name="tx_tilapplication_form[family][pension][]" value="{member.income.pension}" />
+                </div>
+                <div class="form-field form-field-right">
+                    <label for="otherIncomes" class="over">
+                        <f:translate key="tx_tilapplication_domain_model_income.other_incomes" />
+                    </label>
+                    <input type="text" name="tx_tilapplication_form[family][otherIncomes][]" value="{member.income.otherIncomes}" />
+                </div>
+
+            </div>
+        </fieldset>
+    </f:for>
+
+    <fieldset class="family-assets">
+        <legend>Vermögen</legend>
+        <div class="row form-group clearfix">
+            <div class="form-field form-field-left">
+                <label for="hausundgrundbesitz" class="over">
+                    <f:translate key="tx_tilapplication_domain_model_candidate.asset_real_estate" />
+                </label>
+                <input type="text" name="tx_tilapplication_form[family][assetRealEstate]" value="{candidate.assetRealEstate}" />
+
+            </div>
+
+            <div class="form-field form-field-right">
+                <label for="assetSaving"  class="over">
+                    <f:translate key="tx_tilapplication_domain_model_candidate.asset_savings" />
+                </label>
+                <input type="text" name="tx_tilapplication_form[family][assetSavings]" value="{candidate.assetSavings}" />
+
+            </div>
+        </div>
+        <div class="row form-group clearfix">
+            <div class="form-field form-field-left">
+                <label for="assetMiscEstate" class="over">
+                    <f:translate key="tx_tilapplication_domain_model_candidate.asset_misc_estate" />
+                </label>
+                <input type="text" name="tx_tilapplication_form[family][assetMiscEstate]" value="{candidate.assetMiscEstate}" />
+
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="family-assets">
+        <legend>Ausgaben/Verbindlichkeiten der Familie (pro Monat)</legend>
+        <div class="row form-group clearfix">
+            <div class="form-field form-field-left">
+                <label for="lebenshaltungskosten" class="over">
+                    <f:translate key="tx_tilapplication_domain_model_costs.living_costs" />
+                </label>
+                <input type="text" name="tx_tilapplication_form[family][livingCosts]" value="{candidate.costs.livingCosts}" />
+
+            </div>
+
+            <div class="form-field form-field-right">
+                <label for="assetSaving"  class="over">
+                    <f:translate key="tx_tilapplication_domain_model_costs.credit_costs" />
+                </label>
+                <input type="text" name="tx_tilapplication_form[family][creditCosts]" value="{candidate.costs.creditCosts}" />
+
+            </div>
+        </div>
+        <div class="row form-group clearfix">
+            <div class="form-field form-field-left">
+                <label for="assetMiscEstate" class="over">
+                    <f:translate key="tx_tilapplication_domain_model_costs.other_outgoings" />
+                </label>
+                <input type="text" name="tx_tilapplication_form[family][otherOutgoings]" value="{candidate.costs.otherOutgoings}" />
+
+            </div>
+        </div>
+
+    </fieldset>
+
+    <fieldset class="family-assets">
+        <legend>Ausbildungs- und Lebenshaltungskosten des Bewerbers</legend>
+        <div class="row form-group clearfix">
+            <div class="form-field form-field-left">
+                <label for="travelCosts" class="over">
+                    <f:translate key="tx_tilapplication_domain_model_costs.travel_costs" />
+                </label>
+                <input type="text" name="tx_tilapplication_form[family][travelCosts]" value="{candidate.costs.travelCosts}" />
+
+            </div>
+
+            <div class="form-field form-field-right">
+                <label for="furtherEducationCosts"  class="over">
+                    <f:translate key="tx_tilapplication_domain_model_costs.further_education_costs" />
+                </label>
+                <input type="text" name="tx_tilapplication_form[family][furtherEducationCosts]" value="{candidate.costs.furtherEducationCosts}" />
+
+            </div>
+        </div>
+
+        <div class="row form-group clearfix">
+            <div class="form-field form-field-left">
+                <label for="privateCoachingCosts" class="over">
+                    <f:translate key="tx_tilapplication_domain_model_costs.private_coaching_costs" />
+                </label>
+                <input type="text" name="tx_tilapplication_form[family][privateCoachingCosts]" value="{candidate.costs.privateCoachingCosts}" />
+
+            </div>
+
+            <div class="form-field form-field-right">
+                <label for="rental"  class="over">
+                    <f:translate key="tx_tilapplication_domain_model_costs.rental" />
+                </label>
+                <input type="text" name="tx_tilapplication_form[family][rental]" value="{candidate.costs.rental}" />
+
+            </div>
+        </div>
+
+        <div class="row form-group clearfix">
+            <div class="form-field form-field-left">
+                <label for="livingCostsSingle" class="over">
+                    <f:translate key="tx_tilapplication_domain_model_costs.living_costs_single" />
+                </label>
+                <input type="text" name="tx_tilapplication_form[family][livingCostsSingle]" value="{candidate.costs.livingCostsSingle}" />
+
+            </div>
+
+            <div class="form-field form-field-right">
+                <label for="otherCosts"  class="over">
+                    <f:translate key="tx_tilapplication_domain_model_costs.other_costs" />
+                </label>
+                <input type="text" name="tx_tilapplication_form[family][otherCosts]" value="{candidate.costs.otherCosts}" />
+
+            </div>
+        </div>
+
+    </fieldset>
+
+</fieldset>

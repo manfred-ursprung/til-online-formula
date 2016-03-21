@@ -33,6 +33,10 @@
 										<numIndex index="0">Step 4</numIndex>
 										<numIndex index="1">OnlineFormula->step4;OnlineFormula->updateStep4;OnlineFormula->updateStep3;OnlineFormula->step0;OnlineFormula->step3;</numIndex>
 									</numIndex>
+									<numIndex index="6">
+										<numIndex index="0">Step 5</numIndex>
+										<numIndex index="1">OnlineFormula->step5;OnlineFormula->updateStep4;OnlineFormula->updateStep3;OnlineFormula->step0;OnlineFormula->step3;</numIndex>
+									</numIndex>
 								</items>
 							</config>
 						</TCEforms>
@@ -44,11 +48,26 @@
 		<sStep0>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>Einstellungen für Step0</sheetTitle>
+					<sheetTitle>Einstellungen für die einzelnen Schritte</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
+					<settings.pageStep0>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>Seite für Step 0</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<minitems>0</minitems>
+								<show_thumbs>1</show_thumbs>
 
+							</config>
+						</TCEforms>
+					</settings.pageStep0>
 					<settings.pageStep1>
 						<TCEforms>
 							<exclude>1</exclude>
@@ -65,17 +84,6 @@
 							</config>
 						</TCEforms>
 					</settings.pageStep1>
-				</el>
-			</ROOT>
-		</sStep0>
-		<sStep1>
-			<ROOT>
-				<TCEforms>
-					<sheetTitle>Einstellungen für Step1</sheetTitle>
-				</TCEforms>
-				<type>array</type>
-				<el>
-
 					<settings.pageStep2>
 						<TCEforms>
 							<exclude>1</exclude>
@@ -92,17 +100,6 @@
 							</config>
 						</TCEforms>
 					</settings.pageStep2>
-				</el>
-			</ROOT>
-		</sStep1>
-		<sStep2>
-			<ROOT>
-				<TCEforms>
-					<sheetTitle>Einstellungen für Step 2</sheetTitle>
-				</TCEforms>
-				<type>array</type>
-				<el>
-
 					<settings.pageStep3>
 						<TCEforms>
 							<exclude>1</exclude>
@@ -119,17 +116,6 @@
 							</config>
 						</TCEforms>
 					</settings.pageStep3>
-				</el>
-			</ROOT>
-		</sStep2>
-		<sStep3>
-			<ROOT>
-				<TCEforms>
-					<sheetTitle>Einstellungen für Step3</sheetTitle>
-				</TCEforms>
-				<type>array</type>
-				<el>
-
 					<settings.pageStep4>
 						<TCEforms>
 							<exclude>1</exclude>
@@ -146,17 +132,6 @@
 							</config>
 						</TCEforms>
 					</settings.pageStep4>
-				</el>
-			</ROOT>
-		</sStep3>
-		<sStep4>
-			<ROOT>
-				<TCEforms>
-					<sheetTitle>Einstellungen für Step4</sheetTitle>
-				</TCEforms>
-				<type>array</type>
-				<el>
-
 					<settings.pageStep5>
 						<TCEforms>
 							<exclude>1</exclude>
@@ -175,6 +150,7 @@
 					</settings.pageStep5>
 				</el>
 			</ROOT>
-		</sStep4>
+		</sStep0>
+
 	</sheets>
 </T3DataStructure>

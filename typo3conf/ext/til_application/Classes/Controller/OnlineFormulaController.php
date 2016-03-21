@@ -187,7 +187,33 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 		}
 		$family = $this->candidate->getWholeFamily();
 		if(empty($family)){
-			$family = $this->candidate->createEmptyFamily();
+			$this->addFlashMessage('Sie müssen erst Schritt 3 bearbeiten. Legen Sie bitte die Familienmitglieder an.',
+				'', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+			$this->redirect('step3', null, null, null, $this->settings['pageStep3']);
+		}
+
+		$params = array(
+			'candidate'	=> $this->candidate,
+			'family'  => $family,
+			'settings'	=> $this->settings,
+		);
+		$this->view->assignMultiple($params);
+
+	}
+
+	/**
+	 * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
+	 * shows the costs of the whole family
+	 */
+	public function step5Action() {
+		if(!$this->isUserValid()) {
+			$this->redirect('step0');
+		}
+		$family = $this->candidate->getWholeFamily();
+		if(empty($family)){
+			$this->addFlashMessage('Sie müssen erst Schritt 3 bearbeiten. Legen Sie bitte die Familienmitglieder an.',
+				'', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+			$this->redirect('step3', null, null, null, $this->settings['pageStep3']);
 		}
 
 		$params = array(
@@ -315,6 +341,8 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 
 	/**
 	 * action update
+	 * sowohl für das Anlegen der Familie wie für das Einkommen
+	 * SPEICHERN und WEITER zum nächsten Step
 	 *
 	 * @param \MUM\TilApplication\Domain\Model\Candidate $candidate
 	 * @param \array  $family
@@ -325,23 +353,23 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 		//DebuggerUtility::var_dump($family, 'UpdateStep3');
 		//alle Angaben für die Familienmitglieder aus dem Array in Objekte transferieren
 		//speichern in candidate
-		$candidate = $this->createAndAddFamily($candidate, $family);
+		if(isset($family['firstName'])){
+			$candidate = $this->createAndAddFamily($candidate, $family);
+			$nextStep = 'step4';
+		}
+		if(isset($family['grossSalary']) || isset($family['netSalary'])){
+			$candidate = $this->setIncomeForFamily($candidate, $family);
+			$nextStep = 'step5';
+		}
 
-	/*
-		$params = array(
-			'candidate'	=> $candidate,
-			'family'  => $family,
-			'settings'	=> $this->settings,
-		);
-		$this->view->assignMultiple($params);
-	*/
+
+
 		if($this->isUserValid()) {
 			$this->candidateRepository->update($candidate);
-			$this->redirect('step4');
+			$this->redirect($nextStep);
 		}else{
 			$this->redirect('step0');
 		}
-
 	}
 
 
@@ -393,6 +421,16 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 				$candidate->addFamily($member);
 			}
 		}
+		return $candidate;
+	}
+
+	/**
+	 * @param Candidate $candidate
+	 * @param $family
+	 *  das jeweilige Einkommen den Familienmitgliedern zuweisen
+	 */
+	protected function setIncomeForFamily( \MUM\TilApplication\Domain\Model\Candidate  $candidate, $family){
+
 		return $candidate;
 	}
 }

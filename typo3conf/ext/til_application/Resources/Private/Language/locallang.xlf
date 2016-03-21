@@ -68,13 +68,13 @@
 				<source>Sonstige Angaben zur Familie</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.asset_real_estate">
-				<source>Asset Real Estate</source>
+				<source>Haus und Grundbesitz (Einheitswert)</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.asset_savings">
-				<source>Asset Savings</source>
+				<source>Sparguthaben, Wertpapiere</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.asset_misc_estate">
-				<source>Asset Misc Estate</source>
+				<source>Sonstige Vermögen</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.integrity">
 				<source>Integrity</source>
@@ -209,58 +209,58 @@
 				<source>Costs</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_costs.living_costs">
-				<source>Living Costs</source>
+				<source>Lebenshaltungskosten (Miete etc.)</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_costs.credit_costs">
-				<source>Credit Costs</source>
+				<source>Kredittilgung / Zinsen</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_costs.other_outgoings">
-				<source>Other Outgoings</source>
+				<source>Sonstiges</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_costs.travel_costs">
-				<source>Travel Costs</source>
+				<source>Fahrtkosten (im Monat)</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_costs.further_education_costs">
-				<source>Further Education Costs</source>
+				<source>Kurse / Unterricht (Musik, Sportverein etc)</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_costs.private_coaching_costs">
-				<source>Private Coaching Costs</source>
+				<source>Nachhilfe</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_costs.rental">
-				<source>Rental</source>
+				<source>Miete (wenn Bewerber alleine wohnt)</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_costs.living_costs_single">
-				<source>Living Costs Single</source>
+				<source>Lebenshaltungskosten (wenn Bewerber alleine wohnt)</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_costs.other_costs">
-				<source>Other Costs</source>
+				<source>Sonstiges</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_income">
 				<source>Income</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_income.gross_salary">
-				<source>Gross Salary</source>
+				<source>Bruttolohn / Bruttogehalt </source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_income.net_salary">
-				<source>Net Salary</source>
+				<source>Nettolohn / Nettogehalt</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_income.self_employed_salary">
-				<source>Self Employed Salary</source>
+				<source>Netto Einkommen aus selbstständiger Arbeit</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_income.welfare">
-				<source>Welfare</source>
+				<source>Sozialhilfe </source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_income.unemployment_benefit">
-				<source>Unemployment Benefit</source>
+				<source>Arbeitslosen- bzw Sozialgeld</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_income.housing_benefit">
-				<source>Housing Benefit</source>
+				<source>Wohngeld</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_income.pension">
-				<source>Pension</source>
+				<source>Gesetzliche Rente, BAFÖG, Waisenrente etc.</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_income.other_incomes">
-				<source>Other Incomes</source>
+				<source>Sonstige Einnahmen (Miete etc)</source>
 			</trans-unit>
 		</body>
 	</file>
