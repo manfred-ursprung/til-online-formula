@@ -88,7 +88,7 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 			.'Resources/Public/Css/application.css';
 		//$this->pageRenderer->addHeaderData('<link rel="stylesheet" href="/typo3temp/vhs-assets-rte-style.css?1457204026">');
 		
-		$this->pageRenderer->addCssLibrary($css);
+		//$this->pageRenderer->addCssLibrary($css);  wird nun in sitetemplates gemacht
 	}
 
 	/**
@@ -99,6 +99,9 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 */
 	public function step0Action() {
 		//DebuggerUtility::var_dump($this->candidate, 'Step0');
+		if(!$this->isUserValid()) {
+			$this->redirect('', null, null, null, 46);
+		}
 		$this->view->assign('isNew', $this->candidate->_isNew());
 		$this->view->assign('settings', $this->settings);
 	}
@@ -111,6 +114,10 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	public function step1Action() {
 		//DebugUtility::debug($GLOBALS['TSFE']->fe_user, 'Frontenduser');
 		//DebuggerUtility::var_dump($this->candidate, 'Step1');
+		if(!$this->isUserValid()) {
+			$this->redirect('step0');
+
+		}
 		if($this->candidate->_isNew()){
 			$feUser = $this->frontendUserRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
 			if(is_a($feUser, '\TYPO3\CMS\Extbase\Domain\Model\FrontendUser')) {
@@ -137,13 +144,12 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 * @return void
 	 */
 	public function step2Action() {
+		if(!$this->isUserValid()) {
+			$this->redirect('step0');
+		}
 		//DebuggerUtility::var_dump($this->candidate, 'Step2');
 		//has candidate an actual school entry?
-		if($this->candidate->hasActualSchool()){
-			$actualSchool = $this->candidate->getActualSchool();
-		}else{
-			$actualSchool = NULL;
-		}
+		$actualSchool = $this->getActualSchool();
 		$params = array(
 			'candidate'	=> $this->candidate,
 			'actualSchool'  => $actualSchool,
@@ -207,7 +213,7 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 */
 	public function step5Action() {
 		if(!$this->isUserValid()) {
-			$this->redirect('step0');
+			$this->redirect('step0', null, null, null, $this->settings['pageStep0'] );
 		}
 		$family = $this->candidate->getWholeFamily();
 		if(empty($family)){
@@ -215,10 +221,11 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 				'', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
 			$this->redirect('step3', null, null, null, $this->settings['pageStep3']);
 		}
-
+		$actualSchool = $this->getActualSchool();
 		$params = array(
 			'candidate'	=> $this->candidate,
 			'family'  => $family,
+			'actualSchool'	=> $actualSchool,
 			'settings'	=> $this->settings,
 		);
 		$this->view->assignMultiple($params);
@@ -292,9 +299,16 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 				->getPropertyMappingConfiguration()
 				->forProperty('schoolCertificatePoints')
 				->setTypeConverter( $this->objectManager->get( 'MUM\\TilApplication\\TypeConverter\\FloatConverter' ) );
+
+			$this->arguments['actualSchool']
+				->getPropertyMappingConfiguration()
+				->allowAllProperties();
 		}
-
-
+	/*	print "<pre>";
+		print_r( $this->arguments['actualSchool']->getArgumentNames());
+		print "</pre>";
+		exit;
+	*/
 
 	}
 
@@ -396,6 +410,9 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	protected function createAndAddFamily( \MUM\TilApplication\Domain\Model\Candidate  $candidate, $family){
 		/** @var  $relativeRepository \MUM\TilApplication\Domain\Repository\RelativeRepository */
 		$relativeRepository = $this->objectManager->get('MUM\\TilApplication\\Domain\\Repository\\RelativeRepository');
+
+		/** @var  $dateTimeConverter \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter */
+		$dateTimeConverter = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Property\\TypeConverter\\DateTimeConverter');
 		foreach ($family['firstName'] as $key => $firstName) {
 			if (!empty($firstName)) {
 				if(isset($family['uid'][$key])){
@@ -406,8 +423,30 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 				}
 				$member->setFirstName($firstName);
 				$member->setLastName($family['lastName'][$key]);
-				//$member->setBirthdate($family['birthdate'][$key]);
-
+				//if(!strlen($family['birthdate'][$key]) > 0) {
+					try {
+						$birthdate = ($dateTimeConverter->convertFrom(array( 'date' => '05.05.1989',
+																		'dateFormat' => 'd.m.Y'),
+							'DateTime'));
+					/*		print "<pre>birthdate : " .$family['birthdate'][$key] .'<br />Key = ' . $key .'<br />';
+                            print_r($family);
+                            print 'Converterd : ' . $birthdate->format('Y-m-d') .'<br />';
+                            print '</pre>';
+                            exit;
+					*/
+						if(is_a($birthdate, 'DateTime')) {
+							$member->setBirthdate($birthdate);
+						}else{
+							print "<pre> :";
+							print_r($birthdate);
+							print '</pre>';
+							exit;
+						}
+					} catch (\TYPO3\CMS\Extbase\Error\Error $e) {
+						print '<pre>' . $e->getMessage() . '</pre>';
+						exit;
+					}
+				//}
 				$member->setNationality($family['nationality'][$key]);
 				$member->setEducationalQualification($family['educationalQualification'][$key]);
 				$member->setJob($family['job'][$key]);
@@ -430,7 +469,59 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 *  das jeweilige Einkommen den Familienmitgliedern zuweisen
 	 */
 	protected function setIncomeForFamily( \MUM\TilApplication\Domain\Model\Candidate  $candidate, $family){
+		/** @var  $relativeRepository \MUM\TilApplication\Domain\Repository\RelativeRepository */
+		$relativeRepository = $this->objectManager->get('MUM\\TilApplication\\Domain\\Repository\\RelativeRepository');
+		$incomeRepository = $this->objectManager->get('MUM\\TilApplication\\Domain\\Repository\\IncomeRepository');
+		foreach ($family['grossSalary'] as $key => $grossSalary) {
+			if (!empty($grossSalary)) {
+				if(isset($family['uid'][$key])){
+					$member = $relativeRepository->findByUid($family['uid'][$key]);
+					$income = $member->getIncome();
+					if(is_null($income)){
+						/** @var  $member \MUM\TilApplication\Domain\Model\Income */
+						$income = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\Income');
+					}
+				}else {
+					/** @var  $member \MUM\TilApplication\Domain\Model\Relative */
+					$member = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\Relative');
+					/** @var  $member \MUM\TilApplication\Domain\Model\Income */
+					$income = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\Income');
+				}
 
+				$income->setGrossSalary($grossSalary);
+				$income->setNetSalary($family['netSalary'][$key]);
+				$income->setSelfEmployedSalary($family['selfEmployedSalary'][$key]);
+
+				$income->setWelfare($family['welfare'][$key]);
+				$income->setUnemploymentBenefit($family['unemploymentBenefit'][$key]);
+				$income->setHousingBenefit($family['housingBenefit'][$key]);
+				$income->setPension($family['pension'][$key]);
+				$income->setOtherIncomes($family['otherIncomes'][$key]);
+
+				if($income->_isNew()) {
+					$incomeRepository->add($income);
+				}else{
+					$incomeRepository->update($income);
+				}
+				$member->setIncome($income);
+				$relativeRepository->update($member);
+				$candidate->addFamily($member);
+			}
+		}
 		return $candidate;
+	}
+
+	/**
+	 * @return School|null
+	 */
+	protected function getActualSchool()
+	{
+		if ($this->candidate->hasActualSchool()) {
+			$actualSchool = $this->candidate->getActualSchool();
+			return $actualSchool;
+		} else {
+			$actualSchool = NULL;
+			return $actualSchool;
+		}
 	}
 }
