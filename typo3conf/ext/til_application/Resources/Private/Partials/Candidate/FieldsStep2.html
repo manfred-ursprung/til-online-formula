@@ -1,6 +1,4 @@
 {namespace v=FluidTYPO3\Vhs\ViewHelpers}
-
-
 <f:if condition="{readonly}">
     <f:then>
         <v:variable.set name="readonlyAttrib" value="readonly=\"readonly\"" />
@@ -15,7 +13,7 @@
 </f:if>
 
 
-<fieldset  class="actual-school"  xmlns:f="http://www.w3.org/1999/html" xmlns:f="http://www.w3.org/1999/html">
+<fieldset  class="actual-school">
     <legend>II. Derzeitige Schule des Antragstellers</legend>
     <div class="row form-group clearfix">
         <f:form.hidden name="actual" value="1"/>
@@ -23,14 +21,13 @@
             <label for="name">
                 <f:translate key="tx_tilapplication_domain_model_school.name" />
             </label>
-            <f:form.textfield property="name"  required="0" />
-
+            <input type="text" name="name" value="{actualSchool.name}" {readonlyAttrib}/>
         </div>
         <div class="form-field form-field-right">
             <label for="typeOfSchool">
                 <f:translate key="tx_tilapplication_domain_model_school.type_of_school" />
             </label>
-            <f:form.textfield property="typeOfSchool" />
+            <input type="text" name="typeOfSchool" value="{actualSchool.typeOfSchool}" {readonlyAttrib}/>
         </div>
     </div>
     <div class="row form-group clearfix">
@@ -38,7 +35,7 @@
             <label for="schoolYear">
                 <f:translate key="tx_tilapplication_domain_model_school.school_year" />
             </label>
-            <f:form.textfield property="schoolYear" size="5" placeholder="Klasse" />
+            <input type="text" name="schoolYear" value="{actualSchool.schoolYear}" size="5" placeholder="Klasse" {readonlyAttrib}/>
         </div>
     </div>
     <div class="row form-group clearfix">
@@ -46,13 +43,13 @@
             <label for="address">
                 <f:translate key="tx_tilapplication_domain_model_address.street" />
             </label>
-            <f:form.textfield property="address.street" />
+            <input type="text" name="address.street" value="{actualSchool.address.street}" {readonlyAttrib}/>
         </div>
         <div class="form-field form-field-right">
             <label for="housenumber">
                 <f:translate key="tx_tilapplication_domain_model_address.housenumber" />
             </label>
-            <f:form.textfield property="address.housenumber" />
+            <input type="text" name="address.housenumber" value="{actualSchool.address.housenumber}" {readonlyAttrib}/>
         </div>
     </div>
 
@@ -62,14 +59,14 @@
             <label for="zip">
                 <f:translate key="tx_tilapplication_domain_model_address.zip" />
             </label>
-            <f:form.textfield property="address.zip" /><br />
+            <input type="text" name="address.zip" value="{actualSchool.address.zip}" {readonlyAttrib}/><br />
         </div>
 
         <div class="form-field form-field-right">
             <label for="city">
                 <f:translate key="tx_tilapplication_domain_model_address.city" />
             </label>
-            <f:form.textfield property="address.city" />
+            <input type="text" name="address.city" value="{actualSchool.address.city}" {readonlyAttrib}/>
         </div>
     </div>
     <div class="row form-group clearfix">
@@ -77,14 +74,14 @@
             <label for="phone">
                 <f:translate key="tx_tilapplication_domain_model_address.phone" />
             </label>
-            <f:form.textfield property="address.phone" /><br />
+            <input type="text" name="address.phone" value="{actualSchool.address.phone}" {readonlyAttrib}/><br />
         </div>
 
         <div class="form-field form-field-right">
             <label for="mobile">
                 <f:translate key="tx_tilapplication_domain_model_address.mobile" />
             </label>
-            <f:form.textfield property="address.mobile" />
+            <input type="text" name="address.mobile" value="{actualSchool.address.mobile}" {readonlyAttrib}/>
         </div>
     </div>
     <div class="row form-group  clearfix">
@@ -92,7 +89,7 @@
             <label for="email">
                 <f:translate key="tx_tilapplication_domain_model_address.email" />
             </label>
-            <f:form.textfield property="address.email" />
+            <input type="text" name="address.email" value="{actualSchool.address.email}" {readonlyAttrib}/>
         </div>
     </div>
 </fieldset>
@@ -107,16 +104,19 @@
         </div>
         <div class="form-field form-field-right">
             <span class="form-radio-first form-radio">
-                <f:form.radio property="plannedGraduationSelect" value="Abitur" />
+                <input type="radio" name="plannedGraduationSelect" value="Abitur" {disabledAttrib}
+                              {f:if(condition: '{actualSchool.plannedGraduationSelect} == \'Abitur\'', then: 'checked="checked"')} />
                 Abitur
             </span>
             <span class="form-radio-middle form-radio">
-                <f:form.radio property="plannedGraduationSelect" value="Fachhochschulreife" />
+                <input type="radio" property="plannedGraduationSelect" value="Fachhochschulreife" {disabledAttrib}
+                              {f:if(condition: '{actualSchool.plannedGraduationSelect} == \'Fachhochschulreife\'', then: 'checked="checked"')} />
                 Fachhochschulreife
             </span>
             <br />
             <span class="form-radio-last form-radio">
-                <f:form.radio property="plannedGraduationSelect" value="Sonstiges" />
+                <input type="radio" property="plannedGraduationSelect" value="Sonstiges" {disabledAttrib}
+                              {f:if(condition: '{actualSchool.plannedGraduationSelect} == \'Sonstiges\'', then: 'checked="checked"')} />
                 Sonstiges
             </span>
         </div>
@@ -126,7 +126,7 @@
             <label for="plannedGraduationText">
                 <f:translate key="tx_tilapplication_domain_model_school.planned_graduation_text" />
             </label>
-            <f:form.textfield property="plannedGraduationText" />
+            <input type="text" name="plannedGraduationText" value="{actualSchool.plannedGraduationText}" {readonlyAttrib}/>
 
         </div>
     </div>
@@ -136,7 +136,7 @@
             <label for="plannedGraduationFinish">
                 <f:translate key="tx_tilapplication_domain_model_school.planned_graduation_finish" />
             </label>
-            <f:form.textfield property="plannedGraduationFinish" />
+            <input type="text" name="plannedGraduationFinish" value="{actualSchool.plannedGraduationFinish}" {readonlyAttrib}/>
         </div>
     </div>
 </fieldset>
@@ -149,91 +149,37 @@
                 <br /><f:translate key="tx_tilapplication_domain_model_school.school_certificate_date" />
             </label>
 
-            <f:form.textfield property="schoolCertificateDate" value="{actualSchool.schoolCertificateDate -> f:format.date( format: 'd.m.Y' )}"
-                    placeholder="dd.mm.yyyy" />
+            <input type="text" name="schoolCertificateDate" value="{actualSchool.schoolCertificateDate}" {readonlyAttrib}/>
         </div>
 
         <div class="form-field form-field-right">
             <label for="schoolCertificatePoints" class="over">
                 <f:translate key="tx_tilapplication_domain_model_school.school_certificate_points" />
             </label>
-            <f:form.textfield property="schoolCertificatePoints" size="5" value="{actualSchool.schoolCertificatePoints -> f:format.number(decimals: '2', decimalSeparator: ',' )}"/>
+            <input type="text" name="schoolCertificatePoints" value="{actualSchool.schoolCertificatePoints}" size="5" {readonlyAttrib}/>
         </div>
     </div>
 </fieldset>
 
 
-<fieldset class="schoolcareer" id="schoolcareer">
+<fieldset class="schoolcareer">
     <legend>Bisheriger Schulbesuch / Ausbildung</legend>
-    <f:if condition="{otherSchools ->f:count()} > 0">
-        <f:then>
-            <input type="hidden" name="numberSchools" value="{otherSchools ->f:count()}" />
-            <f:for each="{otherSchools}" as="school" iteration="iterator">
-                <f:form.hidden name="otherSchool[uid][{iterator.index}]" value="{school.uid}"/>
-                <f:form.hidden name="otherSchool[remove][{iterator.index}]" value="0" id="remove_school_{school.uid}"/>
-                <div class="row form-group  clearfix" id="schoolcareer_school_{iterator.index}">
-                    <div class="form-field form-field-left">
-                        <label for="" class="over">
-                            <f:translate key="tx_tilapplication_domain_model_school.other_school" />
-                        </label>
-                        <f:form.textfield name="otherSchool[name][{iterator.index}]"  size="60" placeholder="Name, Anschrift"
-                                          value="{school.name}"/>
-                        <button class="removeOtherSchool" data-school="{school.uid}" data-iterator="{iterator.index}">löschen</button>
-                    </div>
-                    <div class="form-field form-field-right">
-                        <label for="duration" class="over">
-                            <f:translate key="tx_tilapplication_domain_model_school.other_school_duration" />
-                        </label>
-                        <f:form.textfield name="otherSchool[visitFrom][{iterator.index}]" placeholder="Monat / Jahr"
-                                          value="{school.visitFrom}" class="school-visit"/>
-                        <f:form.textfield name="otherSchool[visitTil][{iterator.index}]" placeholder="Monat / Jahr"
-                                          value="{school.visitTil}" class="school-visit"/>
-                    </div>
-                </div>
-
-            </f:for>
-        </f:then>
-        <f:else>
-            <input type="hidden" name="numberSchools" value="3" />
-            <f:for each="{0: '1', 1: '2', 2: '3'}" as="number" iteration="iterator">
-                <div class="row form-group  clearfix" id="schoolcareer_school_{iterator.index}">
-                    <div class="form-field form-field-left">
-                        <label for="" class="over">
-                            <f:translate key="tx_tilapplication_domain_model_school.other_school" />
-                        </label>
-                        <f:form.textfield name="otherSchool[name][{iterator.index}]"  size="60" placeholder="Name, Anschrift"
-                                          value=""/>
-                    </div>
-                    <div class="form-field form-field-right">
-                        <label for="duration" class="over">
-                            <f:translate key="tx_tilapplication_domain_model_school.other_school_duration" />
-                        </label>
-                        <f:form.textfield name="otherSchool[visitFrom][{iterator.index}]" placeholder="Monat / Jahr" class="school-visit" />
-                        <f:form.textfield name="otherSchool[visitTil][{iterator.index}]" placeholder="Monat / Jahr" class="school-visit" />
-                    </div>
-                </div>
-            </f:for>
-        </f:else>
-    </f:if>
-    <div class="hide" id="template-add-school">
-        <div class="row form-group  clearfix" >
+    <f:for each="{0: '1', 1: '2', 2: '3'}" as="number">
+        <div class="row form-group  clearfix">
             <div class="form-field form-field-left">
                 <label for="" class="over">
                     <f:translate key="tx_tilapplication_domain_model_school.other_school" />
                 </label>
-                <f:form.textfield name="otherSchool[name][]"  size="60" placeholder="Name, Anschrift"
-                                  value=""/>
+                <input type="text" name="otherSchool[{number}][name]"  size="60" placeholder="Name, Anschrift" {readonlyAttrib}/>
             </div>
             <div class="form-field form-field-right">
                 <label for="duration" class="over">
                     <f:translate key="tx_tilapplication_domain_model_school.other_school_duration" />
                 </label>
-                <f:form.textfield name="otherSchool[visitFrom][]" placeholder="Monat / Jahr" class="school-visit" />
-                <f:form.textfield name="otherSchool[visitTil][]" placeholder="Monat / Jahr" class="school-visit" />
+                <input type="text" name="otherSchool[{number}][duration]" placeholder="Monat / Jahr" {readonlyAttrib}/>
             </div>
         </div>
-    </div>
-    <button id="addOtherSchool">Weitere Schule hinzufügen</button>
+    </f:for>
     <div class="row form-group  clearfix">
 
     </div>

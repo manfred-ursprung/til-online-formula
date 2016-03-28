@@ -144,7 +144,7 @@ class Relative extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @param \DateTime $birthdate
 	 * @return void
 	 */
-	public function setBirthdate(\DateTime $birthdate) {
+	public function setBirthdate(\DateTime $birthdate = null) {
 		$this->birthdate = $birthdate;
 	}
 

@@ -8,6 +8,10 @@
 .form-group .form-field label {
   width: 150px;
 }
+.form-group .form-field .school-visit {
+  width: 40%;
+  padding-left: 5%;
+}
 .form-group label.over {
   display: block;
   width: auto;
@@ -56,4 +60,10 @@ fieldset legend {
 }
 fieldset legend .subline {
   font-size: 1.6rem;
+}
+.tabs-container .tab-content {
+  border-left: 1px solid #ddd;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }

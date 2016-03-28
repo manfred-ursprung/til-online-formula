@@ -44,16 +44,19 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * familyStatus
 	 *
 	 * @var \string
+	 * @validate NotEmpty
 	 */
 	protected $familyStatus = '';
 
 	/**
 	 * @var  \DateTime
+	 * @validate NotEmpty
 	 */
 	protected $birthdate;
 
 	/**
 	 * @var  \string
+	 * @validate NotEmpty
 	 */
 	protected $countryOfBirth;
 
@@ -68,6 +71,7 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * nationality
 	 *
 	 * @var string
+	 * @validate NotEmpty
 	 */
 	protected $nationality = '';
 
@@ -131,6 +135,7 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * address
 	 *
 	 * @var \MUM\TilApplication\Domain\Model\Address
+	 * @validate NotEmpty
 	 */
 	protected $address = NULL;
 
@@ -160,6 +165,7 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * costs
 	 *
 	 * @var \MUM\TilApplication\Domain\Model\Costs
+	 *
 	 */
 	protected $costs = NULL;
 
@@ -599,7 +605,7 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * @param \DateTime $birthdate
 	 */
-	public function setBirthdate($birthdate)
+	public function setBirthdate($birthdate = null)
 	{
 		$this->birthdate = $birthdate;
 	}
@@ -655,6 +661,23 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		}
 		return null;
 	}
+
+	/**
+	 * @return \array
+	 */
+	public function getOtherSchools()
+	{
+		$otherSchools = array();
+		/** @var  $school School */
+		foreach ($this->schoolCareer as $school) {
+			if (!$school->isActual()) {
+				$otherSchools[] = $school;
+			}
+		}
+
+		return $otherSchools;
+	}
+
 
 	/**
 	 * @param \MUM\TilApplication\Domain\Model\School $school

@@ -2,9 +2,11 @@
 <f:layout name="Default" />
 
 <f:section name="main">
-	<h1>Einkommen aller Familienmitglieder des Antragstellers step 4</h1>
+	<h1>Einkommen aller Familienmitglieder des Antragstellers</h1>
 
 	<f:flashMessages renderMode="div" />
+
+	<f:render partial="Candidate/StepNavigation" arguments="{settings: settings}" />
 
 	<f:render partial="FormErrors" arguments="{object:Candidate}" />
 
@@ -12,7 +14,7 @@
 	<f:form action="updateStep3" name="family" object="{family}" arguments="{candidate: candidate}"
 			pageUid="{settings.pageStep5}" additionalAttributes="{role: 'form'}">
 		<f:render partial="Candidate/FormFieldsIncome" arguments="{family: family, candidate: candidate,
-															settings: settings}" />
+															settings: settings, readonly: false}" />
 		<f:form.submit value="Save" />
 	</f:form>
 

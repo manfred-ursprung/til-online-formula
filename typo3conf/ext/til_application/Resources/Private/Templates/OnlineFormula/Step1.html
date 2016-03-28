@@ -6,6 +6,8 @@
 
 	<f:flashMessages renderMode="div" />
 
+	<f:render partial="Candidate/StepNavigation" arguments="{settings: settings}" />
+
 	<f:render partial="FormErrors" arguments="{object:Candidate}" />
 	<f:if condition="{isNew}">
 		<f:then>

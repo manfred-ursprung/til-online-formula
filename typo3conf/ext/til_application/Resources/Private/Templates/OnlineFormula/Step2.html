@@ -1,9 +1,16 @@
-
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+	 xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+	 f:schemaLocation="https://fluidtypo3.org/schemas/fluid-master.xsd"
+	 xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+	 flux:schemaLocation="https://fluidtypo3.org/schemas/flux-master.xsd"
+	 xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+	 v:schemaLocation="https://fluidtypo3.org/schemas/vhs-master.xsd">
 <f:layout name="Default" />
 
 <f:section name="main">
 
 	<f:flashMessages renderMode="div" />
+	<f:render partial="Candidate/StepNavigation" arguments="{settings: settings}" />
 
 	<f:render partial="FormErrors" arguments="{object:Candidate}" />
 	<p>Kandidate angelegt</p>
@@ -11,9 +18,13 @@
 	<f:form action="updateStep2" name="actualSchool" object="{actualSchool}" arguments="{candidate: candidate, otherSchool: ''}"
 			pageUid="{settings.pageStep3}" additionalAttributes="{role: 'form'}">
 		<f:render partial="Candidate/FormFieldsSchool" arguments="{candidate:candidate,
-															actualSchool: actualSchool, settings: settings}" />
-		<f:form.submit value="Save" />
+															actualSchool: actualSchool,
+															otherSchools: otherSchools,
+															settings: settings,
+															readonly: false}" />
+		<f:form.submit value="Speichern und Weiter" />
 	</f:form>
 
 
 </f:section>
+</div>

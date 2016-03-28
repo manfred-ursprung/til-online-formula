@@ -1,4 +1,16 @@
-
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+<f:if condition="{readonly}">
+    <f:then>
+        <v:variable.set name="readonlyAttrib" value="readonly=\"readonly\"" />
+        <v:variable.set name="disabledAttrib" value="disabled=\"disabled\"" />
+        <v:variable.set name="checkAttrib" value="onclick=\"return false;\"" />
+    </f:then>
+    <f:else>
+        <v:variable.set name="readonlyAttrib" value="" />
+        <v:variable.set name="disabledAttrib" value="" />
+        <v:variable.set name="checkAttrib" value="" />
+    </f:else>
+</f:if>
 
 
 <f:for each="{family}" as="member" iteration="iterator">
@@ -24,13 +36,13 @@
                 <label for="firstName">
                     <f:translate key="tx_tilapplication_domain_model_relative.first_name" />
                 </label>
-                <input type="text" name="tx_tilapplication_form[family][firstName][]" value="{member.firstName}" />
+                <input type="text" name="tx_tilapplication_form[family][firstName][]" value="{member.firstName}" {readonlyAttrib}/>
             </div>
             <div class="form-field form-field-right">
                 <label for="lastName">
                     <f:translate key="tx_tilapplication_domain_model_relative.last_name" />
                 </label>
-                <input type="text" name="tx_tilapplication_form[family][lastName][]" value="{member.lastName}" />
+                <input type="text" name="tx_tilapplication_form[family][lastName][]" value="{member.lastName}" {readonlyAttrib}/>
             </div>
         </div>
 
@@ -39,13 +51,15 @@
                 <label for="gebburtsdatum">
                     <f:translate key="tx_tilapplication_domain_model_relative.birthdate" />
                 </label>
-                <input type="text" name="tx_tilapplication_form[family][birthdate][]" value="{member.birthdate}" />
+                <input type="text" name="tx_tilapplication_form[family][birthdate][]"
+                       value="{f:format.date(date: '{member.birthdate}', format: 'd.m.Y')}" {readonlyAttrib}
+                        placeholder="dd.mm.YYYY" />
             </div>
             <div class="form-field form-field-right">
                 <label for="nationaltity">
                     <f:translate key="tx_tilapplication_domain_model_relative.nationality" />
                 </label>
-                <input type="text" name="tx_tilapplication_form[family][nationality][]" value="{member.nationality}" />
+                <input type="text" name="tx_tilapplication_form[family][nationality][]" value="{member.nationality}" {readonlyAttrib}/>
             </div>
 
         </div>
@@ -55,13 +69,13 @@
                 <label for="bildungsabschluss">
                     <f:translate key="tx_tilapplication_domain_model_relative.educational_qualification" />
                 </label>
-                <input type="text" name="tx_tilapplication_form[family][educationalQualification][]" value="{member.educationalQualification}" />
+                <input type="text" name="tx_tilapplication_form[family][educationalQualification][]" value="{member.educationalQualification}" {readonlyAttrib}/>
             </div>
             <div class="form-field form-field-right">
                 <label for="job">
                     <f:translate key="tx_tilapplication_domain_model_relative.job" />
                 </label>
-                <input type="text" name="tx_tilapplication_form[family][job][]" value="{member.job}" />
+                <input type="text" name="tx_tilapplication_form[family][job][]" value="{member.job}" {readonlyAttrib}/>
             </div>
 
         </div>

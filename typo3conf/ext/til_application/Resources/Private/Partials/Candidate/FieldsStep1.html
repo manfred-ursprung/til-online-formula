@@ -1,0 +1,230 @@
+<fieldset xmlns:f="http://www.w3.org/1999/html" xmlns:f="http://www.w3.org/1999/html">
+	<legend>Angaben über den Antragsteller</legend>
+	<div class="row form-group clearfix">
+		<div class="form-field form-field-left">
+		<label for="firstName">
+			<f:translate key="tx_tilapplication_domain_model_candidate.first_name" />
+		</label>
+			<f:form.textfield name="feuser.firstName" value="{candidate.feUser.firstName}" additionalAttributes="{readonly: 'readonly'}"/>
+		</div>
+		<div class="form-field form-field-right">
+			<label for="lastName">
+				<f:translate key="tx_tilapplication_domain_model_candidate.last_name" />
+			</label>
+			<f:form.textfield name="feUser.lastName" value="{candidate.feUser.lastName}"
+							  additionalAttributes="{readonly: 'readonly'}"/>
+		</div>
+	</div>
+
+	<div class="row form-group clearfix">
+		<div class="form-field form-field-left">
+		<label for="familyStatus">
+			<f:translate key="tx_tilapplication_domain_model_candidate.family_status" />
+		</label>
+			<div class="form-radio-group">
+				<span class="form-radio-first form-radio">
+					<input type="radio" name="familyStatus" value="ledig" disabled="disabled"
+								  {f:if(condition: '{candidate.familyStatus} == \'ledig\'', then: 'checked="checked"')} />Ledig</span>
+				<span class="form-radio-last form-radio">
+					<input type="radio" name="familyStatus" value="verheiratet" disabled="disabled"
+						   {f:if(condition: '{candidate.familyStatus} == \'verheiratet\'', then: 'checked="checked"')}	/>
+					Verheiratet
+				</span>
+			</div>
+		</div>
+		<div class="form-field form-field-right">
+			<label for="gender">
+				<f:translate key="tx_tilapplication_domain_model_candidate.gender" />
+			</label>
+			<div class="form-radio-group">
+				<span class="form-radio-first form-radio">
+					<input type="radio" name="gender" disabled="disabled" value="male"
+						   {f:if(condition: '{candidate.gender} == \'male\'', then: 'checked="checked"')}/>männlich</span>
+				<span class="form-radio-last form-radio">
+					<input type="radio" name="gender" disabled="disabled" value="female"
+						   {f:if(condition: '{candidate.gender} == \'female\'', then: 'checked="checked"')}/>weiblich</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="row form-group clearfix">
+		<div class="form-field form-field-left">
+			<label for="birthdate">
+				<f:translate key="tx_tilapplication_domain_model_candidate.birthdate" />
+			</label>
+			<input type="text" name="birthdate" value="{candidate.birthdate}" readonly="readonly"/>
+		</div>
+		<div class="form-field form-field-right">
+			<label for="countryOfBirth">
+				<f:translate key="tx_tilapplication_domain_model_candidate.countrv_of_birth" />
+			</label>
+			<input type="text" name="countryOfBirth" value="{candidate.countryOfBirth}" readonly="readonly" />
+		</div>
+	</div>
+</fieldset>
+
+<fieldset>
+	<legend>Anschrift des Antragsteller</legend>
+	<div class="row form-group clearfix">
+		<div class="form-field form-field-left">
+			<label for="address">
+				<f:translate key="tx_tilapplication_domain_model_address.street" />
+			</label>
+			<f:form.textfield name="address.street" value="{candidate.address.street}" readonly="readonly"/>
+		</div>
+		<div class="form-field form-field-right">
+			<label for="housenumber">
+				<f:translate key="tx_tilapplication_domain_model_address.housenumber" />
+			</label>
+			<f:form.textfield name="address.housenumber"  value="{candidate.address.housenumber}" readonly="readonly"/>
+		</div>
+
+
+	</div>
+	<div class="row form-group clearfix">
+		<div class="form-field form-field-left">
+			<label for="zip">
+				<f:translate key="tx_tilapplication_domain_model_address.zip" />
+			</label>
+			<f:form.textfield property="address.zip"  readonly="readonly"/><br />
+		</div>
+
+		<div class="form-field form-field-right">
+			<label for="city">
+				<f:translate key="tx_tilapplication_domain_model_address.city" />
+			</label>
+			<f:form.textfield property="address.city" readonly="readonly"/>
+		</div>
+	</div>
+
+	<f:comment>Telefonnummern </f:comment>
+	<div class="row form-group clearfix">
+		<div class="form-field form-field-left">
+			<label for="phone">
+				<f:translate key="tx_tilapplication_domain_model_address.phone" />
+			</label>
+			<f:form.textfield property="address.phone" readonly="readonly"/><br />
+		</div>
+
+		<div class="form-field form-field-right">
+			<label for="mobile">
+				<f:translate key="tx_tilapplication_domain_model_address.mobile" />
+			</label>
+			<f:form.textfield property="address.mobile" readonly="readonly"/>
+		</div>
+	</div>
+	<div class="row form-group  clearfix">
+		<div class="form-field form-field-left">
+			<label for="email">
+				<f:translate key="tx_tilapplication_domain_model_address.email" />
+			</label>
+			<f:form.textfield property="address.email" readonly="readonly"/>
+		</div>
+	</div>
+	<br />
+	<div class="row form-group clearfix">
+		<div class="form-line ">
+			<label for="atParent">
+				Wohnhaft bei den Eltern
+			</label>
+			<f:form.checkbox property="address.atParent" value="0" onclick="return false;"/>
+			<label for="ownRoom" class="next">eigenes Zimmer </label>
+			<f:form.checkbox property="address.ownRoom" value="0" onclick="return false;"/>
+		</div>
+		<div class="form-line">
+			<label for="ownRoom">
+				Zimmer mit Geschwistern
+			</label>
+			<f:form.checkbox property="address.siblingRoom" value="0" onclick="return false;"/>
+			<label for="ownRoom" class="next">
+				Anzahl der Geschwister im Zimmer
+			</label>
+			<f:form.textfield name="siblingNumber" readonly="readonly"/>
+		</div>
+	</div>
+
+	<div class="row form-group clearfix">
+		<div class="form-line ">
+			<label for="migrationBackground">
+				<f:translate key="tx_tilapplication_domain_model_candidate.migration_background" />
+			</label>
+			<f:form.checkbox property="migrationBackground" value="1" onclick="return false;"/>
+		</div>
+	</div>
+</fieldset>
+
+<fieldset id="migration-background">
+	<legend>Auszufüllen bei Migrationshintergrund
+		<p class="subline">Staatsangehörigkeit/Aufenthaltsstatus</p>
+	</legend>
+	<div class="row form-group clearfix">
+		<div class="form-field form-line">
+			<label for="nationality" class="over">
+				Staatsangehörigkeit (wenn Deutsch, Herkunftsland der Familie)
+			</label>
+			<f:form.textfield property="nationality" readonly="readonly"/>
+		</div>
+		<div class="form-field form-line">
+			<label for="residentSince" class="over">
+				<f:translate key="tx_tilapplication_domain_model_candidate.resident_since" />
+			</label>
+				<f:form.textfield property="residentSince" readonly="readonly"/>
+		</div>
+	</div>
+	<div class="row form-group clearfix">
+		<div class="form-line ">
+			<label for="residenceStatus" class="over">
+				<f:translate key="tx_tilapplication_domain_model_candidate.residence_status" />
+			</label>
+			<div class="form-radio-group">
+				<span class="form-radio-first form-radio">
+					<f:form.radio property="residenceStatus" value="1" disabled="disabled"/>
+					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.niederlassung" />
+				</span>
+
+				<span class="form-radio-first form-radio">
+					<f:form.radio property="residenceStatus" value="2" disabled="disabled"/>
+					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.aufenthalt" />
+				</span>
+				<span class="form-radio-first form-radio">
+					<f:form.radio property="residenceStatus" value="3" disabled="disabled"/>
+					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.sonstiges" />
+				</span>
+			</div>
+		</div>
+		<div class="row form-group clearfix">
+			<div class="form-field form-field-left">
+				<label for="residenceMisc">
+					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.sonstiges" />
+				</label>
+
+				<f:form.textfield property="residenceMisc" readonly="readonly"/><br />
+			</div>
+		</div>
+	</div>
+
+
+
+	<f:comment>
+		<label for="familyAddon">
+			<f:translate key="tx_tilapplication_domain_model_candidate.family_addon" />
+		</label><br />
+			<f:form.textfield property="familyAddon" /><br />
+		<label for="assetRealEstate">
+			<f:translate key="tx_tilapplication_domain_model_candidate.asset_real_estate" />
+		</label><br />
+			<f:form.textfield property="assetRealEstate" /><br />
+		<label for="assetSavings">
+			<f:translate key="tx_tilapplication_domain_model_candidate.asset_savings" />
+		</label><br />
+			<f:form.textfield property="assetSavings" /><br />
+		<label for="assetMiscEstate">
+			<f:translate key="tx_tilapplication_domain_model_candidate.asset_misc_estate" />
+		</label><br />
+			<f:form.textfield property="assetMiscEstate" /><br />
+		<label for="integrity">
+			<f:translate key="tx_tilapplication_domain_model_candidate.integrity" />
+		</label><br />
+			<f:form.checkbox property="integrity" value="1" /><br />
+	</f:comment>
+</fieldset>

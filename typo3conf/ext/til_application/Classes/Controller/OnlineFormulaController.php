@@ -27,6 +27,7 @@ namespace MUM\TilApplication\Controller;
  ***************************************************************/
 use MUM\TilApplication\Domain\Model\Candidate;
 use MUM\TilApplication\Domain\Repository\RelativeRepository;
+use MUM\TilApplication\Domain\Repository\SchoolRepository;
 use TYPO3\CMS\Core\Utility\DebugUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
@@ -150,9 +151,12 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 		//DebuggerUtility::var_dump($this->candidate, 'Step2');
 		//has candidate an actual school entry?
 		$actualSchool = $this->getActualSchool();
+		$otherSchools = $this->candidate->getOtherSchools();
+
 		$params = array(
 			'candidate'	=> $this->candidate,
 			'actualSchool'  => $actualSchool,
+			'otherSchools'	=> $otherSchools,
 			'settings'	=> $this->settings,
 		);
 		$this->view->assignMultiple($params);
@@ -304,11 +308,7 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 				->getPropertyMappingConfiguration()
 				->allowAllProperties();
 		}
-	/*	print "<pre>";
-		print_r( $this->arguments['actualSchool']->getArgumentNames());
-		print "</pre>";
-		exit;
-	*/
+
 
 	}
 
@@ -323,26 +323,23 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	public function updateStep2Action(\MUM\TilApplication\Domain\Model\Candidate $candidate,
 									  \MUM\TilApplication\Domain\Model\School $actualSchool) {
 		if($this->isUserValid()) {
+		/*	print '<pre>';
+			print_r($actualSchool);
+			print '</pre>';
+			exit;
+		*/
 			$actualSchool->setCandidate($candidate);
 			$this->schoolRepository->add($actualSchool);
 			$candidate->setActualSchool($actualSchool);
 
 			//Weitere Schulen schoolCareer
+		/*	print '<pre>';
+			print_r($_REQUEST['tx_tilapplication_form']['otherSchool']);
+			print '</pre>';
+			exit;
+		*/
 			$otherSchools = $_REQUEST['tx_tilapplication_form']['otherSchool'];
-			foreach($otherSchools as $oSchool){
-				if(strlen($oSchool['name']) > 0){
-					/** @var  $tmpSchool \MUM\TilApplication\Domain\Model\School */
-					$tmpSchool = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\School');
-					$tmpSchool->setName($oSchool['name']);
-					$tmpSchool->setActual(false);
-					$tmpSchool->setCandidate($candidate);
-					if(strlen($oSchool['duration']) > 0){
-						$tmpSchool->setVisitFrom($oSchool['duration']);
-					}
-					$this->schoolRepository->add($tmpSchool);
-					$candidate->addSchoolCareer($tmpSchool);
-				}
-			}
+			$this->createAndAddSchool($candidate, $otherSchools);
 
 			$this->candidateRepository->update($candidate);
 
@@ -369,6 +366,11 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 		//speichern in candidate
 		if(isset($family['firstName'])){
 			$candidate = $this->createAndAddFamily($candidate, $family);
+			if(is_a($candidate, 'TYPO3\CMS\Extbase\Validation\Error')){
+				$this->addFlashMessage('Sie müssen den Geburtstag im Format dd.mm.YYYY eingeben. Andere Formate werden nicht unterstützt.',
+					'', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
+				$this->redirect('step3' , null, null, null, $this->settings['pageStep3']);
+			}
 			$nextStep = 'step4';
 		}
 		if(isset($family['grossSalary']) || isset($family['netSalary'])){
@@ -423,30 +425,27 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 				}
 				$member->setFirstName($firstName);
 				$member->setLastName($family['lastName'][$key]);
-				//if(!strlen($family['birthdate'][$key]) > 0) {
-					try {
-						$birthdate = ($dateTimeConverter->convertFrom(array( 'date' => '05.05.1989',
-																		'dateFormat' => 'd.m.Y'),
-							'DateTime'));
-					/*		print "<pre>birthdate : " .$family['birthdate'][$key] .'<br />Key = ' . $key .'<br />';
-                            print_r($family);
-                            print 'Converterd : ' . $birthdate->format('Y-m-d') .'<br />';
-                            print '</pre>';
-                            exit;
-					*/
-						if(is_a($birthdate, 'DateTime')) {
-							$member->setBirthdate($birthdate);
-						}else{
-							print "<pre> :";
-							print_r($birthdate);
-							print '</pre>';
-							exit;
-						}
-					} catch (\TYPO3\CMS\Extbase\Error\Error $e) {
-						print '<pre>' . $e->getMessage() . '</pre>';
+
+				try {
+					$birthdate = ($dateTimeConverter->convertFrom(array( 'date' => $family['birthdate'][$key],
+																	'dateFormat' => 'd.m.Y'),
+																	'DateTime'));
+
+					if(is_a($birthdate, 'DateTime') || is_null($birthdate)) {
+						$member->setBirthdate($birthdate);
+					}else{
+						return $birthdate;
+						print "<pre> : Error in adding Birthdate to relative, try it again with other date format like dd.mm.yyyy";
+						print_r($birthdate);
+						print '</pre>';
 						exit;
+
 					}
-				//}
+				} catch (\TYPO3\CMS\Extbase\Error\Error $e) {
+					print '<pre>' . $e->getMessage() . '</pre>';
+					exit;
+				}
+
 				$member->setNationality($family['nationality'][$key]);
 				$member->setEducationalQualification($family['educationalQualification'][$key]);
 				$member->setJob($family['job'][$key]);
@@ -522,6 +521,50 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 		} else {
 			$actualSchool = NULL;
 			return $actualSchool;
+		}
+	}
+
+	/**
+	 * @param Candidate $candidate
+	 * @param $otherSchools
+	 * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
+	 * create, update and remove a school from schoolCareer
+	 */
+	protected function createAndAddSchool(\MUM\TilApplication\Domain\Model\Candidate &$candidate, $otherSchools)
+	{
+	/*	print '<pre>';
+		print_r($otherSchools);
+		print '</pre>';
+		exit;
+	*/
+		foreach ($otherSchools['name'] as $key => $name ) {
+			if (strlen($name) > 0 || ($otherSchools['remove'][$key] == 1) ) {
+				if (isset($otherSchools['uid'][$key])) {
+					$tmpSchool = $this->schoolRepository->findByUid($otherSchools['uid'][$key]);
+				} else {
+					/** @var  $tmpSchool \MUM\TilApplication\Domain\Model\School */
+					$tmpSchool = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\School');
+				}
+				$tmpSchool->setName($otherSchools['name'][$key]);
+				$tmpSchool->setActual(false);
+				if (strlen($otherSchools['visitFrom'][$key]) > 0) {
+					$tmpSchool->setVisitFrom($otherSchools['visitFrom'][$key]);
+				}
+				if (strlen($otherSchools['visitTil'][$key]) > 0) {
+					$tmpSchool->setVisitTil($otherSchools['visitTil'][$key]);
+				}
+				$tmpSchool->setCandidate($candidate);
+				if ($otherSchools['remove'][$key] == 1) {
+					$candidate->removeSchoolCareer($tmpSchool);
+					$this->schoolRepository->remove($tmpSchool);
+				} elseif ($tmpSchool->_isNew()) {
+					$this->schoolRepository->add($tmpSchool);
+					$candidate->addSchoolCareer($tmpSchool);
+				} else {
+					$this->schoolRepository->update($tmpSchool);
+				}
+
+			}
 		}
 	}
 }

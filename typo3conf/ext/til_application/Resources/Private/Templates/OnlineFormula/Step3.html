@@ -6,13 +6,15 @@
 
 	<f:flashMessages renderMode="div" />
 
+	<f:render partial="Candidate/StepNavigation" arguments="{settings: settings}" />
+
 	<f:render partial="FormErrors" arguments="{object:Candidate}" />
 
 	
 	<f:form action="updateStep3" name="family" object="{family}" arguments="{candidate: candidate}"
 			pageUid="{settings.pageStep4}" additionalAttributes="{role: 'form'}" class="form-family">
 		<f:render partial="Candidate/FormFieldsRelatives" arguments="{family: family, candidate: candidate,
-															settings: settings}" />
+															settings: settings, readonly: 0}" />
 		<f:form.submit value="Save" />
 	</f:form>
 
