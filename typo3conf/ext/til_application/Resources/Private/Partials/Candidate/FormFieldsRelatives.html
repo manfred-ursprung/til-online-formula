@@ -1,4 +1,6 @@
 {namespace v=FluidTYPO3\Vhs\ViewHelpers}
+
+<f:section name="Main">
 <f:if condition="{readonly}">
     <f:then>
         <v:variable.set name="readonlyAttrib" value="readonly=\"readonly\"" />
@@ -15,72 +17,101 @@
 
 <f:for each="{family}" as="member" iteration="iterator">
 
-    <fieldset class="family-{member.familyRelation}">
+    <fieldset class="family-{member.familyRelation}" id="family_member_{iterator.index}">
 
         <input type="hidden" name="tx_tilapplication_form[family][familyRelation][]" value="{member.familyRelation}"/>
         <input type="hidden" name="tx_tilapplication_form[family][uid][]" value="{member.uid}"/>
-        <f:switch expression="{member.familyRelation}">
-            <f:case value="1">
-                <legend>Angaben zur Mutter</legend>
-            </f:case>
-            <f:case value="0">
-                <legend>Angaben zum Vater</legend>
-            </f:case>
-            <f:case value="2">
-                <legend>Angaben zu Geschwister</legend>
-            </f:case>
-        </f:switch>
-        <div class="row form-group clearfix">
-            <div class="form-field form-field-left">
+        <input type="hidden" name="tx_tilapplication_form[family][remove][]" value="0" id="remove_family_member_{member.uid}"/>
+        <div class="family-member-information">
+            <f:switch expression="{member.familyRelation}">
+                <f:case value="1">
+                    <legend>Angaben zur Mutter</legend>
+                </f:case>
+                <f:case value="0">
+                    <legend>Angaben zum Vater</legend>
+                </f:case>
+                <f:case value="2">
+                    <legend>Angaben zu Geschwister {member.firstName}</legend>
+                </f:case>
+            </f:switch>
+            <f:render section="Template" optional="True" arguments="{_all}" />
 
-                <label for="firstName">
-                    <f:translate key="tx_tilapplication_domain_model_relative.first_name" />
-                </label>
-                <input type="text" name="tx_tilapplication_form[family][firstName][]" value="{member.firstName}" {readonlyAttrib}/>
-            </div>
-            <div class="form-field form-field-right">
-                <label for="lastName">
-                    <f:translate key="tx_tilapplication_domain_model_relative.last_name" />
-                </label>
-                <input type="text" name="tx_tilapplication_form[family][lastName][]" value="{member.lastName}" {readonlyAttrib}/>
-            </div>
-        </div>
-
-        <div class="row form-group clearfix">
-            <div class="form-field form-field-left">
-                <label for="gebburtsdatum">
-                    <f:translate key="tx_tilapplication_domain_model_relative.birthdate" />
-                </label>
-                <input type="text" name="tx_tilapplication_form[family][birthdate][]"
-                       value="{f:format.date(date: '{member.birthdate}', format: 'd.m.Y')}" {readonlyAttrib}
-                        placeholder="dd.mm.YYYY" />
-            </div>
-            <div class="form-field form-field-right">
-                <label for="nationaltity">
-                    <f:translate key="tx_tilapplication_domain_model_relative.nationality" />
-                </label>
-                <input type="text" name="tx_tilapplication_form[family][nationality][]" value="{member.nationality}" {readonlyAttrib}/>
-            </div>
-
-        </div>
-
-        <div class="row form-group clearfix">
-            <div class="form-field form-field-left">
-                <label for="bildungsabschluss">
-                    <f:translate key="tx_tilapplication_domain_model_relative.educational_qualification" />
-                </label>
-                <input type="text" name="tx_tilapplication_form[family][educationalQualification][]" value="{member.educationalQualification}" {readonlyAttrib}/>
-            </div>
-            <div class="form-field form-field-right">
-                <label for="job">
-                    <f:translate key="tx_tilapplication_domain_model_relative.job" />
-                </label>
-                <input type="text" name="tx_tilapplication_form[family][job][]" value="{member.job}" {readonlyAttrib}/>
-            </div>
-
+            <f:if condition="{member.familyRelation} == 2">
+                <f:then>
+                    <f:if condition="{readonly} == 0">
+                        <button class="removeOtherSibling" data-relative="{member.uid}" data-iterator="{iterator.index}">löschen</button>
+                    </f:if>
+                </f:then>
+            </f:if>
         </div>
     </fieldset>
 </f:for>
+    <div class="hide" id="template-add-sibling">
+        <fieldset class="family-2">
+            <input type="hidden" name="tx_tilapplication_form[family][familyRelation][]" value="2"/>
+            <legend>Angaben zu Geschwister <span class="sibling-number"></span></legend>
+            <f:render section="Template" optional="True" arguments="{_all}" />
+        </fieldset>
+    </div>
+    <f:if condition="{readonly} == 0">
+        <button id="addOtherSibling" class="add-template">Weiteres Geschwisterkind hinzufügen</button>
+    </f:if>
+
+</f:section>
+
+
+<f:section name="Template">
+    <div class="row form-group clearfix">
+        <div class="form-field form-field-left">
+
+            <label for="firstName">
+                <f:translate key="tx_tilapplication_domain_model_relative.first_name" />
+            </label>
+            <input type="text" name="tx_tilapplication_form[family][firstName][]" value="{member.firstName}" {readonlyAttrib}/>
+        </div>
+        <div class="form-field form-field-right">
+            <label for="lastName">
+                <f:translate key="tx_tilapplication_domain_model_relative.last_name" />
+            </label>
+            <input type="text" name="tx_tilapplication_form[family][lastName][]" value="{member.lastName}" {readonlyAttrib}/>
+        </div>
+    </div>
+
+    <div class="row form-group clearfix">
+        <div class="form-field form-field-left">
+            <label for="gebburtsdatum">
+                <f:translate key="tx_tilapplication_domain_model_relative.birthdate" />
+            </label>
+            <input type="text" name="tx_tilapplication_form[family][birthdate][]"
+                   value="{f:format.date(date: '{member.birthdate}', format: 'd.m.Y')}" {readonlyAttrib}
+                   placeholder="dd.mm.YYYY" />
+        </div>
+        <div class="form-field form-field-right">
+            <label for="nationaltity">
+                <f:translate key="tx_tilapplication_domain_model_relative.nationality" />
+            </label>
+            <input type="text" name="tx_tilapplication_form[family][nationality][]" value="{member.nationality}" {readonlyAttrib}/>
+        </div>
+
+    </div>
+
+    <div class="row form-group clearfix">
+        <div class="form-field form-field-left">
+            <label for="bildungsabschluss">
+                <f:translate key="tx_tilapplication_domain_model_relative.educational_qualification" />
+            </label>
+            <input type="text" name="tx_tilapplication_form[family][educationalQualification][]" value="{member.educationalQualification}" {readonlyAttrib}/>
+        </div>
+        <div class="form-field form-field-right">
+            <label for="job">
+                <f:translate key="tx_tilapplication_domain_model_relative.job" />
+            </label>
+            <input type="text" name="tx_tilapplication_form[family][job][]" value="{member.job}" {readonlyAttrib}/>
+        </div>
+
+    </div>
+</f:section>
+
 <f:comment>
     <div class="row form-group clearfix">
         <div class="form-field form-field-left">

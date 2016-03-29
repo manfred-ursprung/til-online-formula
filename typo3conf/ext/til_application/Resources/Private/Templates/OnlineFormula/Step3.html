@@ -13,9 +13,9 @@
 	
 	<f:form action="updateStep3" name="family" object="{family}" arguments="{candidate: candidate}"
 			pageUid="{settings.pageStep4}" additionalAttributes="{role: 'form'}" class="form-family">
-		<f:render partial="Candidate/FormFieldsRelatives" arguments="{family: family, candidate: candidate,
+		<f:render partial="Candidate/FormFieldsRelatives" section="Main" arguments="{family: family, candidate: candidate,
 															settings: settings, readonly: 0}" />
-		<f:form.submit value="Save" />
+		<f:form.submit value="{f:translate(key: 'tx_tilapplication_form.general.save_and_forward')}" />
 	</f:form>
 
 

@@ -11,11 +11,14 @@
 	<f:render partial="FormErrors" arguments="{object:Candidate}" />
 
 	<h2>IV. Finanzielle Situation</h2>
+	<p>Bitte geben Sie die Werte als volle Eurobeträge an.</p>
 	<f:form action="updateStep3" name="family" object="{family}" arguments="{candidate: candidate}"
 			pageUid="{settings.pageStep5}" additionalAttributes="{role: 'form'}">
-		<f:render partial="Candidate/FormFieldsIncome" arguments="{family: family, candidate: candidate,
-															settings: settings, readonly: false}" />
-		<f:form.submit value="Save" />
+		<f:render partial="Candidate/FormFieldsIncome" arguments="{family: family,
+															candidate: candidate,
+															settings: settings,
+															readonly: false}" />
+		<f:form.submit value="{f:translate(key: 'tx_tilapplication_form.general.save_and_forward')}" />
 	</f:form>
 
 

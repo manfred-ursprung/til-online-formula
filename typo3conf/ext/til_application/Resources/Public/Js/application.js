@@ -23,3 +23,29 @@ $('.removeOtherSchool').bind('click', function(event){
     $('#remove_school_' + schoolUid).val(1);
 });
 
+// Family and relatives
+$('#addOtherSibling').click(function(event){
+    event.preventDefault();
+    var template = $('#template-add-sibling fieldset').clone(true);  // also events are copied
+    $(this).before(template);
+
+    $('.removeOtherSibling').bind('click', function(event){
+        event.preventDefault();
+        var index = $(this).data('iterator');
+        var memberUid = $(this).data('relative');
+        $('#family_member_' + index + ' .family-member-information').remove();
+        $('#remove_family_member_' + memberUid).val(1);
+    });
+});
+
+
+$('.removeOtherSibling').bind('click', function(event){
+    event.preventDefault();
+    var index = $(this).data('iterator');
+    var memberUid = $(this).data('relative');
+    $('#family_member_' + index + ' .family-member-information').remove();
+    $('#remove_family_member_' + memberUid).val(1);
+
+});
+
+

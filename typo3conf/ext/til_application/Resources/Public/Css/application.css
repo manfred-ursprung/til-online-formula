@@ -61,9 +61,36 @@ fieldset legend {
 fieldset legend .subline {
   font-size: 1.6rem;
 }
+.add-template {
+  display: block;
+  margin: 20px 0;
+}
+.removeOtherSchool {
+  margin: 10px 0;
+}
+.step-navigation .btn {
+  background-color: #a2bd30;
+  color: white;
+  margin-left: 20px;
+}
+.step-navigation .btn:first-child {
+  margin-left: 0;
+}
 .tabs-container .tab-content {
   border-left: 1px solid #ddd;
   padding: 10px;
   border-right: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
+}
+.tabs-container .tab-content .btn {
+  background-color: #a2bd30;
+  color: white;
+}
+.finish-online-formula {
+  width: 100%;
+  text-align: right;
+}
+.finish-online-formula .btn {
+  background-color: #a2bd30;
+  color: white;
 }

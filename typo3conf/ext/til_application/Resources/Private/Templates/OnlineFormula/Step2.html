@@ -13,8 +13,7 @@
 	<f:render partial="Candidate/StepNavigation" arguments="{settings: settings}" />
 
 	<f:render partial="FormErrors" arguments="{object:Candidate}" />
-	<p>Kandidate angelegt</p>
-
+	
 	<f:form action="updateStep2" name="actualSchool" object="{actualSchool}" arguments="{candidate: candidate, otherSchool: ''}"
 			pageUid="{settings.pageStep3}" additionalAttributes="{role: 'form'}">
 		<f:render partial="Candidate/FormFieldsSchool" arguments="{candidate:candidate,
@@ -22,7 +21,7 @@
 															otherSchools: otherSchools,
 															settings: settings,
 															readonly: false}" />
-		<f:form.submit value="Speichern und Weiter" />
+		<f:form.submit value="{f:translate(key: 'tx_tilapplication_form.general.save_and_forward')}" />
 	</f:form>
 
 

@@ -26,7 +26,7 @@
                 <legend>Monatliche Einnahmen des Vater</legend>
             </f:case>
             <f:case value="2">
-                <legend>Monatliche Einnahmen der Geschwister</legend>
+                <legend>Monatliche Einnahmen des Geschwisterkind {member.firstName}</legend>
             </f:case>
         </f:switch>
         <div class="row form-group clearfix">
@@ -223,7 +223,7 @@
         </div>
 
         <div class="form-field form-field-right">
-            <label for="otherCosts"  class="over">
+            <label for="otherCosts"  class="over"><br />
                 <f:translate key="tx_tilapplication_domain_model_costs.other_costs" />
             </label>
             <input type="text" name="tx_tilapplication_form[family][otherCosts]"
@@ -231,5 +231,6 @@
 
         </div>
     </div>
+
 
 </fieldset>

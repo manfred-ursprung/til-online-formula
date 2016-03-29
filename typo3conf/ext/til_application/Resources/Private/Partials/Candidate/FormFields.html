@@ -41,7 +41,8 @@
 			<label for="birthdate">
 				<f:translate key="tx_tilapplication_domain_model_candidate.birthdate" />
 			</label>
-			<f:form.textfield property="birthdate" />
+
+			<f:form.textfield property="birthdate" value="{candidate.birthdate -> f:format.date( format: 'd.m.Y' )}" />
 		</div>
 		<div class="form-field form-field-right">
 			<label for="countryOfBirth">
@@ -116,15 +117,15 @@
 			<label for="atParent">
 				Wohnhaft bei den Eltern
 			</label>
-			<f:form.checkbox property="address.atParent" value="0"/>
+			<f:form.checkbox property="address.atParent" value="1"/>
 			<label for="ownRoom" class="next">eigenes Zimmer </label>
-			<f:form.checkbox property="address.ownRoom" value="0"/>
+			<f:form.checkbox property="address.ownRoom" value="1"/>
 		</div>
 		<div class="form-line">
 			<label for="ownRoom">
 				Zimmer mit Geschwistern
 			</label>
-			<f:form.checkbox property="address.siblingRoom" value="0"/>
+			<f:form.checkbox property="address.siblingRoom" value="1"/>
 			<label for="ownRoom" class="next">
 				Anzahl der Geschwister im Zimmer
 			</label>
@@ -192,7 +193,7 @@
 		</div>
 	</div>
 
-	<f:form.submit name="submit-step1" value="Weiter" class="step-submit" />
+	<f:form.submit name="submit-step1" value="{f:translate(key: 'tx_tilapplication_form.general.save_and_forward')}" class="step-submit" />
 
 	<f:comment>
 		<label for="familyAddon">

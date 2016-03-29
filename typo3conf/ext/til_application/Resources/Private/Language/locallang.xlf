@@ -22,7 +22,7 @@
 				<source>weiblich</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.family_status">
-				<source>Family Status</source>
+				<source>Familien Status</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.family_status.single">
 				<source>Ledig</source>
@@ -43,7 +43,7 @@
 				<source>Migrations Hintergrund</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.nationality">
-				<source>Nationality</source>
+				<source>Nationalität</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.resident_since">
 				<source>Wohnhaft in Deutschland seit</source>
@@ -191,7 +191,7 @@
 				<source> Geburtstag</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_relative.nationality">
-				<source>Nationaliäty</source>
+				<source>Nationalität</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_relative.educational_qualification">
 				<source>Bildungsabschluss</source>
@@ -261,6 +261,9 @@
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_income.other_incomes">
 				<source>Sonstige Einnahmen (Miete etc)</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_form.general.save_and_forward">
+				<source>Abspeichern und Weiter</source>
 			</trans-unit>
 		</body>
 	</file>

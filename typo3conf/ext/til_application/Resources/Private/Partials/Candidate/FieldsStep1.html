@@ -52,7 +52,7 @@
 			<label for="birthdate">
 				<f:translate key="tx_tilapplication_domain_model_candidate.birthdate" />
 			</label>
-			<input type="text" name="birthdate" value="{candidate.birthdate}" readonly="readonly"/>
+			<input type="text" name="birthdate" value="{candidate.birthdate -> f:format.date(format: 'd.m.Y')}" readonly="readonly"/>
 		</div>
 		<div class="form-field form-field-right">
 			<label for="countryOfBirth">
@@ -70,13 +70,13 @@
 			<label for="address">
 				<f:translate key="tx_tilapplication_domain_model_address.street" />
 			</label>
-			<f:form.textfield name="address.street" value="{candidate.address.street}" readonly="readonly"/>
+			<input type="text" name="address.street" value="{candidate.address.street}" readonly="readonly"/>
 		</div>
 		<div class="form-field form-field-right">
 			<label for="housenumber">
 				<f:translate key="tx_tilapplication_domain_model_address.housenumber" />
 			</label>
-			<f:form.textfield name="address.housenumber"  value="{candidate.address.housenumber}" readonly="readonly"/>
+			<input type="text" name="address.housenumber"  value="{candidate.address.housenumber}" readonly="readonly"/>
 		</div>
 
 
@@ -86,14 +86,14 @@
 			<label for="zip">
 				<f:translate key="tx_tilapplication_domain_model_address.zip" />
 			</label>
-			<f:form.textfield property="address.zip"  readonly="readonly"/><br />
+			<input type="text" name="address.zip" value="{candidate.address.zip}" readonly="readonly"/><br />
 		</div>
 
 		<div class="form-field form-field-right">
 			<label for="city">
 				<f:translate key="tx_tilapplication_domain_model_address.city" />
 			</label>
-			<f:form.textfield property="address.city" readonly="readonly"/>
+			<input type="text" name="address.city" value="{candidate.address.city}" readonly="readonly"/>
 		</div>
 	</div>
 
@@ -103,14 +103,14 @@
 			<label for="phone">
 				<f:translate key="tx_tilapplication_domain_model_address.phone" />
 			</label>
-			<f:form.textfield property="address.phone" readonly="readonly"/><br />
+			<input type="text" name="address.phone" value="{candidate.address.phone}" readonly="readonly"/><br />
 		</div>
 
 		<div class="form-field form-field-right">
 			<label for="mobile">
 				<f:translate key="tx_tilapplication_domain_model_address.mobile" />
 			</label>
-			<f:form.textfield property="address.mobile" readonly="readonly"/>
+			<input type="text" name="address.mobile" value="{candidate.address.mobile}" readonly="readonly"/>
 		</div>
 	</div>
 	<div class="row form-group  clearfix">
@@ -118,7 +118,7 @@
 			<label for="email">
 				<f:translate key="tx_tilapplication_domain_model_address.email" />
 			</label>
-			<f:form.textfield property="address.email" readonly="readonly"/>
+			<input type="text" name="address.email" value="{candidate.address.email}" readonly="readonly"/>
 		</div>
 	</div>
 	<br />
@@ -127,19 +127,22 @@
 			<label for="atParent">
 				Wohnhaft bei den Eltern
 			</label>
-			<f:form.checkbox property="address.atParent" value="0" onclick="return false;"/>
+			<input type="checkbox" name="address.atParent" value="0" onclick="return false;"
+							 {f:if(condition: '{candidate.address.atParent} == \'1\'', then: 'checked="checked"')} />
 			<label for="ownRoom" class="next">eigenes Zimmer </label>
-			<f:form.checkbox property="address.ownRoom" value="0" onclick="return false;"/>
+			<input type="checkbox" name="address.ownRoom" value="0" onclick="return false;"
+							 {f:if(condition: '{candidate.address.ownRoom} == \'1\'', then: 'checked="checked"')} />
 		</div>
 		<div class="form-line">
 			<label for="ownRoom">
 				Zimmer mit Geschwistern
 			</label>
-			<f:form.checkbox property="address.siblingRoom" value="0" onclick="return false;"/>
+			<input type="checkbox" name="address.siblingRoom" value="0" onclick="return false;"
+							 {f:if(condition: '{candidate.address.siblingRoom} == \'1\'', then: 'checked="checked"')} />
 			<label for="ownRoom" class="next">
 				Anzahl der Geschwister im Zimmer
 			</label>
-			<f:form.textfield name="siblingNumber" readonly="readonly"/>
+			<input type="text" name="siblingNumber" value="{candidate.siblingNumber}" readonly="readonly"/>
 		</div>
 	</div>
 
@@ -148,7 +151,8 @@
 			<label for="migrationBackground">
 				<f:translate key="tx_tilapplication_domain_model_candidate.migration_background" />
 			</label>
-			<f:form.checkbox property="migrationBackground" value="1" onclick="return false;"/>
+			<input type="checkbox" name="migrationBackground" value="1" onclick="return false;"
+							 {f:if(condition: '{candidate.migrationBackground} == \'1\'', then: 'checked="checked"')} />
 		</div>
 	</div>
 </fieldset>
@@ -162,13 +166,13 @@
 			<label for="nationality" class="over">
 				Staatsangehörigkeit (wenn Deutsch, Herkunftsland der Familie)
 			</label>
-			<f:form.textfield property="nationality" readonly="readonly"/>
+			<input type="text" name="nationality" value="{candidate.nationality}" readonly="readonly"/>
 		</div>
 		<div class="form-field form-line">
 			<label for="residentSince" class="over">
 				<f:translate key="tx_tilapplication_domain_model_candidate.resident_since" />
 			</label>
-				<f:form.textfield property="residentSince" readonly="readonly"/>
+			<input type="text" name="residentSince" value="{candidate.residentSince}" readonly="readonly"/>
 		</div>
 	</div>
 	<div class="row form-group clearfix">
@@ -178,16 +182,19 @@
 			</label>
 			<div class="form-radio-group">
 				<span class="form-radio-first form-radio">
-					<f:form.radio property="residenceStatus" value="1" disabled="disabled"/>
+					<input type="radio" name="residenceStatus" value="1" disabled="disabled"
+								  {f:if(condition: '{candidate.residenceStatus} == \'1\'', then: 'checked="checked"')} />
 					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.niederlassung" />
 				</span>
 
 				<span class="form-radio-first form-radio">
-					<f:form.radio property="residenceStatus" value="2" disabled="disabled"/>
+					<input type="radio" name="residenceStatus" value="2" disabled="disabled"
+								  {f:if(condition: '{candidate.residenceStatus} == \'2\'', then: 'checked="checked"')} />
 					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.aufenthalt" />
 				</span>
 				<span class="form-radio-first form-radio">
-					<f:form.radio property="residenceStatus" value="3" disabled="disabled"/>
+					<input type="radio" name="residenceStatus" value="3" disabled="disabled"
+								  {f:if(condition: '{candidate.residenceStatus} == \'3\'', then: 'checked="checked"')} />
 					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.sonstiges" />
 				</span>
 			</div>
@@ -198,7 +205,7 @@
 					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.sonstiges" />
 				</label>
 
-				<f:form.textfield property="residenceMisc" readonly="readonly"/><br />
+				<input type="text" name="residenceMisc" value="{candidate.residenceMisc}" readonly="readonly" /><br />
 			</div>
 		</div>
 	</div>

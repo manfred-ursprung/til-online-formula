@@ -56,6 +56,15 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 
 
 	/**
+	 * relativeRepository
+	 *
+	 * @var \MUM\TilApplication\Domain\Repository\RelativeRepository
+	 * @inject
+	 */
+	protected $relativeRepository = NULL;
+
+
+	/**
 	 * FrontendUserRepository
 	 *
 	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
@@ -226,10 +235,12 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 			$this->redirect('step3', null, null, null, $this->settings['pageStep3']);
 		}
 		$actualSchool = $this->getActualSchool();
+		$otherSchools = $this->candidate->getOtherSchools();
 		$params = array(
 			'candidate'	=> $this->candidate,
 			'family'  => $family,
 			'actualSchool'	=> $actualSchool,
+			'otherSchools'	=> $otherSchools,
 			'settings'	=> $this->settings,
 		);
 		$this->view->assignMultiple($params);
@@ -350,6 +361,8 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	}
 
 
+
+
 	/**
 	 * action update
 	 * sowohl für das Anlegen der Familie wie für das Einkommen
@@ -375,10 +388,10 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 		}
 		if(isset($family['grossSalary']) || isset($family['netSalary'])){
 			$candidate = $this->setIncomeForFamily($candidate, $family);
+			$candidate = $this->setAssetForFamily($candidate, $family);
+			$candidate = $this->setCostsForFamily($candidate, $family);
 			$nextStep = 'step5';
 		}
-
-
 
 		if($this->isUserValid()) {
 			$this->candidateRepository->update($candidate);
@@ -416,9 +429,13 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 		/** @var  $dateTimeConverter \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter */
 		$dateTimeConverter = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Property\\TypeConverter\\DateTimeConverter');
 		foreach ($family['firstName'] as $key => $firstName) {
-			if (!empty($firstName)) {
+			if (!empty($firstName) ||  ($family['remove'][$key] == 1) ) {
 				if(isset($family['uid'][$key])){
 					$member = $relativeRepository->findByUid($family['uid'][$key]);
+					if(!is_object($member)){
+						/** @var  $member \MUM\TilApplication\Domain\Model\Relative */
+						$member = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\Relative');
+					}
 				}else {
 					/** @var  $member \MUM\TilApplication\Domain\Model\Relative */
 					$member = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\Relative');
@@ -451,12 +468,16 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 				$member->setJob($family['job'][$key]);
 				$member->setFamilyRelation($family['familyRelation'][$key]);
 
-				if($member->_isNew()) {
+				if ($family['remove'][$key] == 1) {
+					$candidate->removeFamily($member);
+					$relativeRepository->remove($member);
+				}elseif($member->_isNew()) {
 					$relativeRepository->add($member);
+					$candidate->addFamily($member);
 				}else{
 					$relativeRepository->update($member);
 				}
-				$candidate->addFamily($member);
+
 			}
 		}
 		return $candidate;
@@ -509,6 +530,59 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 		}
 		return $candidate;
 	}
+
+
+	protected function setCostsForFamily( \MUM\TilApplication\Domain\Model\Candidate  $candidate, $family){
+		/** @var  $relativeRepository \MUM\TilApplication\Domain\Repository\RelativeRepository */
+		$relativeRepository = $this->objectManager->get('MUM\\TilApplication\\Domain\\Repository\\RelativeRepository');
+		$costsRepository = $this->objectManager->get('MUM\\TilApplication\\Domain\\Repository\\CostsRepository');
+		if(is_null($costs = $candidate->getCosts())){
+			/** @var  $member \MUM\TilApplication\Domain\Model\Costs */
+			$costs = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\Costs');
+		}else{
+//			print "<pre>Cost is set";
+//			print_r($costs);
+		}
+		$costs->setLivingCosts($family['livingCosts']);
+		$costs->setCreditCosts($family['creditCosts']);
+		$costs->setOtherOutgoings($family['otherOutgoings']);
+
+		$costs->setTravelCosts($family['travelCosts']);
+		$costs->setFurtherEducationCosts($family['furtherEducationCosts']);
+		$costs->setPrivateCoachingCosts($family['privateCoachingCosts']);
+
+		$costs->setRental($family['rental']);
+		$costs->setLivingCostsSingle($family['livingCostsSingle']);
+		$costs->setOtherCosts($family['otherCosts']);
+
+		if($costs->_isNew()) {
+			$costsRepository->add($costs);
+			$candidate->setCosts($costs);
+		}else{
+			$costsRepository->update($costs);
+		}
+
+		return $candidate;
+	}
+
+
+
+	/**
+	 * @param Candidate $candidate
+	 * @param $family
+	 *  das jeweilige Einkommen den Familienmitgliedern zuweisen
+	 */
+	protected function setAssetForFamily( \MUM\TilApplication\Domain\Model\Candidate  $candidate, $family){
+		/** @var  $relativeRepository \MUM\TilApplication\Domain\Repository\RelativeRepository */
+		//$relativeRepository = $this->objectManager->get('MUM\\TilApplication\\Domain\\Repository\\RelativeRepository');
+		//$incomeRepository = $this->objectManager->get('MUM\\TilApplication\\Domain\\Repository\\IncomeRepository');
+		$candidate->setAssetRealEstate($family['assetRealEstate']);
+		$candidate->setAssetSavings($family['assetSavings']);
+		$candidate->setAssetMiscEstate($family['assetMiscEstate']);
+
+		return $candidate;
+	}
+
 
 	/**
 	 * @return School|null

@@ -36,7 +36,7 @@
 		
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="persoenliches">
-				<h2>Angaben über den Antragsteller</h2>
+				<h2>Persönliche Daten</h2>
 				<div id="tab-1">
 					<f:render partial="Candidate/FieldsStep1" arguments="{candidate:candidate}" />
 					<f:link.page pageUid="{settings.pageStep1}" class="btn btn-default">
@@ -49,7 +49,9 @@
 				<h2>Angaben über die Schulen, die der Antragsteller besucht hat</h2>
 				<div id="tab-2">
 					<f:render partial="Candidate/FieldsStep2" arguments="{candidate:candidate,
-																		actualSchool: actualSchool, settings: settings,
+																		actualSchool: actualSchool,
+																		otherSchools: otherSchools,
+																		settings: settings,
 																		readonly: 1}" />
 					<f:link.page pageUid="{settings.pageStep2}" class="btn btn-default">
 						Ändern
@@ -60,8 +62,10 @@
 			<div role="tabpanel" class="tab-pane" id="familie">
 				<h2>Angaben zur Familie</h2>
 				<div id="tab-3">
-					<f:render partial="Candidate/FormFieldsRelatives" arguments="{family: family, candidate: candidate,
-																		settings: settings, readonly: 1}" />
+					<f:render partial="Candidate/FormFieldsRelatives" section="Main" arguments="{family: family,
+																		candidate: candidate,
+																		settings: settings,
+																		readonly: 1}" />
 					<f:link.page pageUid="{settings.pageStep3}" class="btn btn-default">
 						Ändern
 					</f:link.page>
@@ -81,11 +85,11 @@
 		</div>
 
 	</div>
-
-	<f:link.page pageUid="53" class="btn btn-default sendout">
-		Daten freigeben zur Prüfung
-	</f:link.page>
-
+	<div class="finish-online-formula">
+		<f:link.page pageUid="53" class="btn btn-default sendout">
+			Daten freigeben zur Prüfung
+		</f:link.page>
+	</div>
 
 
 
