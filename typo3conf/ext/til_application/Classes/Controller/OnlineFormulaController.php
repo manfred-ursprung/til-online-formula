@@ -28,6 +28,7 @@ namespace MUM\TilApplication\Controller;
 use MUM\TilApplication\Domain\Model\Candidate;
 use MUM\TilApplication\Domain\Repository\RelativeRepository;
 use MUM\TilApplication\Domain\Repository\SchoolRepository;
+use MUM\TilApplication\Utility\FileUploader;
 use TYPO3\CMS\Core\Utility\DebugUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
@@ -82,6 +83,21 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 */
 	public $pageRenderer;
 
+	/**
+	 * @var array
+	 */
+	protected $tsSetup;
+
+	/**
+	 * @var  int
+	 */
+	protected $storagePid;
+
+	/**
+	 * @var \Dompdf\Dompdf
+	 */
+	protected $domPdf;
+
 
 
 	public function initializeAction(){
@@ -99,6 +115,10 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 		//$this->pageRenderer->addHeaderData('<link rel="stylesheet" href="/typo3temp/vhs-assets-rte-style.css?1457204026">');
 		
 		//$this->pageRenderer->addCssLibrary($css);  wird nun in sitetemplates gemacht
+		/** @var  $frontendConfigurationManager \TYPO3\CMS\Extbase\Configuration\FrontendConfigurationManager */
+		$frontendConfigurationManager = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Configuration\\FrontendConfigurationManager');
+		$this->tsSetup = $frontendConfigurationManager->getTypoScriptSetup();
+		$this->storagePid = $this->tsSetup['plugin.']['tx_tilapplication_form.']['persistence.']['storagePid'];
 	}
 
 	/**
@@ -222,9 +242,32 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 
 	/**
 	 * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
+	 * Upload der Documents
+	 */
+	public function step5Action()
+	{
+		if (!$this->isUserValid()) {
+			$this->redirect('step0', null, null, null, $this->settings['pageStep0']);
+		}
+		if(is_null($documents = $this->candidate->getDocuments())){
+			/** @var  $documents \MUM\TilApplication\Domain\Model\Documents */
+			$documents = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\Documents');
+			$documents->setCandidate($this->candidate);
+		}
+		$params = array(
+			'candidate'	=> $this->candidate,
+			'documents' => $documents,
+			'settings'	=> $this->settings,
+		);
+		$this->view->assignMultiple($params);
+
+	}
+	
+	/**
+	 * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
 	 * shows the costs of the whole family
 	 */
-	public function step5Action() {
+	public function step6Action() {
 		if(!$this->isUserValid()) {
 			$this->redirect('step0', null, null, null, $this->settings['pageStep0'] );
 		}
@@ -242,6 +285,7 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 			'actualSchool'	=> $actualSchool,
 			'otherSchools'	=> $otherSchools,
 			'settings'	=> $this->settings,
+			'ts'		=> $this->storagePid,
 		);
 		$this->view->assignMultiple($params);
 
@@ -264,6 +308,132 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 		}else{
 			$this->redirect('step1');
 		}
+	}
+
+
+	public function initializegeneratePdfAction(){
+		require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('til_application') . 'Classes/Contrib/Dompdf/autoload.inc.php');
+		//require_once(t3lib_extMgm::extPath('dompdf') . 'Resources/Private/Contrib/Dompdf/dompdf_config.inc.php');
+		$this->domPdf = new \Dompdf\Dompdf();
+		$this->domPdf->set_paper("A4", "portrait"
+		//$this->arguments['papersize'],
+		//$this->arguments['orientation']
+		);
+		//$this->tempPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('sim_domtopdf') . 'Resources/Private/Tmp';
+		$this->domPdf->set_base_path("http://".\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('HTTP_HOST'));
+	}
+
+
+	public function generatePdfAction(){
+		$forceDownload = 1;
+
+		if(isset($_GET["exportId"])) {
+			$referer = HT_PROTO."".\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('HTTP_HOST')."/index.php?id=".$_GET["exportId"]."&pdf=true";
+		} else {
+			$referer = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('HTTP_REFERER');
+		}
+		/** @var  $candidate Candidate */
+		$candidate = $this->candidateRepository->findByUid($this->request->getArgument('candidate'));
+
+		$filename = 'bewerbung-fuer-talent-im-land_'.$candidate->getUid() . '.pdf';
+
+/*		$curl = curl_init();
+		//$url = 'http://php.net/manual/en/curl.examples-basic.php';
+		//echo 'Referer: ' . $referer .'<br />';
+		//exit();
+		$user = 'muhittin';
+		$password = 'bayern-2015';
+		curl_setopt($curl, CURLOPT_URL, $referer);
+		curl_setopt($curl, CURLOPT_VERBOSE, true);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		//curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+		//curl_setopt($curl, CURLOPT_USERPWD, "\"" . $user . ":" . $password . "\"");
+		//curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+		curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; rv:1.7.3) Gecko/20041001 Firefox/0.10.1" );
+		$resp = curl_exec($curl);
+		curl_close($curl);
+*/
+		$html = $this->generateHtmlForPdf();
+
+		$css = GeneralUtility::getFileAbsFileName('EXT:til_application/Resources/Public/Css/pdf.css', false, false);
+		$cssData = file_get_contents($css);
+		//$cssData = '';
+		//print 'css : ' . PATH_site;
+		//exit;
+		$html = <<<PDFGENERATE
+			<html><head>
+			<style type="text/css">
+				input{border:none;}
+				label{width: 200px;}
+			</style>
+			</head><body> $html</body></html>
+PDFGENERATE;
+		file_put_contents('/kunden/414277_97359/webseiten/mum-webdesign/til/htdocs/fileadmin/pdf_out.html', $html);
+
+		$this->domPdf->loadHtml($html);
+		$this->domPdf->setBasePath(PATH_site);
+		$this->domPdf->render();
+
+		header("Content-Type: application/pdf");
+
+		$this->domPdf->stream(
+			$filename,
+			array(
+				'Attachment' => $forceDownload
+			)
+		);
+		//$this->redirect('show', 'Vacancies', 'Stellenangebote', ['jobId' => $jobId]);
+		die();
+		//$this->domPdf->output(array());
+		//$this->view->assign('content', $resp);
+
+
+	}
+
+	/**
+	 * create HTML to produce a PDF document
+	 */
+	protected function generateHtmlForPdf(){
+		$renderer = $this->getPlainRenderer('Pdf', 'html');
+		$family = $this->candidate->getWholeFamily();
+		$actualSchool = $this->getActualSchool();
+		$otherSchools = $this->candidate->getOtherSchools();
+		$params = array(
+			'candidate'	=> $this->candidate,
+			'family'  => $family,
+			'actualSchool'	=> $actualSchool,
+			'otherSchools'	=> $otherSchools,
+			'settings'	=> $this->settings,
+			'ts'		=> $this->storagePid,
+		);
+		$renderer->assignMultiple( $params);
+
+		$html = $renderer->render();
+
+		return $html;
+	}
+
+	/**
+	 * This creates another stand-alone instance of the Fluid view to render a template
+	 * @param string $templateName the name of the template to use
+	 * @param string $format the format of the fluid template "html" or "txt"
+	 * @return \TYPO3\CMS\Fluid\View\StandaloneView the Fluid instance
+	 */
+	protected function getPlainRenderer($templateName = 'default', $format = 'html') {
+		$view = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
+		$view->setFormat($format);
+
+		$templateRootPath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName('EXT:til_application/Resources/Private/Templates/');
+
+		$templatePathAndFilename = $templateRootPath . 'OnlineFormula/' . $templateName . '.' . $format;
+
+		$view->setTemplatePathAndFilename($templatePathAndFilename);
+		$layoutRootPath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName('EXT:til_application/Resources/Private/Layouts/');
+		$view->setLayoutRootPath($layoutRootPath);
+		$partialsRootPath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName('EXT:til_application/Resources/Private/Partials/');
+		$view->setPartialRootPath($partialsRootPath);
+
+		return $view;
 	}
 
 
@@ -353,7 +523,7 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 			$this->createAndAddSchool($candidate, $otherSchools);
 
 			$this->candidateRepository->update($candidate);
-
+			$this->addFlashMessage('Ihre Daten wurden gespeichert.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
 			$this->redirect('step3');
 		}else{
 			$this->redirect('step0');
@@ -395,10 +565,70 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 
 		if($this->isUserValid()) {
 			$this->candidateRepository->update($candidate);
+			$this->addFlashMessage('Ihre Daten wurden gespeichert.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
 			$this->redirect($nextStep);
 		}else{
-			$this->redirect('step0');
+			$this->redirect('step0', null, null, null, $this->settings['pageStep0'] );
 		}
+
+	}
+
+
+	/**
+	 *  wichtig um das Mapping hinzubekommen von String nach Array
+	 */
+	public function initializeUpdateStep5Action() {
+		DebuggerUtility::var_dump($_REQUEST, 'Request');
+		DebuggerUtility::var_dump($_FILES, 'Files');
+
+		if ($this->arguments->hasArgument('documents')) {
+			$propertyMappingConfig = $this->arguments->getArgument('documents')->getPropertyMappingConfiguration();
+			$propertyMappingConfig->setTargetTypeForSubProperty('lifeSchoolCareer', 'array');
+			$propertyMappingConfig->setTargetTypeForSubProperty('curriculumVitae', 'array');
+			$propertyMappingConfig->setTargetTypeForSubProperty('survey', 'array');
+			$propertyMappingConfig->setTargetTypeForSubProperty('certificate1', 'array');
+			$propertyMappingConfig->setTargetTypeForSubProperty('certificate2', 'array');
+			$propertyMappingConfig->setTargetTypeForSubProperty('certificate3', 'array');
+			$propertyMappingConfig->setTargetTypeForSubProperty('passportPhoto', 'array');
+			$propertyMappingConfig->setTargetTypeForSubProperty('identityCard', 'array');
+			$propertyMappingConfig->setTargetTypeForSubProperty('residencePermit', 'array');
+		}
+	}
+
+	/**
+	 *
+	 * @param \MUM\TilApplication\Domain\Model\Documents $documents
+	 * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
+	 */
+	public function updateStep5Action(\MUM\TilApplication\Domain\Model\Documents $documents	){
+		DebuggerUtility::var_dump($documents, 'UpdateStep5');
+		$old = $_REQUEST['tx_tilapplication_form']['old'];
+
+		//DebuggerUtility::var_dump($_REQUEST['tx_tilapplication_form']['old'], 'Request data');
+
+		$documents = $this->doUpload( $documents, $old);
+		$this->candidate->setDocuments($documents);
+		/** @var  $documentsRepository \MUM\TilApplication\Domain\Repository\DocumentsRepository */
+		$documentsRepository = $this->objectManager->get('MUM\\TilApplication\\Domain\\Repository\\DocumentsRepository');
+		if($documents->_isNew()){
+			$documentsRepository->add($documents);
+		}else{
+			$documentsRepository->update($documents);
+		}
+
+		$this->candidateRepository->update($this->candidate);
+		$this->flashMessageContainer->add('Die Dokumente wurden hochgeladen');
+		if($this->isUserValid()) {
+			$this->redirect('step6');
+		}else{
+			$this->redirect('step0', null, null, null, $this->settings['pageStep0'] );
+		}
+	/*
+		$params = array(
+			'candidate'	=> $this->candidate,
+		);
+		$this->view->assignMultiple($params);
+	*/
 	}
 
 
@@ -640,5 +870,126 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 
 			}
 		}
+	}
+
+	/**
+	 * @param \MUM\TilApplication\Domain\Model\Documents $documents
+	 * @param \array  $oldData
+	 * @return \MUM\TilApplication\Domain\Model\Documents
+	 */
+	protected function doUpload(\MUM\TilApplication\Domain\Model\Documents $documents, $oldData)
+	{
+		$prefix = str_pad($documents->getCandidate()->getUid(), 3, '0', STR_PAD_LEFT);
+		/** @var  $fileUploader FileUploader */
+		$fileUploader = $this->objectManager->get('MUM\\TilApplication\\Utility\\FileUploader');
+
+		$fileName = $fileUploader->uploadFile($documents->getLifeSchoolCareer(), 'life_school_career', $prefix);
+		if($fileName !== FALSE){
+			$documents->setLifeSchoolCareer($fileName);
+		}elseif(strlen($oldData['lifeSchoolCareer']) > 0){
+			$documents->setLifeSchoolCareer($oldData['lifeSchoolCareer']);
+		}
+
+		$fileName = $fileUploader->uploadFile($documents->getCurriculumVitae(), 'curriculum_vitae', $prefix);
+		if($fileName !== FALSE){
+			$documents->setCurriculumVitae($fileName);
+		}elseif(strlen($oldData['curriculumVitae']) > 0){
+			$documents->setCurriculumVitae($oldData['curriculumVitae']);
+		}
+
+		$fileName = $fileUploader->uploadFile($documents->getSurvey(), 'survey', $prefix);
+		if($fileName !== FALSE){
+			$documents->setSurvey($fileName);
+		}elseif(strlen($oldData['survey']) > 0){
+			$documents->setSurvey($oldData['survey']);
+		}
+
+		$fileName = $fileUploader->uploadFile($documents->getCertificate1(), 'certificate1', $prefix);
+		if($fileName !== FALSE){
+			$documents->setCertificate1($fileName);
+		}elseif(strlen($oldData['certificate1']) > 0){
+			$documents->setCertificate1($oldData['certificate1']);
+		}
+
+		$fileName = $fileUploader->uploadFile($documents->getCertificate2(), 'certificate2', $prefix);
+		if($fileName !== FALSE){
+			$documents->setCertificate2($fileName);
+		}elseif(strlen($oldData['certificate3']) > 0){
+			$documents->setCertificate1($oldData['certificate2']);
+		}
+
+		$fileName = $fileUploader->uploadFile($documents->getCertificate3(), 'certificate3', $prefix);
+		if($fileName !== FALSE){
+			$documents->setCertificate3($fileName);
+		}elseif(strlen($oldData['certificate3']) > 0){
+			$documents->setCertificate1($oldData['certificate3']);
+		}
+
+		$fileName = $fileUploader->uploadFile($documents->getPassportPhoto(), 'passport_photo', $prefix);
+		if($fileName !== FALSE){
+			$documents->setPassportPhoto($fileName);
+		}elseif(strlen($oldData['passportPhoto']) > 0){
+			$documents->setCertificate1($oldData['passportPhoto']);
+		}
+
+		$fileName = $fileUploader->uploadFile($documents->getIdentityCard(), 'identity_card', $prefix);
+		if($fileName !== FALSE){
+			$documents->setIdentityCard($fileName);
+		}elseif(strlen($oldData['identityCard']) > 0){
+			$documents->setCertificate1($oldData['identityCard']);
+		}
+
+		$fileName = $fileUploader->uploadFile($documents->getResidencePermit(), 'residence_permit', $prefix);
+		if($fileName !== FALSE){
+			$documents->setResidencePermit($fileName);
+		}elseif(strlen($oldData['residencePermit']) > 0){
+			$documents->setCertificate1($oldData['residencePermit']);
+		}
+
+		return $documents;
+	}
+
+	/**
+	 * @param $html
+	 * @return mixed
+	 */
+	protected function removeTagsForPdf($html)
+	{
+		//header
+		$pos1 = strpos($html, '<header class');
+		$pos2 = strpos($html, '</header>');
+		$header = substr($html, $pos1, (($pos2 + 9) - $pos1));
+		$html = str_replace($header, '', $html);
+
+		//img in header
+		$pos1 = strpos($html, '<img src');
+		$pos2 = strpos($html, '>', $pos1);
+		$header = substr($html, $pos1, (($pos2 + 1) - $pos1));
+		$html = str_replace($header, '', $html);
+		//img in vita of job agent
+		$pos1 = strpos($html, '<img', $pos2);
+		$pos2 = strpos($html, '>', $pos1);
+		$header = substr($html, $pos1, (($pos2 + 1) - $pos1));
+		$html = str_replace($header, '', $html);
+
+		//footer
+		$pos1 = strpos($html, '<footer>');
+		$pos2 = strpos($html, '</footer>');
+		$header = substr($html, $pos1, (($pos2 + 9) - $pos1));
+		$html = str_replace($header, '', $html);
+
+		//aside Tag
+		$pos1 = strpos($html, '<aside ');
+		$pos2 = strpos($html, '</aside>');
+		$header = substr($html, $pos1, (($pos2 + 8) - $pos1));
+		$html = str_replace($header, '', $html);
+
+		//footer nav for job offers
+		$pos1 = strpos($html, '<section class="footer');
+		$pos2 = strpos($html, '</section>', $pos1);
+		$header = substr($html, $pos1, (($pos2 + 10) - $pos1));
+		$html = str_replace($header, '', $html);
+
+		return $html;
 	}
 }

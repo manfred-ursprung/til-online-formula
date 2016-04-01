@@ -22,9 +22,19 @@
       width: 50%;
       padding-right: 2%;
       display: inline-block;
+      &.over{
+        width: 100%;
+        display: block;
+      }
+    }
+    .uploaded-document{
+      display: block;
     }
     input[type=text]{
       width: 45%;
+    }
+    .file{
+      display: inline-block;
     }
     .next{
       padding-left: 20px;
@@ -96,8 +106,10 @@ fieldset{
 .finish-online-formula{
   width: 100%;
   text-align: right;
+  margin-top: 20px
   .btn{
     background-color: #a2bd30;
     color: white;
+    margin-left: 20px;
   }
 }

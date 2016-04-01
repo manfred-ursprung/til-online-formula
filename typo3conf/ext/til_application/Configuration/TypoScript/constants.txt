@@ -12,6 +12,10 @@ plugin.tx_tilapplication_form {
 		# cat=plugin.tx_tilapplication_form//a; type=string; label=Default storage PID
 		storagePid =
 	}
+	frontend{
+	    # cat=plugin.tx_tilapplication_form//b; type=string; label=PID for root page of online formula steps
+	    onlineRoot =
+	}
 }
 
 module.tx_tilapplication_export {

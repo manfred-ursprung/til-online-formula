@@ -21,14 +21,14 @@
         <f:form.hidden name="actual" value="1"/>
         <div class="form-field form-field-left">
             <label for="name">
-                <f:translate key="tx_tilapplication_domain_model_school.name" />
+                <f:translate key="tx_tilapplication_domain_model_school.name" extensionName="TilApplication"/>
             </label>
             <f:form.textfield property="name"  required="0" />
 
         </div>
         <div class="form-field form-field-right">
             <label for="typeOfSchool">
-                <f:translate key="tx_tilapplication_domain_model_school.type_of_school" />
+                <f:translate key="tx_tilapplication_domain_model_school.type_of_school" extensionName="TilApplication"/>
             </label>
             <f:form.textfield property="typeOfSchool" />
         </div>
@@ -36,7 +36,7 @@
     <div class="row form-group clearfix">
         <div class="form-field form-field-left">
             <label for="schoolYear">
-                <f:translate key="tx_tilapplication_domain_model_school.school_year" />
+                <f:translate key="tx_tilapplication_domain_model_school.school_year" extensionName="TilApplication"/>
             </label>
             <f:form.textfield property="schoolYear" size="5" placeholder="Klasse" />
         </div>
@@ -44,13 +44,13 @@
     <div class="row form-group clearfix">
         <div class="form-field form-field-left">
             <label for="address">
-                <f:translate key="tx_tilapplication_domain_model_address.street" />
+                <f:translate key="tx_tilapplication_domain_model_address.street" extensionName="TilApplication"/>
             </label>
             <f:form.textfield property="address.street" />
         </div>
         <div class="form-field form-field-right">
             <label for="housenumber">
-                <f:translate key="tx_tilapplication_domain_model_address.housenumber" />
+                <f:translate key="tx_tilapplication_domain_model_address.housenumber" extensionName="TilApplication"/>
             </label>
             <f:form.textfield property="address.housenumber" />
         </div>
@@ -60,14 +60,14 @@
     <div class="row form-group clearfix">
         <div class="form-field form-field-left">
             <label for="zip">
-                <f:translate key="tx_tilapplication_domain_model_address.zip" />
+                <f:translate key="tx_tilapplication_domain_model_address.zip" extensionName="TilApplication"/>
             </label>
             <f:form.textfield property="address.zip" /><br />
         </div>
 
         <div class="form-field form-field-right">
             <label for="city">
-                <f:translate key="tx_tilapplication_domain_model_address.city" />
+                <f:translate key="tx_tilapplication_domain_model_address.city" extensionName="TilApplication"/>
             </label>
             <f:form.textfield property="address.city" />
         </div>
@@ -75,14 +75,14 @@
     <div class="row form-group clearfix">
         <div class="form-field form-field-left">
             <label for="phone">
-                <f:translate key="tx_tilapplication_domain_model_address.phone" />
+                <f:translate key="tx_tilapplication_domain_model_address.phone" extensionName="TilApplication"/>
             </label>
             <f:form.textfield property="address.phone" /><br />
         </div>
 
         <div class="form-field form-field-right">
             <label for="mobile">
-                <f:translate key="tx_tilapplication_domain_model_address.mobile" />
+                <f:translate key="tx_tilapplication_domain_model_address.mobile" extensionName="TilApplication"/>
             </label>
             <f:form.textfield property="address.mobile" />
         </div>
@@ -90,7 +90,7 @@
     <div class="row form-group  clearfix">
         <div class="form-field form-field-left">
             <label for="email">
-                <f:translate key="tx_tilapplication_domain_model_address.email" />
+                <f:translate key="tx_tilapplication_domain_model_address.email" extensionName="TilApplication"/>
             </label>
             <f:form.textfield property="address.email" />
         </div>
@@ -102,7 +102,7 @@
     <div class="row form-group  clearfix">
         <div class="form-field form-field-left">
             <label for="plannedGraduationSelect">
-                <f:translate key="tx_tilapplication_domain_model_school.planned_graduation_select" />
+                <f:translate key="tx_tilapplication_domain_model_school.planned_graduation_select" extensionName="TilApplication"/>
             </label>
         </div>
         <div class="form-field form-field-right">
@@ -124,7 +124,7 @@
     <div class="row form-group  clearfix">
         <div class="form-line">
             <label for="plannedGraduationText">
-                <f:translate key="tx_tilapplication_domain_model_school.planned_graduation_text" />
+                <f:translate key="tx_tilapplication_domain_model_school.planned_graduation_text" extensionName="TilApplication"/>
             </label>
             <f:form.textfield property="plannedGraduationText" />
 
@@ -134,7 +134,7 @@
     <div class="row form-group  clearfix">
         <div class="form-line">
             <label for="plannedGraduationFinish">
-                <f:translate key="tx_tilapplication_domain_model_school.planned_graduation_finish" />
+                <f:translate key="tx_tilapplication_domain_model_school.planned_graduation_finish" extensionName="TilApplication"/>
             </label>
             <f:form.textfield property="plannedGraduationFinish" />
         </div>
@@ -146,7 +146,7 @@
     <div class="row form-group  clearfix">
         <div class="form-field form-field-left">
             <label for="schoolCertificateDate" class="over">
-                <br /><f:translate key="tx_tilapplication_domain_model_school.school_certificate_date" />
+                <br /><f:translate key="tx_tilapplication_domain_model_school.school_certificate_date" extensionName="TilApplication"/>
             </label>
 
             <f:form.textfield property="schoolCertificateDate" value="{actualSchool.schoolCertificateDate -> f:format.date(format: 'd.m.Y')}"
@@ -155,7 +155,7 @@
 
         <div class="form-field form-field-right">
             <label for="schoolCertificatePoints" class="over">
-                <f:translate key="tx_tilapplication_domain_model_school.school_certificate_points" />
+                <f:translate key="tx_tilapplication_domain_model_school.school_certificate_points" extensionName="TilApplication"/>
             </label>
             <f:form.textfield property="schoolCertificatePoints" size="5" value="{actualSchool.schoolCertificatePoints -> f:format.number(decimals: '2', decimalSeparator: ',' )}"/>
         </div>
@@ -219,14 +219,14 @@
         <div class="row form-group  clearfix" >
             <div class="form-field form-field-left">
                 <label for="" class="over">
-                    <f:translate key="tx_tilapplication_domain_model_school.other_school" />
+                    <f:translate key="tx_tilapplication_domain_model_school.other_school" extensionName="TilApplication"/>
                 </label>
                 <f:form.textfield name="otherSchool[name][]"  size="60" placeholder="Name, Anschrift"
                                   value=""/>
             </div>
             <div class="form-field form-field-right">
                 <label for="duration" class="over">
-                    <f:translate key="tx_tilapplication_domain_model_school.other_school_duration" />
+                    <f:translate key="tx_tilapplication_domain_model_school.other_school_duration" extensionName="TilApplication"/>
                 </label>
                 <f:form.textfield name="otherSchool[visitFrom][]" placeholder="Monat / Jahr" class="school-visit" />
                 <f:form.textfield name="otherSchool[visitTil][]" placeholder="Monat / Jahr" class="school-visit" />

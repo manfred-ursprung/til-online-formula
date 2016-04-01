@@ -56,6 +56,9 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignat
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_tilapplication_domain_model_income', 'EXT:til_application/Resources/Private/Language/locallang_csh_tx_tilapplication_domain_model_income.xlf');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_tilapplication_domain_model_income');
 
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_tilapplication_domain_model_documents', 'EXT:til_application/Resources/Private/Language/locallang_csh_tx_tilapplication_domain_model_documents.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_tilapplication_domain_model_documents');
+
 
 /***************
  * Wizard pi1

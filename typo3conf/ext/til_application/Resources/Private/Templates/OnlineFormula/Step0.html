@@ -2,7 +2,7 @@
 <f:layout name="Default" />
 
 <f:section name="main">
-<h1>Step 0 des Onlineformulars für Stipendienbewerber</h1>
+<h1>Onlineformular für Stipendienbewerber</h1>
 
 <f:flashMessages renderMode="div" />
 <f:if condition="{isNew}">
@@ -33,7 +33,10 @@
                 Schritt 4,
             </f:link.page>
             <f:link.page pageUid="{settings.pageStep5}">
-                Schritt 5
+                Schritt 5,
+            </f:link.page>
+            <f:link.page pageUid="{settings.pageStep6}">
+                Übersicht
             </f:link.page>
         </p>
     </f:else>

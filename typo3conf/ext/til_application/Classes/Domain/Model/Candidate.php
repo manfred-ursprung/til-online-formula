@@ -183,6 +183,21 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	protected $income = NULL;
 
+
+	/**
+	 * @var \MUM\TilApplication\Domain\Model\Documents
+	 */
+	protected $documents;
+
+
+	/**
+	 * approval
+	 *
+	 * @var bool
+	 */
+	protected $approval = FALSE;
+
+
 	/**
 	 * Returns the familyStatus
 	 *
@@ -641,6 +656,42 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	{
 		$this->gender = $gender;
 	}
+
+	/**
+	 * @return Documents
+	 */
+	public function getDocuments()
+	{
+		return $this->documents;
+	}
+
+	/**
+	 * @param Documents $documents
+	 */
+	public function setDocuments($documents)
+	{
+		$this->documents = $documents;
+	}
+
+
+	/**
+	 * @return boolean
+	 */
+	public function isApproval()
+	{
+		return $this->approval;
+	}
+
+	/**
+	 * @param boolean $approval
+	 */
+	public function setApproval($approval)
+	{
+		$this->approval = $approval;
+	}
+
+
+
 
 	/**
 	 * @return \MUM\TilApplication\Domain\Model\School

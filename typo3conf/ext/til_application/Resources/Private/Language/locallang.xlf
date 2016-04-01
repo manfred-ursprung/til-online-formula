@@ -124,6 +124,7 @@
 			<trans-unit id="tx_tilapplication_domain_model_address.at_parent">
 				<source>Wohnhaft bei den Eltern</source>
 			</trans-unit>
+
 			<trans-unit id="tx_tilapplication_domain_model_address.own_room">
 				<source>Eigenes Zimmer</source>
 			</trans-unit>
@@ -262,6 +263,36 @@
 			<trans-unit id="tx_tilapplication_domain_model_income.other_incomes">
 				<source>Sonstige Einnahmen (Miete etc)</source>
 			</trans-unit>
+
+			<trans-unit id="tx_tilapplication_domain_model_documents.life_school_career">
+				<source>Handschriftliche Beschreibung des Lebens- und Bildungsweges</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_documents.curriculum_vitae">
+				<source>Tabellarischer Lebenslauf</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_documents.survey">
+				<source>Schriftliches Gutachten einer Lehrkraft</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_documents.certificate1">
+				<source>1. Zeugnis</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_documents.certificate2">
+				<source>2. Zeugnis</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_documents.certificate3">
+				<source>3. Zeugnis</source>
+			</trans-unit>
+
+			<trans-unit id="tx_tilapplication_domain_model_documents.passport_photo">
+				<source>Passfoto</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_documents.identity_card">
+				<source>Personalausweis</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_documents.residence_permit">
+				<source>Aufenthaltserlaubnis</source>
+			</trans-unit>
+
 			<trans-unit id="tx_tilapplication_form.general.save_and_forward">
 				<source>Abspeichern und Weiter</source>
 			</trans-unit>

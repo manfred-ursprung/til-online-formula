@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-03-29T18:12:40Z" product-name="til_application">
+		<header/>
+		<body>
+			<trans-unit id="life_school_career.description">
+				<source>Lebens- und Bildungsweg</source>
+			</trans-unit>
+			<trans-unit id="curriculum_vitae.description">
+				<source>Tabellarischer Lebenslauf</source>
+			</trans-unit>
+			<trans-unit id="survey.description">
+				<source>Schriftliches Gutachten einer Lehrkraft</source>
+			</trans-unit>
+			<trans-unit id="certificate1.description">
+				<source>1. Zeugnis</source>
+			</trans-unit>
+			<trans-unit id="certificate2.description">
+				<source>2. Zeugnis</source>
+			</trans-unit>
+			<trans-unit id="certificate3.description">
+				<source>3. Zeugnis</source>
+			</trans-unit>
+			<trans-unit id="passport_photo.description">
+				<source>Passfoto</source>
+			</trans-unit>
+			<trans-unit id="identity_card.description">
+				<source>Kopie des Personalausweises</source>
+			</trans-unit>
+			<trans-unit id="residence_permit.description">
+				<source>Aufenthaltserlaubnis</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

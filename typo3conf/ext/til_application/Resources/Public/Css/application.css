@@ -25,8 +25,18 @@
   padding-right: 2%;
   display: inline-block;
 }
+.form-group .form-line label.over {
+  width: 100%;
+  display: block;
+}
+.form-group .form-line .uploaded-document {
+  display: block;
+}
 .form-group .form-line input[type=text] {
   width: 45%;
+}
+.form-group .form-line .file {
+  display: inline-block;
 }
 .form-group .form-line .next {
   padding-left: 20px;

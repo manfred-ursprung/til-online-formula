@@ -1,0 +1,111 @@
+
+	<legend>Angaben über den Antragsteller</legend>
+	<table>
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_candidate.first_name" extensionName="TilApplication"/></td>
+			<td>{candidate.feUser.firstName}</td>
+		</tr>
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_candidate.last_name" extensionName="TilApplication"/></td>
+			<td>{candidate.feUser.lastName}</td>
+		</tr>
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_candidate.family_status" extensionName="TilApplication"/></td>
+			<td>{candidate.familyStatus}</td>
+		</tr>
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_candidate.gender" extensionName="TilApplication"/></td>
+			<td>{f:if(condition: '{candidate.gender} == \'male\'', then: 'männlich', else: 'weiblich')}</td>
+		</tr>
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_candidate.birthdate" extensionName="TilApplication"/></td>
+			<td>{candidate.birthdate -> f:format.date(format: 'd.m.Y')}</td>
+		</tr>
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_candidate.countrv_of_birth" extensionName="TilApplication"/></td>
+			<td>{candidate.countryOfBirth}</td>
+		</tr>
+
+		<tr>
+			<td colspan="2"><h3>Anschrift des Antragsteller</h3></td>
+		</tr>
+
+
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_address.street" extensionName="TilApplication"/>:</td>
+			<td>{candidate.address.street}</td>
+		</tr>
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_address.housenumber" extensionName="TilApplication"/>:</td>
+			<td>{candidate.address.housenumber}</td>
+		</tr>
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_address.zip" extensionName="TilApplication"/>:</td>
+			<td>{candidate.address.zip}</td>
+		</tr>
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_address.city" extensionName="TilApplication"/>:</td>
+			<td>{candidate.address.city}</td>
+		</tr>
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_address.phone" extensionName="TilApplication"/>:</td>
+			<td>{candidate.address.phone}</td>
+		</tr>
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_address.mobile" extensionName="TilApplication"/>:</td>
+			<td>{candidate.address.mobile}</td>
+		</tr>
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_address.email" extensionName="TilApplication"/>:</td>
+			<td>{candidate.address.email}</td>
+		</tr>
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_address.at_parent" extensionName="TilApplication"/>:</td>
+			<td>{f:if(condition: '{candidate.address.atParent} == \'1\'', then: 'ja', else: 'nein')}
+			</td>
+		</tr>
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_address.own_room" extensionName="TilApplication"/>:</td>
+			<td>{f:if(condition: '{candidate.address.ownRoom} == \'1\'', then:  'ja', else: 'nein')} </td>
+		</tr>
+		<tr>
+			<td>Zimmer mit Geschwistern:</td>
+			<td>{f:if(condition: '{candidate.address.siblingRoom} == \'1\'', then: 'ja', else: 'nein')}</td>
+		</tr>
+		<tr>
+			<td>Anzahl der Geschwister im Zimmer:</td>
+			<td>{candidate.address.siblingRoomNumber} </td>
+		</tr>
+
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_candidate.migration_background"  extensionName="TilApplication"/>:</td>
+			<td>{f:if(condition: '{candidate.migrationBackground} == \'1\'', then: 'ja', else: 'nein')} </td>
+		</tr>
+		<tr>
+			<td colspan="2">Auszufüllen bei Migrationshintergrund
+				<p class="subline">Staatsangehörigkeit/Aufenthaltsstatus</p></td>
+		</tr>
+		<tr>
+			<td>Staatsangehörigkeit (wenn Deutsch, Herkunftsland der Familie):</td>
+			<td>{candidate.nationality} </td>
+		</tr>
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_candidate.resident_since"  extensionName="TilApplication"/>:</td>
+			<td>{candidate.residentSince} </td>
+		</tr>
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_candidate.residence_status"  extensionName="TilApplication"/>:</td>
+			<td><f:translate key="tx_tilapplication_domain_model_candidate.residence_status.niederlassung" extensionName="TilApplication"/>
+				{f:if(condition: '{candidate.residenceStatus} == \'1\'', then: 'ja', else: 'nein')} <br />
+				<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.aufenthalt" extensionName="TilApplication"/>
+				{f:if(condition: '{candidate.residenceStatus} == \'2\'', then: 'ja', else: 'nein')} <br />
+				<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.sonstiges" extensionName="TilApplication"/>
+				{f:if(condition: '{candidate.residenceStatus} == \'3\'', then: 'ja', else: 'nein')} <br />
+				{candidate.residenceMisc}
+			</td>
+
+		</tr>
+	</table>
+	<div style="page-break-before:always;"></div>
+
+

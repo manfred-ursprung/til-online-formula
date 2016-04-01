@@ -50,6 +50,12 @@
                 <source>Tabelle per CSS, Text in oberer Zeile, Logos in Zeile darunter</source>
             </trans-unit>
 
+            <trans-unit id="flux.onlineFormula">
+                <source>Seitenvorlage für Online Formular</source>
+            </trans-unit>
+            <trans-unit id="flux.onlineFormula.description">
+                <source>Seitenvorlage ohne Headerbild</source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

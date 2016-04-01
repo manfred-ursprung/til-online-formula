@@ -28,6 +28,8 @@ CREATE TABLE tx_tilapplication_domain_model_candidate (
 	family int(11) unsigned DEFAULT '0' NOT NULL,
 	costs int(11) unsigned DEFAULT '0',
 	income int(11) unsigned DEFAULT '0',
+	documents int(11) unsigned DEFAULT '0',
+	approval tinyint(1) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
@@ -318,3 +320,52 @@ CREATE TABLE tx_tilapplication_domain_model_relative (
 	candidate  int(11) unsigned DEFAULT '0' NOT NULL,
 
 );
+
+#
+# Table structure for table 'tx_tilapplication_domain_model_documents'
+#
+CREATE TABLE tx_tilapplication_domain_model_documents (
+
+	uid int(11) NOT NULL auto_increment,
+	pid int(11) DEFAULT '0' NOT NULL,
+
+	life_school_career varchar(255) DEFAULT '0' NOT NULL,
+	curriculum_vitae varchar(255) DEFAULT '0' NOT NULL,
+	survey varchar(255) DEFAULT '0' NOT NULL,
+	certificate1 varchar(255) DEFAULT '0' NOT NULL,
+	certificate2 varchar(255) DEFAULT '0' NOT NULL,
+	certificate3 varchar(255) DEFAULT '0' NOT NULL,
+	passport_photo varchar(255) DEFAULT '0' NOT NULL,
+	identity_card varchar(255) DEFAULT '0' NOT NULL,
+	residence_permit varchar(255) DEFAULT '0' NOT NULL,
+	candidate  int(11) unsigned DEFAULT '0' NOT NULL,
+
+	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+	crdate int(11) unsigned DEFAULT '0' NOT NULL,
+	cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
+	deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
+	hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
+	starttime int(11) unsigned DEFAULT '0' NOT NULL,
+	endtime int(11) unsigned DEFAULT '0' NOT NULL,
+
+	t3ver_oid int(11) DEFAULT '0' NOT NULL,
+	t3ver_id int(11) DEFAULT '0' NOT NULL,
+	t3ver_wsid int(11) DEFAULT '0' NOT NULL,
+	t3ver_label varchar(255) DEFAULT '' NOT NULL,
+	t3ver_state tinyint(4) DEFAULT '0' NOT NULL,
+	t3ver_stage int(11) DEFAULT '0' NOT NULL,
+	t3ver_count int(11) DEFAULT '0' NOT NULL,
+	t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
+	t3ver_move_id int(11) DEFAULT '0' NOT NULL,
+
+	sys_language_uid int(11) DEFAULT '0' NOT NULL,
+	l10n_parent int(11) DEFAULT '0' NOT NULL,
+	l10n_diffsource mediumblob,
+
+	PRIMARY KEY (uid),
+	KEY parent (pid),
+	KEY t3ver_oid (t3ver_oid,t3ver_wsid),
+	KEY language (l10n_parent,sys_language_uid)
+
+);
+

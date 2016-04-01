@@ -1,0 +1,15 @@
+#header,
+.job-summary .action-bar{
+    display:none;
+}
+a{
+    color: black !important;
+    text-decoration: none !important;
+}
+.form-group .form-field {
+    width: 100%;
+}
+input, fieldset{
+    border: none;
+}
+label{ width: 30%; }

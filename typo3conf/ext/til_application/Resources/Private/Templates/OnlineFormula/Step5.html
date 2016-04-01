@@ -2,94 +2,22 @@
 <f:layout name="Default" />
 
 <f:section name="main">
-	<h1>Übersicht über die eingegebenen Daten</h1>
-
 	<f:flashMessages renderMode="div" />
+
 	<f:render partial="Candidate/StepNavigation" arguments="{settings: settings}" />
 
-	<p>Bitte lesen Sie sich alles genau durch und wenn alles okay ist, senden Sie es ab.</p>
-	<p>Die eingegbenen Daten werden nur zum Zwecke der Prüfung der Stipendiaten verwendet. <br />
-	Wir geben keine Daten an Firmen oder andere Organisationen weiter. Lediglich Mitglieder der Jury erhalten Ihre
-		Daten zur Prüfung und Auswahl der Stipendiaten.
-	</p>
 	<f:render partial="FormErrors" arguments="{object:Candidate}" />
-	<div class="tabs-container">
-		<ul class="nav nav-tabs" role="tablist">
-			<li role="presentation" class="active">
-				<a href="#persoenliches" aria-controls="persoenliches" role="tab"
-						data-toggle="tab">Persönliches</a>
-			</li>
-			<li role="presentation">
-				<a href="#schulkarriere" aria-controls="schulkarriere" role="tab"
-						data-toggle="tab">Schulkarriere</a>
-			</li>
-			<li role="presentation">
-				<a href="#familie" aria-controls="familie" role="tab"
-						data-toggle="tab">Familie</a>
-			</li>
-			<li role="presentation">
-				<a href="#finanzielles" aria-controls="finanzielles" role="tab"
-						data-toggle="tab">Finanzielles</a>
-			</li>
-		</ul>
 
-		
-		<div class="tab-content">
-			<div role="tabpanel" class="tab-pane active" id="persoenliches">
-				<h2>Persönliche Daten</h2>
-				<div id="tab-1">
-					<f:render partial="Candidate/FieldsStep1" arguments="{candidate:candidate}" />
-					<f:link.page pageUid="{settings.pageStep1}" class="btn btn-default">
-						Ändern
-					</f:link.page>
-				</div>
-			</div>
+	<h2>V. Uploads wichtiger Dokumente</h2>
 
-			<div role="tabpanel" class="tab-pane" id="schulkarriere">
-				<h2>Angaben über die Schulen, die der Antragsteller besucht hat</h2>
-				<div id="tab-2">
-					<f:render partial="Candidate/FieldsStep2" arguments="{candidate:candidate,
-																		actualSchool: actualSchool,
-																		otherSchools: otherSchools,
-																		settings: settings,
-																		readonly: 1}" />
-					<f:link.page pageUid="{settings.pageStep2}" class="btn btn-default">
-						Ändern
-					</f:link.page>
-				</div>
-			</div>
+	<f:form action="updateStep5" name="documents" object="{documents}" enctype="multipart/form-data"
+			pageUid="{settings.pageStep6}" additionalAttributes="{role: 'form'}">
+		<f:render partial="Candidate/FormFieldsUpload" arguments="{documents: documents,
+															settings: settings,
+															readonly: 0}" />
+		<f:form.submit value="{f:translate(key: 'tx_tilapplication_form.general.save_and_forward')}" />
+	</f:form>
 
-			<div role="tabpanel" class="tab-pane" id="familie">
-				<h2>Angaben zur Familie</h2>
-				<div id="tab-3">
-					<f:render partial="Candidate/FormFieldsRelatives" section="Main" arguments="{family: family,
-																		candidate: candidate,
-																		settings: settings,
-																		readonly: 1}" />
-					<f:link.page pageUid="{settings.pageStep3}" class="btn btn-default">
-						Ändern
-					</f:link.page>
-				</div>
-			</div>
-
-			<div role="tabpanel" class="tab-pane" id="finanzielles">
-				<h2>Angaben zur finanziellen Situation der Familie</h2>
-				<div id="tab-4">
-					<f:render partial="Candidate/FormFieldsIncome" arguments="{family: family, candidate: candidate,
-																		settings: settings, readonly: 1}" />
-					<f:link.page pageUid="{settings.pageStep4}" class="btn btn-default">
-						Ändern
-					</f:link.page>
-				</div>
-			</div>
-		</div>
-
-	</div>
-	<div class="finish-online-formula">
-		<f:link.page pageUid="53" class="btn btn-default sendout">
-			Daten freigeben zur Prüfung
-		</f:link.page>
-	</div>
 
 
 

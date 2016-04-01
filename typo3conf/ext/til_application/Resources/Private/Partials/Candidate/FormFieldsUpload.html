@@ -1,0 +1,116 @@
+<fieldset xmlns:f="http://www.w3.org/1999/html" xmlns:f="http://www.w3.org/1999/html" class="upload-documents">
+	<legend>Upload der Dokumente</legend>
+
+	<f:form.hidden property="candidate" />
+	<f:form.hidden name="old[lifeSchoolCareer]" value="{documents.lifeSchoolCareer}" />
+	<f:form.hidden name="old[curriculumVitae]" value="{documents.curriculumVitae}" />
+	<f:form.hidden name="old[survey]" value="{documents.survey}" />
+	<f:form.hidden name="old[certificate1]" value="{documents.certificate1}" />
+	<f:form.hidden name="old[certificate2]" value="{documents.certificate2}" />
+	<f:form.hidden name="old[certificate3]" value="{documents.certificate3}" />
+	<f:form.hidden name="old[passportPhoto]" value="{documents.passportPhoto}" />
+	<f:form.hidden name="old[identityCard]" value="{documents.identityCard}" />
+	<f:form.hidden name="old[residencePermit]" value="{documents.residencePermit}" />
+
+	<div class="row form-group clearfix">
+		<div class="form-field form-line">
+		<label for="life_school_career" class="over">
+			<f:translate key="tx_tilapplication_domain_model_documents.life_school_career" />
+		</label>
+			<span class="uploaded-document">{documents.lifeSchoolCareer}</span>
+			<f:if condition="{readonly} == 0">
+				<f:form.upload property="lifeSchoolCareer" class="file"  />
+			</f:if>
+		</div>
+	</div>
+	<div class="row form-group clearfix">
+		<div class="form-field form-line">
+			<label for="curriculumVitae" class="over">
+				<f:translate key="tx_tilapplication_domain_model_documents.curriculum_vitae" />
+			</label>
+			<span class="uploaded-document">{documents.curriculumVitae}</span>
+			<f:if condition="{readonly} == 0">
+				<f:form.upload property="curriculumVitae" class="file" />
+			</f:if>
+		</div>
+	</div>
+	<div class="row form-group clearfix">
+		<div class="form-field form-line">
+			<label for="survey" class="over">
+				<f:translate key="tx_tilapplication_domain_model_documents.survey" />
+			</label>
+			<span class="uploaded-document">{documents.survey}</span>
+			<f:if condition="{readonly} == 0">
+			<f:form.upload property="survey" class="file" />
+			</f:if>
+		</div>
+
+	</div>
+
+
+	<div class="row form-group clearfix">
+		<div class="form-field form-line">
+			<label for="certificate1" class="over">
+				<f:translate key="tx_tilapplication_domain_model_documents.certificate1" />
+			</label>
+			<span class="uploaded-document">{documents.certificate1}</span>
+			<f:if condition="{readonly} == 0">
+				<f:form.upload property="certificate1" class="file" />
+			</f:if>
+		</div>
+		<div class="form-field form-line">
+			<label for="certificate2" class="over">
+				<f:translate key="tx_tilapplication_domain_model_documents.certificate2" />
+			</label>
+			<span class="uploaded-document">{documents.certificate2}</span>
+			<f:if condition="{readonly} == 0">
+				<f:form.upload property="certificate2" class="file" />
+			</f:if>
+		</div>
+		<div class="form-field form-line">
+			<label for="certificate3" class="over">
+				<f:translate key="tx_tilapplication_domain_model_documents.certificate3" />
+			</label>
+			<span class="uploaded-document">{documents.certificate3}</span>
+			<f:if condition="{readonly} == 0">
+				<f:form.upload property="certificate3" class="file" />
+			</f:if>
+		</div>
+	</div>
+
+	<div class="row form-group clearfix">
+		<div class="form-field form-line">
+			<label for="passportPhoto" class="over">
+				<f:translate key="tx_tilapplication_domain_model_documents.passport_photo" />
+			</label>
+			<span class="uploaded-document">{documents.passportPhoto}</span>
+			<f:if condition="{readonly} == 0">
+				<f:form.upload property="passportPhoto" class="file" />
+			</f:if>
+		</div>
+	</div>
+	<div class="row form-group clearfix">
+		<div class="form-field form-line">
+			<label for="identityCard" class="over">
+				<f:translate key="tx_tilapplication_domain_model_documents.identity_card" />
+			</label>
+			<span class="uploaded-document">{documents.identityCard}</span>
+			<f:if condition="{readonly} == 0">
+				<f:form.upload property="identityCard" class="file" />
+			</f:if>
+		</div>
+	</div>
+
+	<div class="row form-group clearfix">
+		<div class="form-field form-line">
+			<label for="residencePermit" class="over">
+				<f:translate key="tx_tilapplication_domain_model_documents.residence_permit" />
+			</label>
+			<span class="uploaded-document">{documents.residencePermit}</span>
+			<f:if condition="{readonly} == 0">
+				<f:form.upload property="residencePermit" class="file" />
+			</f:if>
+		</div>
+
+	</div>
+</fieldset>

@@ -65,13 +65,13 @@
         <div class="form-field form-field-left">
 
             <label for="firstName">
-                <f:translate key="tx_tilapplication_domain_model_relative.first_name" />
+                <f:translate key="tx_tilapplication_domain_model_relative.first_name" extensionName="TilApplication"/>
             </label>
             <input type="text" name="tx_tilapplication_form[family][firstName][]" value="{member.firstName}" {readonlyAttrib}/>
         </div>
         <div class="form-field form-field-right">
             <label for="lastName">
-                <f:translate key="tx_tilapplication_domain_model_relative.last_name" />
+                <f:translate key="tx_tilapplication_domain_model_relative.last_name" extensionName="TilApplication"/>
             </label>
             <input type="text" name="tx_tilapplication_form[family][lastName][]" value="{member.lastName}" {readonlyAttrib}/>
         </div>
@@ -80,7 +80,7 @@
     <div class="row form-group clearfix">
         <div class="form-field form-field-left">
             <label for="gebburtsdatum">
-                <f:translate key="tx_tilapplication_domain_model_relative.birthdate" />
+                <f:translate key="tx_tilapplication_domain_model_relative.birthdate" extensionName="TilApplication"/>
             </label>
             <input type="text" name="tx_tilapplication_form[family][birthdate][]"
                    value="{f:format.date(date: '{member.birthdate}', format: 'd.m.Y')}" {readonlyAttrib}
@@ -88,7 +88,7 @@
         </div>
         <div class="form-field form-field-right">
             <label for="nationaltity">
-                <f:translate key="tx_tilapplication_domain_model_relative.nationality" />
+                <f:translate key="tx_tilapplication_domain_model_relative.nationality" extensionName="TilApplication"/>
             </label>
             <input type="text" name="tx_tilapplication_form[family][nationality][]" value="{member.nationality}" {readonlyAttrib}/>
         </div>
@@ -98,13 +98,13 @@
     <div class="row form-group clearfix">
         <div class="form-field form-field-left">
             <label for="bildungsabschluss">
-                <f:translate key="tx_tilapplication_domain_model_relative.educational_qualification" />
+                <f:translate key="tx_tilapplication_domain_model_relative.educational_qualification" extensionName="TilApplication"/>
             </label>
             <input type="text" name="tx_tilapplication_form[family][educationalQualification][]" value="{member.educationalQualification}" {readonlyAttrib}/>
         </div>
         <div class="form-field form-field-right">
             <label for="job">
-                <f:translate key="tx_tilapplication_domain_model_relative.job" />
+                <f:translate key="tx_tilapplication_domain_model_relative.job" extensionName="TilApplication"/>
             </label>
             <input type="text" name="tx_tilapplication_form[family][job][]" value="{member.job}" {readonlyAttrib}/>
         </div>
@@ -116,7 +116,7 @@
     <div class="row form-group clearfix">
         <div class="form-field form-field-left">
             <label for="familyAddon">
-                <f:translate key="tx_tilapplication_domain_model_candidate.family_addon" />
+                <f:translate key="tx_tilapplication_domain_model_candidate.family_addon" extensionName="TilApplication"/>
             </label>
             <textarea name="tx_tilapplication_form[candidate][familyAddon]" value="{candidate.familyAddon}"
                     rows="4" cols="30" ></textarea>

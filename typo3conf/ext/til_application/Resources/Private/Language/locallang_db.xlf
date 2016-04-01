@@ -4,10 +4,31 @@
 		<header/>
 		<body>
 			<trans-unit id="tx_tilapplication_domain_model_candidate">
-				<source>Candidate</source>
+				<source>Kandidat</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.gender">
+				<source>Geschlecht</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.gender.male">
+				<source>männlich</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.gender.female">
+				<source>weiblich</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.family_status">
-				<source>Family Status</source>
+				<source>Familien Status</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.family_status.single">
+				<source>ledig</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.family_status.married">
+				<source>verheiratet</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.married_since">
+				<source>verheiratet seit</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.birthdate">
+				<source>Geburtstag</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.migration_background">
 				<source>Migration Background</source>
@@ -28,94 +49,100 @@
 				<source>Family Addon</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.asset_real_estate">
-				<source>Asset Real Estate</source>
+				<source>Haus- und Grundbesitz</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.asset_savings">
-				<source>Asset Savings</source>
+				<source>Sparguthaben, Wertpapiere</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.asset_misc_estate">
-				<source>Asset Misc Estate</source>
+				<source>Sonstiges Vermögen</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.integrity">
 				<source>Integrity</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.fe_user">
-				<source>Fe User</source>
+				<source>Frontenduserr</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.address">
-				<source>Address</source>
+				<source>Adresse</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.school_career">
-				<source>School Career</source>
+				<source>Schullaufbahn</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.family">
-				<source>Family</source>
+				<source>Familie</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.costs">
-				<source>Costs</source>
+				<source>Koste</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.income">
-				<source>Income</source>
+				<source>Einnahment</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.documents">
+				<source>Dokumente</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_candidate.approval">
+				<source>Freigabe</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address">
-				<source>Address</source>
+				<source>Adresse</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.street">
-				<source>Street</source>
+				<source>Straße</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.housenumber">
-				<source>Housenumber</source>
+				<source>Hausnummer</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.city">
-				<source>City</source>
+				<source>Ort</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.zip">
-				<source>Zip</source>
+				<source>PLZ</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.phone">
-				<source>Phone</source>
+				<source>Telefon</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.mobile">
-				<source>Mobile</source>
+				<source>Mobil</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.email">
 				<source>Email</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.at_parent">
-				<source>At Parent</source>
+				<source>Bei den Eltern</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.own_room">
-				<source>Own Room</source>
+				<source>Eigenes Zimmer</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_address.sibling_room">
-				<source>Sibling Room</source>
+				<source>Zimmer mit Geschwister</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school">
-				<source>School</source>
+				<source>Schule</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.name">
 				<source>Name</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.type_of_school">
-				<source>Type Of School</source>
+				<source>Schultyp</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.school_year">
-				<source>School Year</source>
+				<source>Jahhrgangsstufe</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.actual">
-				<source>Actual</source>
+				<source>Aktuell</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.school_order">
 				<source>School Order</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.visit_from">
-				<source>Visit From</source>
+				<source>Besucht von</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.visit_til">
-				<source>Visit Til</source>
+				<source>Besucht bis</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.planned_graduation_select">
-				<source>Planned Graduation Select</source>
+				<source>geplanter Abschluss</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school.planned_graduation_text">
 				<source>Planned Graduation Text</source>
@@ -205,7 +232,7 @@
 				<source>Welfare</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_income.unemployment_benefit">
-				<source>Unemployment Benefit</source>
+				<source>Arbeitslosenunterstützung</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_income.housing_benefit">
 				<source>Housing Benefit</source>
@@ -214,8 +241,37 @@
 				<source>Pension</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_income.other_incomes">
-				<source>Other Incomes</source>
+				<source>Andere Einnahmen</source>
 			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_documents.life_school_career">
+				<source>Handschriftliche Beschreibung des Lebens- und Bildungsweges</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_documents.curriculum_vitae">
+				<source>Tabellarischer Lebenslauf</source>
+			</trans-unit>
+
+			<trans-unit id="tx_tilapplication_domain_model_documents.survey">
+				<source>Schriftliches Gutachten einer Lehrkraft</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_documents.certificate1">
+				<source>1. Zeugnis</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_documents.certificate2">
+				<source>2. Zeugnis</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_documents.certificate3">
+				<source>3. Zeugnis</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_documents.passport_photo">
+				<source>Passfoto</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_documents.identity_card">
+				<source>Personalausweis</source>
+			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_documents.residence_permit">
+				<source>Aufenthaltserlaubnis</source>
+			</trans-unit>
+
 		</body>
 	</file>
 </xliff>

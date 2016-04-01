@@ -3,13 +3,13 @@
 	<div class="row form-group clearfix">
 		<div class="form-field form-field-left">
 		<label for="firstName">
-			<f:translate key="tx_tilapplication_domain_model_candidate.first_name" />
+			<f:translate key="tx_tilapplication_domain_model_candidate.first_name" extensionName="TilApplication"/>
 		</label>
 			<f:form.textfield name="feuser.firstName" value="{candidate.feUser.firstName}" additionalAttributes="{readonly: 'readonly'}"/>
 		</div>
 		<div class="form-field form-field-right">
 			<label for="lastName">
-				<f:translate key="tx_tilapplication_domain_model_candidate.last_name" />
+				<f:translate key="tx_tilapplication_domain_model_candidate.last_name" extensionName="TilApplication"/>
 			</label>
 			<f:form.textfield name="feUser.lastName" value="{candidate.feUser.lastName}"
 							  additionalAttributes="{readonly: 'readonly'}"/>
@@ -19,7 +19,7 @@
 	<div class="row form-group clearfix">
 		<div class="form-field form-field-left">
 		<label for="familyStatus">
-			<f:translate key="tx_tilapplication_domain_model_candidate.family_status" />
+			<f:translate key="tx_tilapplication_domain_model_candidate.family_status" extensionName="TilApplication"/>
 		</label>
 			<div class="form-radio-group">
 				<span class="form-radio-first form-radio">
@@ -34,7 +34,7 @@
 		</div>
 		<div class="form-field form-field-right">
 			<label for="gender">
-				<f:translate key="tx_tilapplication_domain_model_candidate.gender" />
+				<f:translate key="tx_tilapplication_domain_model_candidate.gender"  extensionName="TilApplication"/>
 			</label>
 			<div class="form-radio-group">
 				<span class="form-radio-first form-radio">
@@ -50,13 +50,13 @@
 	<div class="row form-group clearfix">
 		<div class="form-field form-field-left">
 			<label for="birthdate">
-				<f:translate key="tx_tilapplication_domain_model_candidate.birthdate" />
+				<f:translate key="tx_tilapplication_domain_model_candidate.birthdate"  extensionName="TilApplication"/>
 			</label>
 			<input type="text" name="birthdate" value="{candidate.birthdate -> f:format.date(format: 'd.m.Y')}" readonly="readonly"/>
 		</div>
 		<div class="form-field form-field-right">
 			<label for="countryOfBirth">
-				<f:translate key="tx_tilapplication_domain_model_candidate.countrv_of_birth" />
+				<f:translate key="tx_tilapplication_domain_model_candidate.countrv_of_birth" extensionName="TilApplication"/>
 			</label>
 			<input type="text" name="countryOfBirth" value="{candidate.countryOfBirth}" readonly="readonly" />
 		</div>
@@ -68,13 +68,13 @@
 	<div class="row form-group clearfix">
 		<div class="form-field form-field-left">
 			<label for="address">
-				<f:translate key="tx_tilapplication_domain_model_address.street" />
+				<f:translate key="tx_tilapplication_domain_model_address.street" extensionName="TilApplication"/>
 			</label>
 			<input type="text" name="address.street" value="{candidate.address.street}" readonly="readonly"/>
 		</div>
 		<div class="form-field form-field-right">
 			<label for="housenumber">
-				<f:translate key="tx_tilapplication_domain_model_address.housenumber" />
+				<f:translate key="tx_tilapplication_domain_model_address.housenumber" extensionName="TilApplication"/>
 			</label>
 			<input type="text" name="address.housenumber"  value="{candidate.address.housenumber}" readonly="readonly"/>
 		</div>
@@ -84,14 +84,14 @@
 	<div class="row form-group clearfix">
 		<div class="form-field form-field-left">
 			<label for="zip">
-				<f:translate key="tx_tilapplication_domain_model_address.zip" />
+				<f:translate key="tx_tilapplication_domain_model_address.zip"  extensionName="TilApplication"/>
 			</label>
 			<input type="text" name="address.zip" value="{candidate.address.zip}" readonly="readonly"/><br />
 		</div>
 
 		<div class="form-field form-field-right">
 			<label for="city">
-				<f:translate key="tx_tilapplication_domain_model_address.city" />
+				<f:translate key="tx_tilapplication_domain_model_address.city"  extensionName="TilApplication"/>
 			</label>
 			<input type="text" name="address.city" value="{candidate.address.city}" readonly="readonly"/>
 		</div>
@@ -101,14 +101,14 @@
 	<div class="row form-group clearfix">
 		<div class="form-field form-field-left">
 			<label for="phone">
-				<f:translate key="tx_tilapplication_domain_model_address.phone" />
+				<f:translate key="tx_tilapplication_domain_model_address.phone"  extensionName="TilApplication"/>
 			</label>
 			<input type="text" name="address.phone" value="{candidate.address.phone}" readonly="readonly"/><br />
 		</div>
 
 		<div class="form-field form-field-right">
 			<label for="mobile">
-				<f:translate key="tx_tilapplication_domain_model_address.mobile" />
+				<f:translate key="tx_tilapplication_domain_model_address.mobile"  extensionName="TilApplication"/>
 			</label>
 			<input type="text" name="address.mobile" value="{candidate.address.mobile}" readonly="readonly"/>
 		</div>
@@ -116,7 +116,7 @@
 	<div class="row form-group  clearfix">
 		<div class="form-field form-field-left">
 			<label for="email">
-				<f:translate key="tx_tilapplication_domain_model_address.email" />
+				<f:translate key="tx_tilapplication_domain_model_address.email"  extensionName="TilApplication"/>
 			</label>
 			<input type="text" name="address.email" value="{candidate.address.email}" readonly="readonly"/>
 		</div>
@@ -142,14 +142,14 @@
 			<label for="ownRoom" class="next">
 				Anzahl der Geschwister im Zimmer
 			</label>
-			<input type="text" name="siblingNumber" value="{candidate.siblingNumber}" readonly="readonly"/>
+			<input type="text" name="siblingNumber" value="{candidate.address.siblingRoomNumber}" readonly="readonly"/>
 		</div>
 	</div>
 
 	<div class="row form-group clearfix">
 		<div class="form-line ">
 			<label for="migrationBackground">
-				<f:translate key="tx_tilapplication_domain_model_candidate.migration_background" />
+				<f:translate key="tx_tilapplication_domain_model_candidate.migration_background"  extensionName="TilApplication"/>
 			</label>
 			<input type="checkbox" name="migrationBackground" value="1" onclick="return false;"
 							 {f:if(condition: '{candidate.migrationBackground} == \'1\'', then: 'checked="checked"')} />
@@ -170,7 +170,7 @@
 		</div>
 		<div class="form-field form-line">
 			<label for="residentSince" class="over">
-				<f:translate key="tx_tilapplication_domain_model_candidate.resident_since" />
+				<f:translate key="tx_tilapplication_domain_model_candidate.resident_since"  extensionName="TilApplication"/>
 			</label>
 			<input type="text" name="residentSince" value="{candidate.residentSince}" readonly="readonly"/>
 		</div>
@@ -178,31 +178,31 @@
 	<div class="row form-group clearfix">
 		<div class="form-line ">
 			<label for="residenceStatus" class="over">
-				<f:translate key="tx_tilapplication_domain_model_candidate.residence_status" />
+				<f:translate key="tx_tilapplication_domain_model_candidate.residence_status"  extensionName="TilApplication"/>
 			</label>
 			<div class="form-radio-group">
 				<span class="form-radio-first form-radio">
 					<input type="radio" name="residenceStatus" value="1" disabled="disabled"
 								  {f:if(condition: '{candidate.residenceStatus} == \'1\'', then: 'checked="checked"')} />
-					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.niederlassung" />
+					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.niederlassung" extensionName="TilApplication"/>
 				</span>
 
 				<span class="form-radio-first form-radio">
 					<input type="radio" name="residenceStatus" value="2" disabled="disabled"
 								  {f:if(condition: '{candidate.residenceStatus} == \'2\'', then: 'checked="checked"')} />
-					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.aufenthalt" />
+					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.aufenthalt"  extensionName="TilApplication"/>
 				</span>
 				<span class="form-radio-first form-radio">
 					<input type="radio" name="residenceStatus" value="3" disabled="disabled"
 								  {f:if(condition: '{candidate.residenceStatus} == \'3\'', then: 'checked="checked"')} />
-					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.sonstiges" />
+					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.sonstiges"  extensionName="TilApplication"/>
 				</span>
 			</div>
 		</div>
 		<div class="row form-group clearfix">
 			<div class="form-field form-field-left">
 				<label for="residenceMisc">
-					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.sonstiges" />
+					<f:translate key="tx_tilapplication_domain_model_candidate.residence_status.sonstiges"  extensionName="TilApplication"/>
 				</label>
 
 				<input type="text" name="residenceMisc" value="{candidate.residenceMisc}" readonly="readonly" /><br />
@@ -214,23 +214,23 @@
 
 	<f:comment>
 		<label for="familyAddon">
-			<f:translate key="tx_tilapplication_domain_model_candidate.family_addon" />
+			<f:translate key="tx_tilapplication_domain_model_candidate.family_addon"  extensionName="TilApplication"/>
 		</label><br />
 			<f:form.textfield property="familyAddon" /><br />
 		<label for="assetRealEstate">
-			<f:translate key="tx_tilapplication_domain_model_candidate.asset_real_estate" />
+			<f:translate key="tx_tilapplication_domain_model_candidate.asset_real_estate"  extensionName="TilApplication"/>
 		</label><br />
 			<f:form.textfield property="assetRealEstate" /><br />
 		<label for="assetSavings">
-			<f:translate key="tx_tilapplication_domain_model_candidate.asset_savings" />
+			<f:translate key="tx_tilapplication_domain_model_candidate.asset_savings"  extensionName="TilApplication"/>
 		</label><br />
 			<f:form.textfield property="assetSavings" /><br />
 		<label for="assetMiscEstate">
-			<f:translate key="tx_tilapplication_domain_model_candidate.asset_misc_estate" />
+			<f:translate key="tx_tilapplication_domain_model_candidate.asset_misc_estate" extensionName="TilApplication"/>
 		</label><br />
 			<f:form.textfield property="assetMiscEstate" /><br />
 		<label for="integrity">
-			<f:translate key="tx_tilapplication_domain_model_candidate.integrity" />
+			<f:translate key="tx_tilapplication_domain_model_candidate.integrity" extensionName="TilApplication"/>
 		</label><br />
 			<f:form.checkbox property="integrity" value="1" /><br />
 	</f:comment>

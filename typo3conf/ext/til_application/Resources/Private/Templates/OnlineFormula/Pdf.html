@@ -1,0 +1,67 @@
+
+<f:layout name="Default" />
+
+<f:section name="main">
+	<h1>Übersicht über die eingegebenen Daten</h1>
+
+	<p>Diese Daten haben Sie eingegeben:</p>
+	<p>Die eingegbenen Daten werden nur zum Zwecke der Prüfung der Stipendiaten verwendet. <br />
+	Wir geben keine Daten an Firmen oder andere Organisationen weiter. Lediglich Mitglieder der Jury erhalten Ihre
+		Daten zur Prüfung und Auswahl der Stipendiaten.
+	</p>
+
+		
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="persoenliches">
+				<h2>Persönliche Daten</h2>
+				<div id="tab-1">
+					<f:render partial="Candidate/Pdf/FieldsStep1" arguments="{candidate:candidate}" />
+
+				</div>
+			</div>
+
+			<div role="tabpanel" class="tab-pane" id="schulkarriere">
+				<h2>Angaben über die Schulen, die der Antragsteller besucht hat</h2>
+				<div id="tab-2">
+					<f:render partial="Candidate/FieldsStep2" arguments="{candidate:candidate,
+																		actualSchool: actualSchool,
+																		otherSchools: otherSchools,
+																		settings: settings,
+																		readonly: 1}" />
+
+				</div>
+			</div>
+
+			<div role="tabpanel" class="tab-pane" id="familie">
+				<h2>Angaben zur Familie</h2>
+				<div id="tab-3">
+					<f:render partial="Candidate/FormFieldsRelatives" section="Main" arguments="{family: family,
+																		candidate: candidate,
+																		settings: settings,
+																		readonly: 1}" />
+
+				</div>
+			</div>
+
+			<div role="tabpanel" class="tab-pane" id="finanzielles">
+				<h2>Angaben zur finanziellen Situation der Familie</h2>
+				<div id="tab-4">
+					<f:render partial="Candidate/FormFieldsIncome" arguments="{family: family, candidate: candidate,
+																		settings: settings, readonly: 1}" />
+
+				</div>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="documents">
+				<h2>Hochgeladene Dokumente, müsssen vollzählig sein</h2>
+				<div id="tab-5">
+					<f:render partial="Candidate/FormFieldsUpload" arguments="{documents: candidate.documents,
+																		settings: settings, readonly: 1}" />
+
+				</div>
+			</div>
+		</div>
+
+
+
+
+</f:section>

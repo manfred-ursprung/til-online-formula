@@ -19,14 +19,14 @@ return array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'gender,family_status,married_since, birthdate,country_of_birth,migration_background,nationality,resident_since,residence_status,residence_misc,family_addon,asset_real_estate,asset_savings,asset_misc_estate,integrity,fe_user,address,school_career,family,costs,income,',
+		'searchFields' => 'gender,family_status,married_since, birthdate,country_of_birth,migration_background,nationality,resident_since,residence_status,residence_misc,family_addon,asset_real_estate,asset_savings,asset_misc_estate,integrity,fe_user,address,school_career,family,costs,income,documents,approval',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('til_application') . 'Resources/Public/Icons/tx_tilapplication_domain_model_candidate.gif'
 	),
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, family_status, married_since, birthdate, country_of_birth, migration_background, nationality, resident_since, residence_status, residence_misc, family_addon, asset_real_estate, asset_savings, asset_misc_estate, integrity, fe_user, address, school_career, family, costs, income',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, family_status, married_since, birthdate, country_of_birth, migration_background, nationality, resident_since, residence_status, residence_misc, family_addon, asset_real_estate, asset_savings, asset_misc_estate, integrity, fe_user, address, school_career, family, costs, income,documents, approval',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, gender, family_status, married_since, birthdate, country_of_birth, migration_background, nationality, resident_since, residence_status, residence_misc, family_addon, asset_real_estate, asset_savings, asset_misc_estate, integrity, fe_user, address, school_career, family, costs, income, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, approval, gender, family_status, married_since, birthdate, country_of_birth, migration_background, nationality, resident_since, residence_status, residence_misc, family_addon, asset_real_estate, asset_savings, asset_misc_estate, integrity, fe_user, address, school_career, family, costs, income, documents, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -133,8 +133,8 @@ return array(
 				'type' => 'select',
 				'items' => array(
 					array('-- Label --', 0),
-					array('LLL:EXT:til_application/Resources/Private/Language/locallang_db.xlf:tx_tilapplication_domain_model_candidate.family_status.single', 'single'),
-					array('LLL:EXT:til_application/Resources/Private/Language/locallang_db.xlf:tx_tilapplication_domain_model_candidate.family_status.married', 'married')
+					array('LLL:EXT:til_application/Resources/Private/Language/locallang_db.xlf:tx_tilapplication_domain_model_candidate.family_status.single', 'ledig'),
+					array('LLL:EXT:til_application/Resources/Private/Language/locallang_db.xlf:tx_tilapplication_domain_model_candidate.family_status.married', 'verheiratet')
 				),
 				'size' => 1,
 				'maxitems' => 1,
@@ -154,7 +154,7 @@ return array(
 		'birthdate' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => 'LLL:EXT:til_application/Resources/Private/Language/locallang_db.xlf:tx_tilapplication_domain_model_candidate.birtdate',
+			'label' => 'LLL:EXT:til_application/Resources/Private/Language/locallang_db.xlf:tx_tilapplication_domain_model_candidate.birthdate',
 			'config' => array(
 				'dbType' => 'date',
 				'type' => 'input',
@@ -373,6 +373,30 @@ return array(
 				),
 			),
 		),
-		
+		'documents' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:til_application/Resources/Private/Language/locallang_db.xlf:tx_tilapplication_domain_model_candidate.documents',
+			'config' => array(
+				'type' => 'inline',
+				'foreign_table' => 'tx_tilapplication_domain_model_documents',
+				'minitems' => 0,
+				'maxitems' => 1,
+				'appearance' => array(
+					'collapseAll' => 0,
+					'levelLinksPosition' => 'top',
+					'showSynchronizationLink' => 1,
+					'showPossibleLocalizationRecords' => 1,
+					'showAllLocalizationLink' => 1
+				),
+			),
+		),
+		'approval' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:til_application/Resources/Private/Language/locallang_db.xlf:tx_tilapplication_domain_model_candidate.approval',
+			'config' => array(
+				'type' => 'check',
+				'default' => 0
+			)
+		),
 	),
 );

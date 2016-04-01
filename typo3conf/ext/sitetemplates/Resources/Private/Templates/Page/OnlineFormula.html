@@ -1,0 +1,45 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     f:schemaLocation="https://fluidtypo3.org/schemas/fluid-master.xsd"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers"
+     flux:schemaLocation="https://fluidtypo3.org/schemas/flux-master.xsd"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+     v:schemaLocation="https://fluidtypo3.org/schemas/vhs-master.xsd">
+
+    <f:layout name="OnlineFormula" />
+
+    <f:section name="Configuration">
+        <flux:form id="onlineFormula" options="{icon: 'Icons/Page/Home.png'}">
+
+        </flux:form>
+        <flux:grid>
+            <flux:grid.row>
+
+                <flux:grid.column colPos="0"  name="Content" />
+
+            </flux:grid.row>
+
+        </flux:grid>
+    </f:section>
+    <f:section name="Preview">
+
+        <table width="100%">
+            <tr>
+                <td width="100%">
+                    <f:format.crop maxCharacters="50">{Content}</f:format.crop>
+                </td>
+
+            </tr>
+        </table>
+
+    </f:section>
+
+
+    <f:section name="Content">
+
+        <v:content.render column="0"/>
+
+
+    </f:section>
+
+</div>
