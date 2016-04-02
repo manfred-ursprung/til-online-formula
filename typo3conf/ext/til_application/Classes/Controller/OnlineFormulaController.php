@@ -540,6 +540,7 @@ PDFGENERATE;
 		//alle Angaben für die Familienmitglieder aus dem Array in Objekte transferieren
 		//speichern in candidate
 		if(isset($family['firstName']) || isset($family['lastName'])){
+			$this->addFlashMessage('in if ', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::INFO);
 			$candidate = $this->createAndAddFamily($candidate, $family);
 			if(is_a($candidate, 'TYPO3\CMS\Extbase\Validation\Error')){
 				$this->addFlashMessage('Sie müssen den Geburtstag im Format dd.mm.YYYY eingeben. Andere Formate werden nicht unterstützt.',
@@ -651,7 +652,7 @@ PDFGENERATE;
 		/** @var  $dateTimeConverter \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter */
 		$dateTimeConverter = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Property\\TypeConverter\\DateTimeConverter');
 		foreach ($family['firstName'] as $key => $value) {
-			if ((strlen($family['firstName']) > 0) ||  ($family['remove'][$key] == 1) ) {
+			if ((strlen($family['firstName'][$key]) > 0) ||  ($family['remove'][$key] == 1) ) {
 				if(isset($family['uid'][$key])){
 					$member = $relativeRepository->findByUid($family['uid'][$key]);
 					if(!is_object($member)){
