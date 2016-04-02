@@ -99,8 +99,10 @@ fieldset legend .subline {
 .finish-online-formula {
   width: 100%;
   text-align: right;
+  margin-top: 20px;
 }
 .finish-online-formula .btn {
   background-color: #a2bd30;
   color: white;
+  margin-left: 20px;
 }

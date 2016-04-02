@@ -1,13 +1,38 @@
-
+<f:section name="original">
 <f:form.validationResults for="{object}">
 	<f:if condition="{validationResults.flattenedErrors}">
 		<ul>
 		<f:for each="{validationResults.flattenedErrors}" key="propertyPath" as="errors">
-			<li>
-			{propertyPath}: <ul>
-				<f:for each="{errors}" as="error"><li>{error}</li></f:for>
-				</ul>
-			</li>
-		</f:for></ul>
+			<f:for each="{errors}" as="error">
+
+				<li>
+					<f:translate key="tx_tilapplication_form.error.{error.code}">{error.message}</f:translate>
+
+				</li>
+			</f:for>
+		</f:for>
+		</ul>
 </f:if>
 </f:form.validationResults>
+</f:section>
+
+
+<f:section name="Translated">
+<f:form.validationResults for="{object}">
+	<div class="error">{error.code}
+
+		<!-- {error.code} -->
+		<f:translate key="error.{error.code}">{error.message}</f:translate>
+		<f:if condition="{error.propertyName}">
+			<p>
+				<strong>{error.propertyName}</strong>:
+				<f:for each="{error.errors}" as="errorDetail">
+					<!-- {errorDetail.code} -->
+					<f:translate key="error.{errorDetail.code}">{errorDetail.message}</f:translate>
+				</f:for>
+			</p>
+		</f:if>
+	</div>
+</f:form.validationResults>
+
+</f:section>

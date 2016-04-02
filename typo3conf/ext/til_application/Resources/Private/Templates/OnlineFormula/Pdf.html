@@ -23,7 +23,7 @@
 			<div role="tabpanel" class="tab-pane" id="schulkarriere">
 				<h2>Angaben über die Schulen, die der Antragsteller besucht hat</h2>
 				<div id="tab-2">
-					<f:render partial="Candidate/FieldsStep2" arguments="{candidate:candidate,
+					<f:render partial="Candidate/Pdf/FieldsStep2" arguments="{candidate:candidate,
 																		actualSchool: actualSchool,
 																		otherSchools: otherSchools,
 																		settings: settings,
@@ -35,7 +35,7 @@
 			<div role="tabpanel" class="tab-pane" id="familie">
 				<h2>Angaben zur Familie</h2>
 				<div id="tab-3">
-					<f:render partial="Candidate/FormFieldsRelatives" section="Main" arguments="{family: family,
+					<f:render partial="Candidate/Pdf/FieldsStep3" section="Main" arguments="{family: family,
 																		candidate: candidate,
 																		settings: settings,
 																		readonly: 1}" />
@@ -43,10 +43,10 @@
 				</div>
 			</div>
 
-			<div role="tabpanel" class="tab-pane" id="finanzielles">
+			<div role="tabpanel" class="tab-pane" id="finanzielles" style="page-break-after: always">
 				<h2>Angaben zur finanziellen Situation der Familie</h2>
 				<div id="tab-4">
-					<f:render partial="Candidate/FormFieldsIncome" arguments="{family: family, candidate: candidate,
+					<f:render partial="Candidate/Pdf/FieldsStep4" arguments="{family: family, candidate: candidate,
 																		settings: settings, readonly: 1}" />
 
 				</div>
@@ -54,7 +54,7 @@
 			<div role="tabpanel" class="tab-pane" id="documents">
 				<h2>Hochgeladene Dokumente, müsssen vollzählig sein</h2>
 				<div id="tab-5">
-					<f:render partial="Candidate/FormFieldsUpload" arguments="{documents: candidate.documents,
+					<f:render partial="Candidate/Pdf/FieldsStep5" section="Main" arguments="{documents: candidate.documents,
 																		settings: settings, readonly: 1}" />
 
 				</div>

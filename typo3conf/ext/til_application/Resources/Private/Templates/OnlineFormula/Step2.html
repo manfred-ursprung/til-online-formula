@@ -12,7 +12,7 @@
 	<f:flashMessages renderMode="div" />
 	<f:render partial="Candidate/StepNavigation" arguments="{settings: settings}" />
 
-	<f:render partial="FormErrors" arguments="{object:Candidate}" />
+	<f:render partial="FormErrors" section="Translated" arguments="{object:Candidate}" />
 	
 	<f:form action="updateStep2" name="actualSchool" object="{actualSchool}" arguments="{candidate: candidate, otherSchool: ''}"
 			pageUid="{settings.pageStep3}" additionalAttributes="{role: 'form'}">

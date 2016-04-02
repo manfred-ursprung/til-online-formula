@@ -42,7 +42,7 @@
 				<f:translate key="tx_tilapplication_domain_model_candidate.birthdate" />
 			</label>
 
-			<f:form.textfield property="birthdate" value="{candidate.birthdate -> f:format.date( format: 'd.m.Y' )}" />
+			<f:form.textfield property="birthdate" value="{candidate.birthdate -> f:format.date( format: 'd.m.Y' )}" placeholder="dd.mm.yyyy" />
 		</div>
 		<div class="form-field form-field-right">
 			<label for="countryOfBirth">

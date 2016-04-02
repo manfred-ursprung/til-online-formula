@@ -179,6 +179,10 @@
 			<trans-unit id="tx_tilapplication_domain_model_school.other_school_duration">
 				<source>von / bis</source>
 			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_school.grade_point_average">
+				<source>Notendurchschnitt des letzten Zeugnisses bzw. Halbjahresinformation</source>
+			</trans-unit>
+
 			<trans-unit id="tx_tilapplication_domain_model_relative">
 				<source>Relative</source>
 			</trans-unit>
@@ -296,6 +300,12 @@
 			<trans-unit id="tx_tilapplication_form.general.save_and_forward">
 				<source>Abspeichern und Weiter</source>
 			</trans-unit>
+
+
+			<trans-unit id="tx_tilapplication_form.error.1307719788">
+				<source>Das Datum stimmt nicht mit dem Datumsformat "dd.mm.YYYY" überein. </source>
+			</trans-unit>
+			
 		</body>
 	</file>
 </xliff>

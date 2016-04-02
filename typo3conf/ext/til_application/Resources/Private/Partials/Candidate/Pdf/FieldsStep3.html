@@ -1,0 +1,62 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+
+<f:section name="Main">
+
+
+    <table>
+<f:for each="{family}" as="member" iteration="iterator">
+
+
+
+            <f:switch expression="{member.familyRelation}">
+                <f:case value="1">
+                    <tr><td colspan="2"><h3>Angaben zur Mutter</h3></td></tr>
+
+                </f:case>
+                <f:case value="0">
+                    <tr><td colspan="2"><h3>Angaben zum Vater</h3></td></tr>
+                </f:case>
+                <f:case value="2">
+                    <tr><td colspan="2"><h3>Angaben zu Geschwister {member.firstName}</h3></td></tr>
+
+                </f:case>
+            </f:switch>
+            <f:render section="Template" optional="True" arguments="{_all}" />
+
+
+
+</f:for>
+    </table>
+    <div style="page-break-after: always";></div>
+</f:section>
+
+
+<f:section name="Template">
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_relative.first_name" extensionName="TilApplication"/></td>
+        <td>{member.firstName}</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_relative.last_name" extensionName="TilApplication"/></td>
+        <td>{member.lastName}</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_relative.birthdate" extensionName="TilApplication"/></td>
+        <td>{f:format.date(date: '{member.birthdate}', format: 'd.m.Y')}</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_relative.nationality" extensionName="TilApplication"/></td>
+        <td>{member.nationality}</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_relative.educational_qualification" extensionName="TilApplication"/></td>
+        <td>{member.educationalQualification}</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_relative.job" extensionName="TilApplication"/></td>
+        <td>{member.job}</td>
+    </tr>
+
+
+
+</f:section>

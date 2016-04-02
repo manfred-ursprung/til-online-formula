@@ -1,0 +1,80 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+
+
+
+<table>
+    <tr><td colspan="2"><h3>II. Derzeitige Schule des Antragstellers</h3></td></tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_school.name" extensionName="TilApplication"/></td>
+        <td>{actualSchool.name}</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_school.type_of_school" extensionName="TilApplication"/></td>
+        <td>{actualSchool.typeOfSchool}</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_school.school_year" extensionName="TilApplication"/></td>
+        <td>{actualSchool.schoolYear}</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_address.street" extensionName="TilApplication"/></td>
+        <td>{actualSchool.address.street}</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_address.housenumber" extensionName="TilApplication"/></td>
+        <td>{actualSchool.address.housenumber}</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_address.zip" extensionName="TilApplication"/></td>
+        <td>{actualSchool.address.zip}</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domainmodel_address.zip" extensionName="TilApplication"/></td>
+        <td>{actualSchool.address.city}</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domainmodel_address.phone" extensionName="TilApplication"/></td>
+        <td>{actualSchool.address.phone}</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domainmodel_address.mobile" extensionName="TilApplication"/></td>
+        <td>{actualSchool.address.mobile}</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domainmodel_address.email" extensionName="TilApplication"/></td>
+        <td>{actualSchool.address.email}</td>
+    </tr>
+
+    <tr><td colspan="2"><h3>Angestrebter Schulabschluss</h3></td></tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_school.planned_graduation_select" extensionName="TilApplication"/></td>
+        <td>{actualSchool.plannedGraduationSelect}</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_school.planned_graduation_text" extensionName="TilApplication"/></td>
+        <td>{actualSchool.plannedGraduationText}</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_school.planned_graduation_finish" extensionName="TilApplication"/></td>
+        <td>{actualSchool.plannedGraduationFinish}</td>
+    </tr>
+    <tr><td colspan="2"><h3>Notendurchschnitt des letzten Zeugnisses bzw, Halbjahresinformation</h3></td></tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_school.school_certificate_date" extensionName="TilApplication"/></td>
+        <td>{actualSchool.schoolCertificateDate -> f:format.date(format: 'd.m.Y')}</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_school.school_certificate_points" extensionName="TilApplication"/>&nbsp;</td>
+        <td>{actualSchool.schoolCertificatePoints}</td>
+    </tr>
+    <tr><td colspan="2"><h3>Bisheriger Schulbesuch / Ausbildung</h3></td></tr>
+    <f:for each="{otherSchools}" as="school" iteration="iterator">
+        <tr>
+            <td>{school.name}</td>
+            <td>{school.visitFrom} - {school.visitTil}</td>
+        </tr>
+
+    </f:for>
+</table>
+
+<div style="page-break-before:always;"></div>

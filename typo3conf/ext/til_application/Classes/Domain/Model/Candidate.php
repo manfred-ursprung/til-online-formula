@@ -44,19 +44,19 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * familyStatus
 	 *
 	 * @var \string
-	 * @validate NotEmpty
+	 *
 	 */
 	protected $familyStatus = '';
 
 	/**
 	 * @var  \DateTime
-	 * @validate NotEmpty
+	 *
 	 */
 	protected $birthdate;
 
 	/**
 	 * @var  \string
-	 * @validate NotEmpty
+	 *
 	 */
 	protected $countryOfBirth;
 
@@ -71,7 +71,7 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * nationality
 	 *
 	 * @var string
-	 * @validate NotEmpty
+	 *
 	 */
 	protected $nationality = '';
 

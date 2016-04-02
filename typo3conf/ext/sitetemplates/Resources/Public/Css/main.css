@@ -17,3 +17,19 @@
         padding-bottom: 34px;
     }
 }
+/* Registrierungsformular */
+.femanager_fieldset {
+    float: left;
+    width: 50%;
+}
+.femanager_password{
+    clear: left;
+}
+.femanager_submit:before{
+    content: ' ';
+    display: table;
+    clear: both;
+}
+.femanager_submit{
+    margin-top: 20px;
+}

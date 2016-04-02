@@ -1,0 +1,117 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+
+<table>
+<f:for each="{family}" as="member" iteration="iterator">
+
+
+        <f:switch expression="{member.familyRelation}">
+            <f:case value="1">
+                <tr><td colspan="2"><h3>Monatliche Einnahmen der  Mutter</h3></td></tr>
+
+            </f:case>
+            <f:case value="0">
+                <tr><td colspan="2"><h3>Monatliche Einnahmen des Vaters</h3></td></tr>
+            </f:case>
+            <f:case value="2">
+                <tr><td colspan="2"><h3>Monatliche Einnahmen des Geschwisterkind {member.firstName}</h3></td></tr>
+
+            </f:case>
+        </f:switch>
+
+        <tr>
+            <td><f:translate key="tx_tilapplication_domain_model_income.gross_salary" extensionName="TilApplication"/></td>
+            <td>{member.income.grossSalary} Euro</td>
+        </tr>
+        <tr>
+            <td><f:translate key="tx_tilapplication_domain_model_income.net_salary" extensionName="TilApplication"/></td>
+            <td>{member.income.netSalary} Euro</td>
+        </tr>
+        <tr>
+            <td><f:translate key="tx_tilapplication_domain_model_income.self_employed_salary" extensionName="TilApplication"/></td>
+            <td>{member.income.selfEmployedSalary} Euro</td>
+        </tr>
+        <tr>
+            <td><f:translate key="tx_tilapplication_domain_model_income.welfare" extensionName="TilApplication"/></td>
+            <td>{member.income.welfare} Euro</td>
+        </tr>
+        <tr>
+            <td><f:translate key="tx_tilapplication_domain_model_income.unemployment_benefit" extensionName="TilApplication"/></td>
+            <td>{member.income.unemploymentBenefit} Euro</td>
+        </tr>
+        <tr>
+            <td><f:translate key="tx_tilapplication_domain_model_income.housing_benefit" extensionName="TilApplication"/></td>
+            <td>{member.income.housingBenefit} Euro</td>
+        </tr>
+        <tr>
+            <td><f:translate key="tx_tilapplication_domain_model_income.pension" extensionName="TilApplication"/></td>
+            <td>{member.income.pension} Euro</td>
+        </tr>
+        <tr>
+            <td><f:translate key="tx_tilapplication_domain_model_income.other_incomes" extensionName="TilApplication"/></td>
+            <td>{member.income.otherIncomes} Euro</td>
+        </tr>
+
+</f:for>
+
+    <tr><td colspan="2"><h3>Vermögen</h3></td></tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_candidate.asset_real_estate" extensionName="TilApplication"/></td>
+        <td>{candidate.assetRealEstate} Euro</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_candidate.asset_savings" extensionName="TilApplication"/></td>
+        <td>{candidate.assetSavings} Euro</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_candidate.asset_misc_estate" extensionName="TilApplication"/></td>
+        <td>{candidate.assetMiscEstate} Euro</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_candidate.asset_misc_estate" extensionName="TilApplication"/></td>
+        <td>{candidate.assetMiscEstate} Euro</td>
+    </tr>
+
+
+    <tr><td colspan="2"><h3>Ausgaben/Verbindlichkeiten der Familie (pro Monat)</h3></td></tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_costs.living_costs" extensionName="TilApplication"/></td>
+        <td>{candidate.costs.livingCosts} Euro</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_costs.credit_costs" extensionName="TilApplication"/></td>
+        <td>{candidate.costs.creditCosts} Euro</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_costs.other_outgoings" extensionName="TilApplication"/></td>
+        <td>{candidate.costs.otherOutgoings} Euro</td>
+    </tr>
+
+    <tr><td colspan="2"><h3>Ausbildungs- und Lebenshaltungskosten des Bewerbers</h3></td></tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_costs.travel_costs" extensionName="TilApplication"/></td>
+        <td>{candidate.costs.travelCosts} Euro</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_costs.further_education_costs" extensionName="TilApplication"/></td>
+        <td>{candidate.costs.furtherEducationCosts} Euro</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_costs.private_coaching_costs" extensionName="TilApplication"/></td>
+        <td>{candidate.costs.privateCoachingCosts} Euro</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_costs.rental" extensionName="TilApplication"/></td>
+        <td>{candidate.costs.rental} Euro</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_costs.living_costs_single" extensionName="TilApplication"/>&nbsp;</td>
+        <td>{candidate.costs.livingCostsSingle} Euro</td>
+    </tr>
+    <tr>
+        <td><f:translate key="tx_tilapplication_domain_model_costs.other_costs" extensionName="TilApplication"/></td>
+        <td>{candidate.costs.otherCosts} Euro</td>
+    </tr>
+
+
+
+</table>

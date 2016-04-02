@@ -8,6 +8,9 @@ plugin.tx_tilapplication_form {
 	persistence {
 		storagePid = {$plugin.tx_tilapplication_form.persistence.storagePid}
 	}
+	settings{
+	    loginPage = {$plugin.tx_tilapplication_form.frontend.loginPage}
+	}
 }
 
 plugin.tx_tilapplication._CSS_DEFAULT_STYLE (

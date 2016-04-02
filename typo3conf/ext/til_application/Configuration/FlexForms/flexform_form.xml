@@ -39,12 +39,9 @@
 									</numIndex>
 									<numIndex index="7">
 										<numIndex index="0">Step 6</numIndex>
-										<numIndex index="1">OnlineFormula->step6;OnlineFormula->updateStep5;OnlineFormula->step0;OnlineFormula->generatePdf;</numIndex>
+										<numIndex index="1">OnlineFormula->step6;OnlineFormula->updateStep5;OnlineFormula->step0;OnlineFormula->generatePdf;OnlineFormula->approval;</numIndex>
 									</numIndex>
-									<numIndex index="8">
-										<numIndex index="0">Seite für PDF </numIndex>
-										<numIndex index="1">OnlineFormula->generatePdf;OnlineFormula->step6;OnlineFormula->updateStep5;OnlineFormula->step0;</numIndex>
-									</numIndex>
+
 								</items>
 							</config>
 						</TCEforms>
@@ -172,22 +169,7 @@
 							</config>
 						</TCEforms>
 					</settings.pageStep6>
-					<settings.pageForPDF>
-						<TCEforms>
-							<exclude>1</exclude>
-							<label>Seite für PDF Generierung</label>
-							<config>
-								<type>group</type>
-								<internal_type>db</internal_type>
-								<allowed>pages</allowed>
-								<size>1</size>
-								<maxitems>1</maxitems>
-								<minitems>0</minitems>
-								<show_thumbs>1</show_thumbs>
 
-							</config>
-						</TCEforms>
-					</settings.pageForPDF>
 				</el>
 			</ROOT>
 		</sStep0>

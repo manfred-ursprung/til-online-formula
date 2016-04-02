@@ -37,7 +37,7 @@ use MUM\TilApplication\Domain\Model\School;
 /**
  * CandidateController
  */
-class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class OnlineFormulaController extends  \MUM\TilApplication\Controller\AbstractController {
 
 	/**
 	 * candidateRepository
@@ -130,7 +130,7 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	public function step0Action() {
 		//DebuggerUtility::var_dump($this->candidate, 'Step0');
 		if(!$this->isUserValid()) {
-			$this->redirect('', null, null, null, 46);
+			$this->redirect('', null, null, null, $this->settings['loginPage']);
 		}
 		$this->view->assign('isNew', $this->candidate->_isNew());
 		$this->view->assign('settings', $this->settings);
@@ -144,10 +144,8 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	public function step1Action() {
 		//DebugUtility::debug($GLOBALS['TSFE']->fe_user, 'Frontenduser');
 		//DebuggerUtility::var_dump($this->candidate, 'Step1');
-		if(!$this->isUserValid()) {
-			$this->redirect('step0');
+		$this->checkPermissions();
 
-		}
 		if($this->candidate->_isNew()){
 			$feUser = $this->frontendUserRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
 			if(is_a($feUser, '\TYPO3\CMS\Extbase\Domain\Model\FrontendUser')) {
@@ -174,9 +172,8 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 * @return void
 	 */
 	public function step2Action() {
-		if(!$this->isUserValid()) {
-			$this->redirect('step0');
-		}
+		$this->checkPermissions();
+
 		//DebuggerUtility::var_dump($this->candidate, 'Step2');
 		//has candidate an actual school entry?
 		$actualSchool = $this->getActualSchool();
@@ -198,9 +195,8 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 * @return void
 	 */
 	public function step3Action() {
-		if(!$this->isUserValid()) {
-			$this->redirect('step0');
-		}
+		$this->checkPermissions();
+
 		$family = $this->candidate->getWholeFamily();
 		if(empty($family)){
 			$family = $this->candidate->createEmptyFamily();
@@ -221,9 +217,8 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 * Einkommen und Vermögen
 	 */
 	public function step4Action() {
-		if(!$this->isUserValid()) {
-			$this->redirect('step0');
-		}
+		$this->checkPermissions();
+
 		$family = $this->candidate->getWholeFamily();
 		if(empty($family)){
 			$this->addFlashMessage('Sie müssen erst Schritt 3 bearbeiten. Legen Sie bitte die Familienmitglieder an.',
@@ -246,9 +241,8 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 */
 	public function step5Action()
 	{
-		if (!$this->isUserValid()) {
-			$this->redirect('step0', null, null, null, $this->settings['pageStep0']);
-		}
+		$this->checkPermissions();
+
 		if(is_null($documents = $this->candidate->getDocuments())){
 			/** @var  $documents \MUM\TilApplication\Domain\Model\Documents */
 			$documents = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\Documents');
@@ -268,8 +262,8 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 * shows the costs of the whole family
 	 */
 	public function step6Action() {
-		if(!$this->isUserValid()) {
-			$this->redirect('step0', null, null, null, $this->settings['pageStep0'] );
+		if (!$this->isUserValid()) {
+			$this->redirect('step0', null, null, null, $this->settings['pageStep0']);
 		}
 		$family = $this->candidate->getWholeFamily();
 		if(empty($family)){
@@ -288,6 +282,24 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 			'ts'		=> $this->storagePid,
 		);
 		$this->view->assignMultiple($params);
+	}
+
+
+	public function initializeCreateAction() {
+	/*	print '<pre>';
+		print_r($_REQUEST);
+		print '</pre>';
+		exit;
+	*/
+		if ($this->arguments->hasArgument('newCandidate')) {
+			$this->arguments['newCandidate']
+				->getPropertyMappingConfiguration()
+				->forProperty('birthdate')
+				->setTypeConverterOption('TYPO3\\CMS\\Extbase\\Property\\TypeConverter\\DateTimeConverter',
+					\TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter::CONFIGURATION_DATE_FORMAT, 'd.m.Y');
+			//	->setTargetTypeForSubProperty('schoolCertificateDate', '\DateTime');
+
+		}
 
 	}
 
@@ -296,6 +308,7 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 	 * action create
 	 *
 	 * @param \MUM\TilApplication\Domain\Model\Candidate $newCandidate
+	 * @dontvalidate $newCandidate
 	 * @return void
 	 */
 	public function createAction(\MUM\TilApplication\Domain\Model\Candidate $newCandidate) {
@@ -310,65 +323,35 @@ class OnlineFormulaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCo
 		}
 	}
 
-
+	/**
+	 *  some settings before going to make pdf, not really necessary could also be in generatePdf
+	 */
 	public function initializegeneratePdfAction(){
 		require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('til_application') . 'Classes/Contrib/Dompdf/autoload.inc.php');
-		//require_once(t3lib_extMgm::extPath('dompdf') . 'Resources/Private/Contrib/Dompdf/dompdf_config.inc.php');
+
 		$this->domPdf = new \Dompdf\Dompdf();
-		$this->domPdf->set_paper("A4", "portrait"
+		$this->domPdf->setPaper("A4", "portrait"
 		//$this->arguments['papersize'],
 		//$this->arguments['orientation']
 		);
-		//$this->tempPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('sim_domtopdf') . 'Resources/Private/Tmp';
-		$this->domPdf->set_base_path("http://".\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('HTTP_HOST'));
+
+		$this->domPdf->setBasePath("http://".\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('HTTP_HOST'));
 	}
 
 
 	public function generatePdfAction(){
 		$forceDownload = 1;
 
-		if(isset($_GET["exportId"])) {
-			$referer = HT_PROTO."".\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('HTTP_HOST')."/index.php?id=".$_GET["exportId"]."&pdf=true";
-		} else {
-			$referer = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('HTTP_REFERER');
-		}
 		/** @var  $candidate Candidate */
 		$candidate = $this->candidateRepository->findByUid($this->request->getArgument('candidate'));
 
 		$filename = 'bewerbung-fuer-talent-im-land_'.$candidate->getUid() . '.pdf';
-
-/*		$curl = curl_init();
-		//$url = 'http://php.net/manual/en/curl.examples-basic.php';
-		//echo 'Referer: ' . $referer .'<br />';
-		//exit();
-		$user = 'muhittin';
-		$password = 'bayern-2015';
-		curl_setopt($curl, CURLOPT_URL, $referer);
-		curl_setopt($curl, CURLOPT_VERBOSE, true);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		//curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-		//curl_setopt($curl, CURLOPT_USERPWD, "\"" . $user . ":" . $password . "\"");
-		//curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-		curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; rv:1.7.3) Gecko/20041001 Firefox/0.10.1" );
-		$resp = curl_exec($curl);
-		curl_close($curl);
-*/
 		$html = $this->generateHtmlForPdf();
 
-		$css = GeneralUtility::getFileAbsFileName('EXT:til_application/Resources/Public/Css/pdf.css', false, false);
-		$cssData = file_get_contents($css);
-		//$cssData = '';
-		//print 'css : ' . PATH_site;
-		//exit;
 		$html = <<<PDFGENERATE
 			<html><head>
-			<style type="text/css">
-				input{border:none;}
-				label{width: 200px;}
-			</style>
 			</head><body> $html</body></html>
 PDFGENERATE;
-		file_put_contents('/kunden/414277_97359/webseiten/mum-webdesign/til/htdocs/fileadmin/pdf_out.html', $html);
 
 		$this->domPdf->loadHtml($html);
 		$this->domPdf->setBasePath(PATH_site);
@@ -384,11 +367,28 @@ PDFGENERATE;
 		);
 		//$this->redirect('show', 'Vacancies', 'Stellenangebote', ['jobId' => $jobId]);
 		die();
-		//$this->domPdf->output(array());
-		//$this->view->assign('content', $resp);
-
 
 	}
+
+	/**
+	 * @param Candidate $candidate
+	 * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
+	 * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
+	 * last action in whole process, now no changes can be done to data
+	 */
+	public function approvalAction(\MUM\TilApplication\Domain\Model\Candidate $candidate){
+		if($this->isUserValid()) {
+			$candidate->setApproval(true);
+			$this->candidateRepository->update($candidate);
+			$this->addFlashMessage('Ihre Daten wurden zur Prüfung freigegeben. Sie können nun keine Änderungen an den Daten mehr vornehmen.', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
+
+			$this->redirect('step6');
+		}else{
+			$this->redirect('step0', null, null, null, $this->settings['pageStep0']);
+		}
+
+	}
+
 
 	/**
 	 * create HTML to produce a PDF document
@@ -454,6 +454,7 @@ PDFGENERATE;
 	 * action update
 	 *
 	 * @param \MUM\TilApplication\Domain\Model\Candidate $candidate
+	 * @dontvalidate $candidate
 	 * @return void
 	 */
 	public function updateStep1Action(\MUM\TilApplication\Domain\Model\Candidate $candidate) {
@@ -992,4 +993,22 @@ PDFGENERATE;
 
 		return $html;
 	}
+
+	/**
+	 * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
+	 * checks permissions for editing
+	 */
+	protected function checkPermissions()
+	{
+		if (!$this->isUserValid()) {
+			$this->redirect('step0', null, null, null, $this->settings['pageStep0']);
+		}
+		if ($this->candidate->isApproval()) {
+			$this->addFlashMessage('Ihre Dateneingabe ist abgeschlossen. Sie können keine Änderungen mehr vornehmen.',
+				'', \TYPO3\CMS\Core\Messaging\AbstractMessage::OK);
+			$this->redirect('step6', null, null, null, $this->settings['pageStep6']);
+		}
+	}
+
+
 }
