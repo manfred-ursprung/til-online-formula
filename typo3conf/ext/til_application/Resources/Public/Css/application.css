@@ -71,12 +71,18 @@ fieldset legend {
 fieldset legend .subline {
   font-size: 1.6rem;
 }
+fieldset legend.first-child {
+  padding-top: 5px;
+}
 .add-template {
   display: block;
   margin: 20px 0;
 }
 .removeOtherSchool {
   margin: 10px 0;
+}
+.step-navigation {
+  margin-top: 20px;
 }
 .step-navigation .btn {
   background-color: #a2bd30;
@@ -85,6 +91,10 @@ fieldset legend .subline {
 }
 .step-navigation .btn:first-child {
   margin-left: 0;
+}
+.help-to-complete {
+  padding: 20px 0 5px 0;
+  margin-bottom: 0;
 }
 .tabs-container .tab-content {
   border-left: 1px solid #ddd;

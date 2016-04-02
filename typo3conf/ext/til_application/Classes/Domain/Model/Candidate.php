@@ -747,7 +747,13 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		}
 	}
 
-	public function getWholeFamily(){
+	/**
+	 * @param bool $withBlankRelative
+	 * @return array
+	 * returns current family in a special order. If paramete is set, mother or father is set as blank object.
+	 * Sibling can be created in forms
+	 */
+	public function getWholeFamily($withBlankRelative = false){
 		//@TODO ein  Array mit allen Relatives in der Reihenfolge Mutter, vater, Geschwister, Geeschwister
 		$wholeFamily = array();
 		if($this->family->count() > 0){
@@ -770,23 +776,47 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 						break;
 				}
 			}
-			$wholeFamily[] = $temp['mother'];
-			$wholeFamily[] = $temp['father'];
+			if(is_object($temp['mother'])){
+				$wholeFamily[] = $temp['mother'];
+			}elseif($withBlankRelative){
+				$relative = $this->createBlankRelative(Relative::RELATION_MOTHER);
+				$wholeFamily[] = $relative;
+			}
+			if(is_object($temp['father'])){
+				$wholeFamily[] = $temp['father'];
+			}elseif($withBlankRelative){
+				$relative = $this->createBlankRelative(Relative::RELATION_FATHER);
+				$wholeFamily[] = $relative;
+			}
+
 			$wholeFamily = array_merge($wholeFamily, $temp['sibling']);
 		}
 		return $wholeFamily;
 	}
 
+	/**
+	 * @return array
+	 * returns blank family, only family relation is set
+	 */
 	public function createEmptyFamily(){
 		$family = array();
 		foreach(array(Relative::RELATION_MOTHER, Relative::RELATION_FATHER, Relative::RELATION_SIBLING) as $relation){
-			/** @var  $relative \MUM\TilApplication\Domain\Model\Relative */
-			$relative = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\Relative');
-			$relative->setFamilyRelation($relation);
+			$relative = $this->createBlankRelative($relation);
 			$family[] = $relative;
 		}
 
 		return $family;
+	}
+
+	/**
+	 * @return \MUM\TilApplication\Domain\Model\Relative
+	 */
+	protected function createBlankRelative($relation)
+	{
+		/** @var  $relative \MUM\TilApplication\Domain\Model\Relative */
+		$relative = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\Relative');
+		$relative->setFamilyRelation($relation);
+		return $relative;
 	}
 
 }

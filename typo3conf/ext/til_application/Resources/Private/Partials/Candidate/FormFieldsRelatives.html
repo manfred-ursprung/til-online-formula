@@ -13,8 +13,8 @@
         <v:variable.set name="checkAttrib" value="" />
     </f:else>
 </f:if>
-
-
+<p class="help-to-complete">Hinweis zum Ausfüllen:<br />Nur die Person wird gespeichert, bei der der Vorname ausgefüllt ist.
+    <br />Alle anderen Personen werden verworfen.</p>
 <f:for each="{family}" as="member" iteration="iterator">
 
     <fieldset class="family-{member.familyRelation}" id="family_member_{iterator.index}">
@@ -25,7 +25,7 @@
         <div class="family-member-information">
             <f:switch expression="{member.familyRelation}">
                 <f:case value="1">
-                    <legend>Angaben zur Mutter</legend>
+                    <legend class="first-child">Angaben zur Mutter</legend>
                 </f:case>
                 <f:case value="0">
                     <legend>Angaben zum Vater</legend>

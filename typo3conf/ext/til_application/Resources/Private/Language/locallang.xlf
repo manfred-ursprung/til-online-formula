@@ -22,7 +22,7 @@
 				<source>weiblich</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.family_status">
-				<source>Familien Status</source>
+				<source>Familienstatus</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.family_status.single">
 				<source>Ledig</source>
@@ -40,7 +40,7 @@
 				<source>Geburtsland</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.migration_background">
-				<source>Migrations Hintergrund</source>
+				<source>Migrationshintergrund</source>
 			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_candidate.nationality">
 				<source>Nationalität</source>

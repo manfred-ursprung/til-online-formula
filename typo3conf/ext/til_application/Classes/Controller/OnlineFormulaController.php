@@ -197,7 +197,7 @@ class OnlineFormulaController extends  \MUM\TilApplication\Controller\AbstractCo
 	public function step3Action() {
 		$this->checkPermissions();
 
-		$family = $this->candidate->getWholeFamily();
+		$family = $this->candidate->getWholeFamily(true);
 		if(empty($family)){
 			$family = $this->candidate->createEmptyFamily();
 		}
@@ -505,21 +505,12 @@ PDFGENERATE;
 	public function updateStep2Action(\MUM\TilApplication\Domain\Model\Candidate $candidate,
 									  \MUM\TilApplication\Domain\Model\School $actualSchool) {
 		if($this->isUserValid()) {
-		/*	print '<pre>';
-			print_r($actualSchool);
-			print '</pre>';
-			exit;
-		*/
+
 			$actualSchool->setCandidate($candidate);
 			$this->schoolRepository->add($actualSchool);
 			$candidate->setActualSchool($actualSchool);
 
 			//Weitere Schulen schoolCareer
-		/*	print '<pre>';
-			print_r($_REQUEST['tx_tilapplication_form']['otherSchool']);
-			print '</pre>';
-			exit;
-		*/
 			$otherSchools = $_REQUEST['tx_tilapplication_form']['otherSchool'];
 			$this->createAndAddSchool($candidate, $otherSchools);
 
@@ -548,7 +539,7 @@ PDFGENERATE;
 		//DebuggerUtility::var_dump($family, 'UpdateStep3');
 		//alle Angaben für die Familienmitglieder aus dem Array in Objekte transferieren
 		//speichern in candidate
-		if(isset($family['firstName'])){
+		if(isset($family['firstName']) || isset($family['lastName'])){
 			$candidate = $this->createAndAddFamily($candidate, $family);
 			if(is_a($candidate, 'TYPO3\CMS\Extbase\Validation\Error')){
 				$this->addFlashMessage('Sie müssen den Geburtstag im Format dd.mm.YYYY eingeben. Andere Formate werden nicht unterstützt.',
@@ -659,8 +650,8 @@ PDFGENERATE;
 
 		/** @var  $dateTimeConverter \TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter */
 		$dateTimeConverter = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Property\\TypeConverter\\DateTimeConverter');
-		foreach ($family['firstName'] as $key => $firstName) {
-			if (!empty($firstName) ||  ($family['remove'][$key] == 1) ) {
+		foreach ($family['firstName'] as $key => $value) {
+			if ((strlen($family['firstName']) > 0) ||  ($family['remove'][$key] == 1) ) {
 				if(isset($family['uid'][$key])){
 					$member = $relativeRepository->findByUid($family['uid'][$key]);
 					if(!is_object($member)){
@@ -671,7 +662,7 @@ PDFGENERATE;
 					/** @var  $member \MUM\TilApplication\Domain\Model\Relative */
 					$member = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\Relative');
 				}
-				$member->setFirstName($firstName);
+				$member->setFirstName($family['firstName'][$key]);
 				$member->setLastName($family['lastName'][$key]);
 
 				try {
@@ -682,16 +673,15 @@ PDFGENERATE;
 					if(is_a($birthdate, 'DateTime') || is_null($birthdate)) {
 						$member->setBirthdate($birthdate);
 					}else{
-						return $birthdate;
-						print "<pre> : Error in adding Birthdate to relative, try it again with other date format like dd.mm.yyyy";
-						print_r($birthdate);
-						print '</pre>';
-						exit;
-
+						$this->addFlashMessage('Beim Zuweisen des Geburtstag ' . $family['birthdate'][$key] .' ist ein unerwarteter Fehler passiert.<br />'
+						.'Probieren Sie es noch mal. Sollte es wieder nicht klappen, lassen Sie das Feld bitte leer und inforimieren uns.',
+							'Warning', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
 					}
 				} catch (\TYPO3\CMS\Extbase\Error\Error $e) {
-					print '<pre>' . $e->getMessage() . '</pre>';
-					exit;
+					$this->addFlashMessage('Folgender Fehler ist passiert : ' . $e->getMessage() .'<br />Bitte informieren Sie uns. Fehlercode RELATIVE-BIRTHDATE.',
+						'Warning',
+						\TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
+
 				}
 
 				$member->setNationality($family['nationality'][$key]);
@@ -708,7 +698,9 @@ PDFGENERATE;
 				}else{
 					$relativeRepository->update($member);
 				}
-
+				$this->addFlashMessage('Verwandter mit Relation '. $family['familyRelation'][$key] . ' wurde gespeichert.',
+					'',
+					\TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
 			}
 		}
 		return $candidate;

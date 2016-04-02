@@ -2,16 +2,13 @@
 <f:layout name="Default" />
 
 <f:section name="main">
-	<h1>Einkommen aller Familienmitglieder des Antragstellers</h1>
-
 	<f:flashMessages renderMode="div" />
 
 	<f:render partial="Candidate/StepNavigation" arguments="{settings: settings}" />
 
 	<f:render partial="FormErrors" arguments="{object:Candidate}" />
 
-	<h2>IV. Finanzielle Situation</h2>
-	<p>Bitte geben Sie die Werte als volle Eurobeträge an.</p>
+	<p class="help-to-complete">Bitte geben Sie die Werte als volle Eurobeträge an.</p>
 	<f:form action="updateStep3" name="family" object="{family}" arguments="{candidate: candidate}"
 			pageUid="{settings.pageStep5}" additionalAttributes="{role: 'form'}">
 		<f:render partial="Candidate/FormFieldsIncome" arguments="{family: family,

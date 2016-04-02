@@ -8,8 +8,6 @@
 
 	<f:render partial="FormErrors" arguments="{object:Candidate}" />
 
-	<h2>V. Uploads wichtiger Dokumente</h2>
-
 	<f:form action="updateStep5" name="documents" object="{documents}" enctype="multipart/form-data"
 			pageUid="{settings.pageStep6}" additionalAttributes="{role: 'form'}">
 		<f:render partial="Candidate/FormFieldsUpload" arguments="{documents: documents,

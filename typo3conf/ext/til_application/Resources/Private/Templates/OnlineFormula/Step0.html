@@ -2,15 +2,15 @@
 <f:layout name="Default" />
 
 <f:section name="main">
-<h1>Onlineformular für Stipendienbewerber</h1>
+<h1>Online-Formular für Stipendienbewerber</h1>
 
 <f:flashMessages renderMode="div" />
 <f:if condition="{isNew}">
     <f:then>
-        <p>Sie haben im Online Formular bisher noch keine Angaben gemacht.<br />
+        <p>Sie haben im Online-Formular bisher noch keine Angaben gemacht.<br />
         Als erstes geben Sie Ihre persönlichen Daten ein, im zweiten Schritt werden Daten über Ihre
-        berufliche Laufbahn erhoben, im dritten Schritt über Ihre Familienmitglieder und zum Schluss
-        wird nach Einkommen, Vermögen und monatliche Kosten gefragt.</p>
+        berufliche Laufbahn erhoben, im dritten Schritt über Ihre Familienmitglieder, im vierten Schritt
+        wird nach Einkommen, Vermögen und monatliche Kosten gefragt und zum Schluss laden Sie Zeugnisse, Lebenslauf und weitere Dokument hoch.</p>
         <p>
             <f:link.page pageUid="{settings.pageStep1}">
                 Zum ersten Schritt
@@ -18,7 +18,7 @@
         </p>
     </f:then>
     <f:else>
-        <p>Sie haben im Online Formular bisher schon Angaben gemacht.<br />
+        <p>Sie haben im Online-Formular bisher schon Angaben gemacht.<br />
         Weiter zu
             <f:link.page pageUid="{settings.pageStep1}">
                 Schritt 1,
