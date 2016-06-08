@@ -540,7 +540,6 @@ PDFGENERATE;
 		//alle Angaben für die Familienmitglieder aus dem Array in Objekte transferieren
 		//speichern in candidate
 		if(isset($family['firstName']) || isset($family['lastName'])){
-			$this->addFlashMessage('in if ', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::INFO);
 			$candidate = $this->createAndAddFamily($candidate, $family);
 			if(is_a($candidate, 'TYPO3\CMS\Extbase\Validation\Error')){
 				$this->addFlashMessage('Sie müssen den Geburtstag im Format dd.mm.YYYY eingeben. Andere Formate werden nicht unterstützt.',
@@ -571,8 +570,8 @@ PDFGENERATE;
 	 *  wichtig um das Mapping hinzubekommen von String nach Array
 	 */
 	public function initializeUpdateStep5Action() {
-		DebuggerUtility::var_dump($_REQUEST, 'Request');
-		DebuggerUtility::var_dump($_FILES, 'Files');
+		//DebuggerUtility::var_dump($_REQUEST, 'Request');
+		//DebuggerUtility::var_dump($_FILES, 'Files');
 
 		if ($this->arguments->hasArgument('documents')) {
 			$propertyMappingConfig = $this->arguments->getArgument('documents')->getPropertyMappingConfiguration();
@@ -594,7 +593,7 @@ PDFGENERATE;
 	 * @throws \TYPO3\CMS\Extbase\Persistence\Exception\IllegalObjectTypeException
 	 */
 	public function updateStep5Action(\MUM\TilApplication\Domain\Model\Documents $documents	){
-		DebuggerUtility::var_dump($documents, 'UpdateStep5');
+		//DebuggerUtility::var_dump($documents, 'UpdateStep5');
 		$old = $_REQUEST['tx_tilapplication_form']['old'];
 
 		//DebuggerUtility::var_dump($_REQUEST['tx_tilapplication_form']['old'], 'Request data');
@@ -699,9 +698,7 @@ PDFGENERATE;
 				}else{
 					$relativeRepository->update($member);
 				}
-				$this->addFlashMessage('Verwandter mit Relation '. $family['familyRelation'][$key] . ' wurde gespeichert.',
-					'',
-					\TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
+
 			}
 		}
 		return $candidate;
@@ -716,23 +713,19 @@ PDFGENERATE;
 		/** @var  $relativeRepository \MUM\TilApplication\Domain\Repository\RelativeRepository */
 		$relativeRepository = $this->objectManager->get('MUM\\TilApplication\\Domain\\Repository\\RelativeRepository');
 		$incomeRepository = $this->objectManager->get('MUM\\TilApplication\\Domain\\Repository\\IncomeRepository');
-		foreach ($family['grossSalary'] as $key => $grossSalary) {
-			if (!empty($grossSalary)) {
-				if(isset($family['uid'][$key])){
-					$member = $relativeRepository->findByUid($family['uid'][$key]);
-					$income = $member->getIncome();
-					if(is_null($income)){
-						/** @var  $member \MUM\TilApplication\Domain\Model\Income */
-						$income = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\Income');
-					}
-				}else {
-					/** @var  $member \MUM\TilApplication\Domain\Model\Relative */
-					$member = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\Relative');
-					/** @var  $member \MUM\TilApplication\Domain\Model\Income */
+		foreach ($family['uid'] as $key => $uid) {
+			if (!empty($uid)) {
+
+				/** @var  $member \MUM\TilApplication\Domain\Model\Relative */
+				$member = $relativeRepository->findByUid($family['uid'][$key]);
+				$income = $member->getIncome();
+				if (is_null($income)) {
+					/** @var  $income \MUM\TilApplication\Domain\Model\Income */
 					$income = GeneralUtility::makeInstance('MUM\\TilApplication\\Domain\\Model\\Income');
 				}
 
-				$income->setGrossSalary($grossSalary);
+
+				$income->setGrossSalary($family['grossSalary'][$key]);
 				$income->setNetSalary($family['netSalary'][$key]);
 				$income->setSelfEmployedSalary($family['selfEmployedSalary'][$key]);
 
@@ -742,9 +735,9 @@ PDFGENERATE;
 				$income->setPension($family['pension'][$key]);
 				$income->setOtherIncomes($family['otherIncomes'][$key]);
 
-				if($income->_isNew()) {
+				if ($income->_isNew()) {
 					$incomeRepository->add($income);
-				}else{
+				} else {
 					$incomeRepository->update($income);
 				}
 				$member->setIncome($income);
@@ -909,37 +902,37 @@ PDFGENERATE;
 		if($fileName !== FALSE){
 			$documents->setCertificate2($fileName);
 		}elseif(strlen($oldData['certificate3']) > 0){
-			$documents->setCertificate1($oldData['certificate2']);
+			$documents->setCertificate2($oldData['certificate2']);
 		}
 
 		$fileName = $fileUploader->uploadFile($documents->getCertificate3(), 'certificate3', $prefix);
 		if($fileName !== FALSE){
 			$documents->setCertificate3($fileName);
 		}elseif(strlen($oldData['certificate3']) > 0){
-			$documents->setCertificate1($oldData['certificate3']);
+			$documents->setCertificate3($oldData['certificate3']);
 		}
 
 		$fileName = $fileUploader->uploadFile($documents->getPassportPhoto(), 'passport_photo', $prefix);
 		if($fileName !== FALSE){
 			$documents->setPassportPhoto($fileName);
 		}elseif(strlen($oldData['passportPhoto']) > 0){
-			$documents->setCertificate1($oldData['passportPhoto']);
+			$documents->setPassportPhoto($oldData['passportPhoto']);
 		}
-
+/*
 		$fileName = $fileUploader->uploadFile($documents->getIdentityCard(), 'identity_card', $prefix);
 		if($fileName !== FALSE){
 			$documents->setIdentityCard($fileName);
 		}elseif(strlen($oldData['identityCard']) > 0){
-			$documents->setCertificate1($oldData['identityCard']);
+			$documents->setIdentityCard($oldData['identityCard']);
 		}
 
 		$fileName = $fileUploader->uploadFile($documents->getResidencePermit(), 'residence_permit', $prefix);
 		if($fileName !== FALSE){
 			$documents->setResidencePermit($fileName);
 		}elseif(strlen($oldData['residencePermit']) > 0){
-			$documents->setCertificate1($oldData['residencePermit']);
+			$documents->setResidencePermit($oldData['residencePermit']);
 		}
-
+*/
 		return $documents;
 	}
 

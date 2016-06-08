@@ -1,4 +1,4 @@
-<f:section name="Main">
+<f:section name="Main" >
 <table>
 	<tr><td colspan="2"><h3>Gesendete Dokumente</h3></td></tr>
 	<tr>
@@ -29,14 +29,15 @@
 		<td><f:translate key="tx_tilapplication_domain_model_documents.passport_photo" extensionName="TilApplication"/></td>
 		<td>{documents.passportPhoto}</td>
 	</tr>
-	<tr>
-		<td><f:translate key="tx_tilapplication_domain_model_documents.identity_card" extensionName="TilApplication"/></td>
-		<td>{documents.identityCard}</td>
-	</tr>
-	<tr>
-		<td><f:translate key="tx_tilapplication_domain_model_documents.residence_permit" extensionName="TilApplication"/></td>
-		<td>{documents.residencePermit}</td>
-	</tr>
-
+	<f:comment>
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_documents.identity_card" extensionName="TilApplication"/></td>
+			<td>{documents.identityCard}</td>
+		</tr>
+		<tr>
+			<td><f:translate key="tx_tilapplication_domain_model_documents.residence_permit" extensionName="TilApplication"/></td>
+			<td>{documents.residencePermit}</td>
+		</tr>
+	</f:comment>
 </table>
 </f:section>

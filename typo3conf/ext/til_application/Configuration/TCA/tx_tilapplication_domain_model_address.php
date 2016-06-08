@@ -205,8 +205,9 @@ return array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_application/Resources/Private/Language/locallang_db.xlf:tx_tilapplication_domain_model_address.sibling_room_number',
 			'config' => array(
-				'type' => 'check',
-				'default' => 0
+				'type' => 'input',
+				'size' => 10,
+				'eval' => 'trim'
 			)
 		),
 	),

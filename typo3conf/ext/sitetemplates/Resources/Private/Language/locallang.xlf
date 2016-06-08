@@ -56,6 +56,9 @@
             <trans-unit id="flux.onlineFormula.description">
                 <source>Seitenvorlage ohne Headerbild</source>
             </trans-unit>
+            <trans-unit id="femanager.emailCreateUserConfirmationText1">
+                <source>Bitte bestätigen Sie Ihre Registrierung bei Talent im Land Bayern durch Klick auf nachstehenden Link: </source>
+            </trans-unit>
 		</body>
 	</file>
 </xliff>

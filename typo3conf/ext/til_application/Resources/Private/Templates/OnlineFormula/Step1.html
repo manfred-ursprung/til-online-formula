@@ -4,7 +4,12 @@
 <f:section name="main">
 	<f:flashMessages renderMode="div" />
 
-	<f:render partial="Candidate/StepNavigation" arguments="{settings: settings}" />
+	<f:if condition="{isNew}">
+		<f:then></f:then>
+		<f:else>
+			<f:render partial="Candidate/StepNavigation" arguments="{settings: settings}" />
+		</f:else>
+	</f:if>
 
 	<f:render partial="FormErrors" section="original" arguments="{object:Candidate}" />
 	<f:if condition="{isNew}">

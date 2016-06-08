@@ -117,6 +117,9 @@
 			<trans-unit id="tx_tilapplication_domain_model_address.sibling_room">
 				<source>Zimmer mit Geschwister</source>
 			</trans-unit>
+			<trans-unit id="tx_tilapplication_domain_model_address.sibling_room_number">
+				<source>Anzahl der  Geschwister im Zimmer</source>
+			</trans-unit>
 			<trans-unit id="tx_tilapplication_domain_model_school">
 				<source>Schule</source>
 			</trans-unit>

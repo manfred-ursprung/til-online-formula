@@ -89,28 +89,30 @@
 			</f:if>
 		</div>
 	</div>
-	<div class="row form-group clearfix">
-		<div class="form-field form-line">
-			<label for="identityCard" class="over">
-				<f:translate key="tx_tilapplication_domain_model_documents.identity_card" />
-			</label>
-			<span class="uploaded-document">{documents.identityCard}</span>
-			<f:if condition="{readonly} == 0">
-				<f:form.upload property="identityCard" class="file" />
-			</f:if>
-		</div>
-	</div>
-
-	<div class="row form-group clearfix">
-		<div class="form-field form-line">
-			<label for="residencePermit" class="over">
-				<f:translate key="tx_tilapplication_domain_model_documents.residence_permit" />
-			</label>
-			<span class="uploaded-document">{documents.residencePermit}</span>
-			<f:if condition="{readonly} == 0">
-				<f:form.upload property="residencePermit" class="file" />
-			</f:if>
+	<f:comment>
+		<div class="row form-group clearfix">
+			<div class="form-field form-line">
+				<label for="identityCard" class="over">
+					<f:translate key="tx_tilapplication_domain_model_documents.identity_card" />
+				</label>
+				<span class="uploaded-document">{documents.identityCard}</span>
+				<f:if condition="{readonly} == 0">
+					<f:form.upload property="identityCard" class="file" />
+				</f:if>
+			</div>
 		</div>
 
-	</div>
+		<div class="row form-group clearfix">
+			<div class="form-field form-line">
+				<label for="residencePermit" class="over">
+					<f:translate key="tx_tilapplication_domain_model_documents.residence_permit" />
+				</label>
+				<span class="uploaded-document">{documents.residencePermit}</span>
+				<f:if condition="{readonly} == 0">
+					<f:form.upload property="residencePermit" class="file" />
+				</f:if>
+			</div>
+
+		</div>
+	</f:comment>
 </fieldset>
