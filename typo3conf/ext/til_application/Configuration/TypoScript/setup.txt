@@ -13,6 +13,31 @@ plugin.tx_tilapplication_form {
 	}
 }
 
+plugin.tx_tilapplication_evaluation {
+	view {
+		templateRootPath = {$plugin.tx_tilapplication_form.view.templateRootPath}
+		partialRootPath = {$plugin.tx_tilapplication_form.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_tilapplication_form.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_tilapplication_form.persistence.storagePid}
+	}
+	settings{
+	    loginPage = {$plugin.tx_tilapplication_form.frontend.loginPage}
+	}
+}
+
+config.tx_extbase.persistence.classes {
+    MUM\TilApplication\Domain\Model\Candidate {
+        mapping {
+            tableName = tx_tilapplication_domain_model_candidate
+            columns {
+                tstamp.mapOnProperty = tstamp
+            }
+        }
+    }
+}
+
 plugin.tx_tilapplication._CSS_DEFAULT_STYLE (
 	textarea.f3-form-error {
 		background-color:#FF9F9F;

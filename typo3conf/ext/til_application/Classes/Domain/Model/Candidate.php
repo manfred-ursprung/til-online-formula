@@ -189,6 +189,11 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	protected $documents;
 
+	/**
+	 * @var \int
+	 */
+	protected $tstamp;
+
 
 	/**
 	 * approval
@@ -688,6 +693,14 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setApproval($approval)
 	{
 		$this->approval = $approval;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getTstamp()
+	{
+		return $this->tstamp;
 	}
 
 

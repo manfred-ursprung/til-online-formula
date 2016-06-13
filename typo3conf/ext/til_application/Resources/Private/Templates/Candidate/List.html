@@ -1,0 +1,57 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers">
+
+
+<f:layout name="Default" />
+
+This Template is responsible for displaying a single view for a domain object
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        Show.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+<h1>List View for Candidate</h1>
+
+<f:flashMessages renderMode="div" />
+  <f:if condition="{candidates -> f:count()} > 0">
+    <table  class="tx_tilapplication_evaluation candidate-list table table-striped table-bordered table-condensed table-hover" >
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name </th>
+        <th>Geschlecht</th>
+
+        <th>Eintragungs-<br />datum</th>
+        <th>Aktion</th>
+      </tr>
+      </thead>
+      <f:for each="{candidates}" as="candidate" iteration="iterator">
+        <f:if condition="{iterator.isOdd }">
+          <f:then>
+            <v:variable.set name="class" value="odd"></v:variable.set>
+          </f:then>
+          <f:else>
+            <v:variable.set name="class" value="even"></v:variable.set>
+          </f:else>
+        </f:if>
+        <tr class="{class}">
+          <f:render partial="Candidate/Listproperties" arguments="{candidate:candidate}" />
+        </tr>
+
+      </f:for>
+
+    </table>
+  </f:if>
+
+
+</f:section>
+
+</div>

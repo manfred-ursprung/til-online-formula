@@ -29,6 +29,9 @@ namespace MUM\TilApplication\Controller;
 /**
  * CandidateController
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+
 class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
 	/**
@@ -39,6 +42,21 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 */
 	protected $candidateRepository = NULL;
 
+
+	/**
+	 * action show
+	 *
+	 * @param \MUM\TilApplication\Domain\Model\Candidate $candidate
+	 * @return void
+	 */
+	public function listAction() {
+		$candidates = $this->candidateRepository->findAll();
+		DebuggerUtility::var_dump($candidates, 'Step0');
+		$this->view->assign('candidates', $candidates);
+		//$this->view->assign('detailPage', $this->settings['detailPage']);
+
+	}
+
 	/**
 	 * action show
 	 *
@@ -46,7 +64,19 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 * @return void
 	 */
 	public function showAction(\MUM\TilApplication\Domain\Model\Candidate $candidate) {
-		$this->view->assign('candidate', $candidate);
+		$family = $candidate->getWholeFamily();
+		$actualSchool = $this->getActualSchool($candidate);
+		$otherSchools = $candidate->getOtherSchools();
+		$params = array(
+			'candidate'	=> $candidate,
+			'family'  => $family,
+			'actualSchool'	=> $actualSchool,
+			'otherSchools'	=> $otherSchools,
+			'settings'	=> $this->settings,
+			'ts'		=> $this->storagePid,
+		);
+		$this->view->assignMultiple( $params);
+
 	}
 
 	/**
@@ -91,6 +121,21 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 		$this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See <a href="http://wiki.typo3.org/T3Doc/Extension_Builder/Using_the_Extension_Builder#1._Model_the_domain" target="_blank">Wiki</a>', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::ERROR);
 		$this->candidateRepository->update($candidate);
 		$this->redirect('list');
+	}
+
+
+	/**
+	 * @param \MUM\TilApplication\Domain\Model\Candidate $candidate
+	 * @return \MUM\TilApplication\Domain\Model\School | null
+	 */
+	protected function getActualSchool(\MUM\TilApplication\Domain\Model\Candidate $candidate)
+	{
+		$actualSchool = NULL;
+		if ($candidate->hasActualSchool()) {
+			$actualSchool = $candidate->getActualSchool();
+		}
+		return $actualSchool;
+
 	}
 
 }

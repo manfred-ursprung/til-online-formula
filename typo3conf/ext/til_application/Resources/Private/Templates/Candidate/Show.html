@@ -1,22 +1,71 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers">
 
 <f:layout name="Default" />
 
-This Template is responsible for displaying a single view for a domain object
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        Show.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
 <f:section name="main">
-<h1>Single View for Candidate</h1>
+  <h1>Übersicht über die eingegebenen Daten</h1>
 
-<f:flashMessages renderMode="div" />
-<f:render partial="Candidate/Properties" arguments="{candidate:candidate}" />
-<f:link.action action="list">Back to list</f:link.action><br />
-<f:link.action action="new">New Candidate</f:link.action>
+  <p>Diese Daten hat der Bewerber {candidate.feUser.firstName} {candidate.feUser.lastName} eingegeben:</p>
+  <p>Die eingegbenen Daten werden nur zum Zwecke der Prüfung der Stipendiaten verwendet.
+
+  </p>
+
+
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="persoenliches">
+      <h2>Persönliche Daten</h2>
+      <div id="tab-1">
+        <f:render partial="Candidate/Pdf/FieldsStep1" arguments="{candidate:candidate}" />
+
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="schulkarriere">
+      <h2>Angaben über die Schulen, die der Antragsteller besucht hat</h2>
+      <div id="tab-2">
+        <f:render partial="Candidate/Pdf/FieldsStep2" arguments="{candidate:candidate,
+																		actualSchool: actualSchool,
+																		otherSchools: otherSchools,
+																		readonly: 1}" />
+
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="familie">
+      <h2>Angaben zur Familie</h2>
+      <div id="tab-3">
+        <f:render partial="Candidate/Pdf/FieldsStep3" section="Main" arguments="{family: family,
+																		candidate: candidate,
+																		readonly: 1}" />
+
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="finanzielles" style="page-break-after: always">
+      <h2>Angaben zur finanziellen Situation der Familie</h2>
+      <div id="tab-4">
+        <f:render partial="Candidate/Pdf/FieldsStep4" arguments="{family: family,
+                                                                candidate: candidate,
+                                                                readonly: 1}" />
+
+      </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="documents">
+      <h2>Hochgeladene Dokumente, müsssen vollzählig sein</h2>
+      <div id="tab-5">
+        <f:render partial="Candidate/Pdf/FieldsStep5" section="Main" arguments="{documents: candidate.documents,
+																		readonly: 1}" />
+
+      </div>
+    </div>
+  </div>
+
+  <f:link.action action="list" pluginName="evaluation" >Zurück zur Übersicht</f:link.action>
+
+
 </f:section>
+
+</div>

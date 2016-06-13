@@ -1,0 +1,15 @@
+
+
+<td>{candidate.uid}</td>
+
+
+<td>{candidate.feUser.firstName} {candidate.feUser.lastName}</td>
+<td class="gender">{candidate.gender}</td>
+<td class="date"><f:format.date format="%d.%m.%Y">{candidate.tstamp}</f:format.date></td>
+
+<td>
+	<div class="btn-group">
+		<f:link.action action="show" pluginName="evaluation"  arguments="{candidate : candidate}" title="Anzeigen" class="btn btn-default btn-xs"><i class="fa fa-camera"></i></f:link.action>
+      <a href="#" class="callDeleteConfirm btn btn-default btn-xs" data-candidate="{candidate.feUser.lastMame}" data-leisureuid="{candidate.uid}" title="löschen" ><i class="fa fa-trash-o"></i></a>
+	</div>
+</td>

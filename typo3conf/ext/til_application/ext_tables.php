@@ -9,6 +9,12 @@ if (!defined('TYPO3_MODE')) {
 	'Online Bewerbungsformular'
 );
 
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+	'MUM.' . $_EXTKEY,
+	'Evaluation',
+	'Auswertung der Bewerber'
+);
+
 if (TYPO3_MODE === 'BE') {
 
 	/**
@@ -34,6 +40,10 @@ if (TYPO3_MODE === 'BE') {
 $pluginSignature = str_replace('_','',$_EXTKEY) . '_form';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_form.xml');
+
+$pluginSignature = str_replace('_','',$_EXTKEY) . '_evaluation';
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_evaluation.xml');
 
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'TIL Online Bewerbungsformular');
