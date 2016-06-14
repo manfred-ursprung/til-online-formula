@@ -13,12 +13,26 @@
 
   </p>
 
+  <v:variable.set name="family" value="{candidate.wholeFamily}" />
+  <f:debug inline="true">{family}</f:debug>
 
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="persoenliches">
       <h2>Persönliche Daten</h2>
       <div id="tab-1">
         <f:render partial="Candidate/Pdf/FieldsStep1" arguments="{candidate:candidate}" />
+
+      </div>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="finanzielles" >
+      <h2>Angaben zur finanziellen Situation der Familie</h2>
+      <v:variable.set name="family" value="{candidate.wholeFamily}" />
+      <f:debug inline="true">{family}</f:debug>
+      <div id="tab-4">
+        <f:render partial="Candidate/Pdf/FieldsStep4" arguments="{family: family,
+                                                                candidate: candidate,
+                                                                readonly: 1}" />
 
       </div>
     </div>
@@ -44,15 +58,7 @@
       </div>
     </div>
 
-    <div role="tabpanel" class="tab-pane" id="finanzielles" style="page-break-after: always">
-      <h2>Angaben zur finanziellen Situation der Familie</h2>
-      <div id="tab-4">
-        <f:render partial="Candidate/Pdf/FieldsStep4" arguments="{family: family,
-                                                                candidate: candidate,
-                                                                readonly: 1}" />
 
-      </div>
-    </div>
     <div role="tabpanel" class="tab-pane" id="documents">
       <h2>Hochgeladene Dokumente, müsssen vollzählig sein</h2>
       <div id="tab-5">

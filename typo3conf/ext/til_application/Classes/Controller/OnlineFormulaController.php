@@ -801,19 +801,7 @@ PDFGENERATE;
 	}
 
 
-	/**
-	 * @return School|null
-	 */
-	protected function getActualSchool()
-	{
-		if ($this->candidate->hasActualSchool()) {
-			$actualSchool = $this->candidate->getActualSchool();
-			return $actualSchool;
-		} else {
-			$actualSchool = NULL;
-			return $actualSchool;
-		}
-	}
+	
 
 	/**
 	 * @param Candidate $candidate

@@ -31,5 +31,23 @@ namespace MUM\TilApplication\Domain\Repository;
  */
 class CandidateRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
-	
+
+    /**
+     * Returns all objects of this repository.
+     *
+     * @return QueryResultInterface|array
+     * @api
+     */
+    public function findAll() {
+        $query = $this->createQuery();
+        return $query->matching($query->equals('deleted', 0))->execute();
+
+    }
+
+
+    public function findAllApproved() {
+        $query = $this->createQuery();
+        return $query->matching($query->equals('approval', 1))->execute();
+
+    }
 }
