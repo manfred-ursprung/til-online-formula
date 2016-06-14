@@ -14,7 +14,7 @@
   </p>
 
   <v:variable.set name="family" value="{candidate.wholeFamily}" />
-  <f:debug inline="true">{family}</f:debug>
+
 
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="persoenliches">
@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div role="tabpanel" class="tab-pane" id="finanzielles" >
+    <div role="tabpanel" class="tab-paneeeee" id="finanzielles" >
       <h2>Angaben zur finanziellen Situation der Familie</h2>
       <v:variable.set name="family" value="{candidate.wholeFamily}" />
       <f:debug inline="true">{family}</f:debug>
@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <div role="tabpanel" class="tab-pane" id="schulkarriere">
+    <div role="tabpanel" class="tab-paneeee" id="schulkarriere">
       <h2>Angaben über die Schulen, die der Antragsteller besucht hat</h2>
       <div id="tab-2">
         <f:render partial="Candidate/Pdf/FieldsStep2" arguments="{candidate:candidate,
@@ -48,7 +48,7 @@
       </div>
     </div>
 
-    <div role="tabpanel" class="tab-pane" id="familie">
+    <div role="tabpanel" class="tab-paneeee" id="familie">
       <h2>Angaben zur Familie</h2>
       <div id="tab-3">
         <f:render partial="Candidate/Pdf/FieldsStep3" section="Main" arguments="{family: family,
@@ -59,7 +59,7 @@
     </div>
 
 
-    <div role="tabpanel" class="tab-pane" id="documents">
+    <div role="tabpanel" class="tab-paneeee" id="documents">
       <h2>Hochgeladene Dokumente, müsssen vollzählig sein</h2>
       <div id="tab-5">
         <f:render partial="Candidate/Pdf/FieldsStep5" section="Main" arguments="{documents: candidate.documents,
