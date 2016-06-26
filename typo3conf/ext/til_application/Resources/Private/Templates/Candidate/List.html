@@ -18,10 +18,19 @@ in /Configuration/ExtensionBuilder/settings.yaml:
 Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
 <f:section name="main">
-<h1>List View for Candidate</h1>
+<f:comment><h1>Übersicht über alle Bewerber</h1></f:comment>
 
 <f:flashMessages renderMode="div" />
   <f:if condition="{candidates -> f:count()} > 0">
+    <div class="btn-group">
+      <f:link.action action="excel" pluginName="evaluation"  arguments="{candidate : candidate}" title="Export Liste erzeugen" class="btn btn-default btn-xs">
+        Csv-Export
+      </f:link.action>
+      <a href="javascript:alert('hier startet dann ein Download mit allen Dokumenten.')" title="Export Dokumente" class="btn btn-default btn-xs">
+        Dokumente herunter laden
+      </a>
+
+    </div>
     <table  class="tx_tilapplication_evaluation candidate-list table table-striped table-bordered table-condensed table-hover" >
       <thead>
       <tr>

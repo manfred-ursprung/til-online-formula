@@ -116,3 +116,11 @@ fieldset legend.first-child {
   color: white;
   margin-left: 20px;
 }
+/* auswertung  */
+.tx-til-application .btn-group{
+  margin-bottom: 20px;
+}
+
+.tx-til-application .btn-group > .btn:last-child:not(:first-child){
+  margin-left: 100px;
+}

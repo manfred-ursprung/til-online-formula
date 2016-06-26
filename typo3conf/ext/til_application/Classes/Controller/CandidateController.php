@@ -80,6 +80,25 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 		$this->view->assignMultiple( $params);
 
 	}
+	
+	public function excelAction(){
+		/** @var  $export \MUM\TilApplication\Utility\ExportCvs */
+		$export = $this->objectManager->get('MUM\TilApplication\Utility\ExportCvs');
+		$result = $export->export();
+		//DebuggerUtility::var_dump($result, "Export Daten");
+		//exit;
+		$debug = false;
+		if($debug) {
+			$this->view->assign('result', $result);
+			$this->view->assign('fieldIndex', $export->getFieldIndex());
+		}else {
+			$csvFilename = 'Auswertung-' .date('Ymd_hi') . '.csv';
+			header('Content-Type: text/csv; charset=utf-8');
+			header('Content-Disposition: attachment; filename=' .$csvFilename);
+			$export->writeCsv();
+			die();
+		}
+	}
 
 	/**
 	 * action new

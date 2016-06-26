@@ -21,7 +21,7 @@ if (!defined('TYPO3_MODE')) {
 	'MUM.' . $_EXTKEY,
 	'Evaluation',
 	array(
-		'Candidate' => 'show, list,new, edit ',
+		'Candidate' => 'excel, show, list,new, edit ',
 
 	),
 	// non-cacheable actions

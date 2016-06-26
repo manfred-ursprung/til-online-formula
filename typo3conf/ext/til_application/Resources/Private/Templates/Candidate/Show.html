@@ -28,7 +28,6 @@
     <div role="tabpanel" class="tab-paneeeee" id="finanzielles" >
       <h2>Angaben zur finanziellen Situation der Familie</h2>
       <v:variable.set name="family" value="{candidate.wholeFamily}" />
-      <f:debug inline="true">{family}</f:debug>
       <div id="tab-4">
         <f:render partial="Candidate/Pdf/FieldsStep4" arguments="{family: family,
                                                                 candidate: candidate,

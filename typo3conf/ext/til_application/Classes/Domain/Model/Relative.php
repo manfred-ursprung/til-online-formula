@@ -243,4 +243,17 @@ class Relative extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		$this->income = $income;
 	}
 
+
+	public function isMother(){
+		return $this->getFamilyRelation() == Relative::RELATION_MOTHER;
+	}
+
+	public function isFather(){
+		return $this->getFamilyRelation() == Relative::RELATION_FATHER;
+	}
+
+
+	public function isSibling(){
+		return $this->getFamilyRelation() == Relative::RELATION_SIBLING;
+	}
 }

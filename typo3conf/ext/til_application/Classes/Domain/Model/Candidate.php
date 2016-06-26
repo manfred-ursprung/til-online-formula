@@ -203,6 +203,14 @@ class Candidate extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $approval = FALSE;
 
 
+	 public static function residenceStatus(){
+		 return array(
+			 1	=> 'Niederlassungserlaubnis',
+			 2  => 'Aufenthaltserlaubnis',
+			 3	=> ' Sonstiges',
+		 );
+	 }
+
 	/**
 	 * Returns the familyStatus
 	 *
