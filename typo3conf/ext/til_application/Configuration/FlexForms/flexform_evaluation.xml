@@ -15,7 +15,7 @@
 								<items>
 									<numIndex index="0">
 										<numIndex index="0">Übersicht</numIndex>
-										<numIndex index="1">Candidate->list;Candidate->show;Candidate->excel</numIndex>
+										<numIndex index="1">Candidate->list;Candidate->show;Candidate->excel;Candidate->download</numIndex>
 									</numIndex>
 
 								</items>

@@ -26,8 +26,12 @@ Otherwise your changes will be overwritten the next time you save the extension 
       <f:link.action action="excel" pluginName="evaluation"  arguments="{candidate : candidate}" title="Export Liste erzeugen" class="btn btn-default btn-xs">
         Csv-Export
       </f:link.action>
-      <a href="javascript:alert('hier startet dann ein Download mit allen Dokumenten.')" title="Export Dokumente" class="btn btn-default btn-xs">
+      <f:link.action action="download" pluginName="evaluation" title="Download der Dokumente in einer Zip-Datei" class="btn btn-default btn-xs" >
         Dokumente herunter laden
+      </f:link.action>
+
+      <a href="javascript:alert('hier startet dann ein Download mit allen Dokumenten.')" title="Export Dokumente" class="btn btn-default btn-xs">
+         ohne funktion
       </a>
 
     </div>
