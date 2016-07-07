@@ -100,6 +100,10 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 		}
 	}
 
+	/**
+	 * @throws \MUM\TilApplication\Utility\Exception
+	 * Packen und Download über \MUM\TilApplication\Utility\Zip
+	 */
 	public function _downloadAction(){
 		$fileDir = PATH_site . 'fileadmin/tx_tilapplication/';
 		$zip = new \MUM\TilApplication\Utility\Zip();
@@ -119,73 +123,52 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 		}
 	}
 
-
+	/**
+	 * @throws Exception
+	 * packen und download über ZipArchive - Standardklasse PHP
+	 */
 	public function downloadAction(){
 		$fileDir = PATH_site . 'fileadmin/tx_tilapplication/';
+		$zipFileName = $fileDir . 'AlleDokumente.zip';
 		$zip = new \ZipArchive();
 		@$handle = opendir($fileDir);
-		$filePerms = \MUM\TilApplication\Utility\Zip::S_IRWXU ; //| \MUM\TilApplication\Utility\Zip::S_IRWXG | \MUM\TilApplication\Utility\Zip::S_IRWXO;
-		if ($handle && $zip->open($fileDir . 'test.zip') )  {
+
+		if ($handle && $zip->open($zipFileName, \ZipArchive::CREATE) )  {
 			/* This is the correct way to loop over the directory. */
 			while (false !== ($file = readdir($handle))) {
-				if (strpos($file, ".pdf") !== false) {
+				$extension = pathinfo($file, PATHINFO_EXTENSION);
+				if (in_array(strtolower($extension), array('pdf', 'jpg', 'png', 'jpeg' ))) {
 					$pathData = pathinfo($fileDir . $file);
 					$fileName = $pathData['filename'];
 					$zip->addFile($fileDir . $file, $file);
-					//$zip->addFile(file_get_contents($fileDir . $file), $file, filectime($fileDir . $file), NULL, TRUE, $filePerms);
 				}
 			}
 			$zip->close();
-			$filestat = fstat($fileDir . 'test.zip');
-			$fileSize = $filestat['size'];
-			$this->sendZip("AlleDokumente.zip", "application/zip", $fileSize , "AlleDokumente.zip");
-		}
-	}
 
-	function sendZip($fileName = null, $contentType = "application/zip", $filesize, $utf8FileName = null, $inline = false) {
+			// send $filename to browser
+			$finfo = finfo_open(FILEINFO_MIME_TYPE);
+			$mimeType = finfo_file($finfo, $zipFileName);
+			$name = basename($zipFileName);
 
-		$headerFile = null;
-		$headerLine = null;
-		if(headers_sent($headerFile, $headerLine)) {
-			throw new Exception("Unable to send file '$fileName'. Headers have already been sent from '$headerFile' in line $headerLine");
-		}
-		if(ob_get_contents() !== false && strlen(ob_get_contents())) {
-			throw new Exception("Unable to send file '$fileName'. Output buffer contains the following text (typically warnings or errors):\n" . ob_get_contents());
-		}
-		if(@ini_get('zlib.output_compression')) {
-			@ini_set('zlib.output_compression', 'Off');
-		}
-		header("Pragma: public");
-		header("Last-Modified: " . @gmdate("D, d M Y H:i:s T"));
-		header("Expires: 0");
-		header("Accept-Ranges: bytes");
-		header("Connection: close");
-		header("Content-Type: " . $contentType);
-		$cd = "Content-Disposition: ";
-		if ($inline) {
-			$cd .= "inline";
-		} else {
-			$cd .= "attached";
-		}
-		if ($fileName) {
-			$cd .= '; filename="' . $fileName . '"';
-		}
-		if ($utf8FileName) {
-			$cd .= "; filename*=UTF-8''" . rawurlencode($utf8FileName);
-		}
-		header($cd);
-
-		header("Content-Length: ". $filesize);
-		if (!is_resource($this->zipFile)) {
-			echo $this->zipData;
-		} else {
-			rewind($this->zipFile);
-			while (!feof($this->zipFile)) {
-				echo fread($this->zipFile, $this->streamChunkSize);
+			if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+				// cache settings for IE6 on HTTPS
+				header('Cache-Control: max-age=120');
+				header('Pragma: public');
+			} else {
+				header('Cache-Control: private, max-age=120, must-revalidate');
+				header("Pragma: no-cache");
 			}
+			header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // long ago
+			header("Content-Type: $mimeType");
+			header('Content-Disposition: attachment; filename="' . $name . '";');
+			header("Accept-Ranges: bytes");
+			header('Content-Length: ' . filesize($zipFileName));
+
+			print readfile($zipFileName);
+			exit;
 		}
-		return true;
 	}
+
 
 
 	/**
