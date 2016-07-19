@@ -116,11 +116,10 @@ fieldset legend.first-child {
   color: white;
   margin-left: 20px;
 }
-/* auswertung  */
-.tx-til-application .btn-group{
+.evaluation .btn {
+  background-color: #a2bd30;
+  color: white;
+  margin-right: 100px;
   margin-bottom: 20px;
-}
-
-.tx-til-application .btn-group > .btn:last-child:not(:first-child){
-  margin-left: 100px;
+  padding: 10px;
 }

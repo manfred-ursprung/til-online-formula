@@ -22,7 +22,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 
 <f:flashMessages renderMode="div" />
   <f:if condition="{candidates -> f:count()} > 0">
-    <div class="btn-group">
+    <div class="btn-group evaluation">
       <f:link.action action="excel" pluginName="evaluation"  arguments="{candidate : candidate}" title="Export Liste erzeugen" class="btn btn-default btn-xs">
         Csv-Export
       </f:link.action>
@@ -30,9 +30,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
         Dokumente herunter laden
       </f:link.action>
 
-      <a href="javascript:alert('hier startet dann ein Download mit allen Dokumenten.')" title="Export Dokumente" class="btn btn-default btn-xs">
-         ohne funktion
-      </a>
+
 
     </div>
     <table  class="tx_tilapplication_evaluation candidate-list table table-striped table-bordered table-condensed table-hover" >
