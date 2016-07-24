@@ -100,28 +100,7 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 		}
 	}
 
-	/**
-	 * @throws \MUM\TilApplication\Utility\Exception
-	 * Packen und Download über \MUM\TilApplication\Utility\Zip
-	 */
-	public function _downloadAction(){
-		$fileDir = PATH_site . 'fileadmin/tx_tilapplication/';
-		$zip = new \MUM\TilApplication\Utility\Zip();
-		@$handle = opendir($fileDir);
-		$filePerms = \MUM\TilApplication\Utility\Zip::S_IRWXU ; //| \MUM\TilApplication\Utility\Zip::S_IRWXG | \MUM\TilApplication\Utility\Zip::S_IRWXO;
-		if ($handle) {
-			/* This is the correct way to loop over the directory. */
-			while (false !== ($file = readdir($handle))) {
-				if (strpos($file, ".pdf") !== false) {
-					$pathData = pathinfo($fileDir . $file);
-					$fileName = $pathData['filename'];
 
-					$zip->addFile(file_get_contents($fileDir . $file), $file, filectime($fileDir . $file), NULL, TRUE, $filePerms);
-				}
-			}
-			$zip->sendZip("AlleDokumente.zip", "application/zip", "AlleDokumente.zip");
-		}
-	}
 
 	/**
 	 * @throws Exception
@@ -129,12 +108,17 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 */
 	public function downloadAction(){
 		$fileDir = PATH_site . 'fileadmin/tx_tilapplication/';
+		//DebuggerUtility::var_dump($this->request->getArgument('file'), "Argumente");
+		//exit;
+
 		$zipFileName = $fileDir . 'AlleDokumente.zip';
+		$zipFileName = $fileDir . $this->request->getArgument('file');
+		/*
 		$zip = new \ZipArchive();
 		@$handle = opendir($fileDir);
 
 		if ($handle && $zip->open($zipFileName, \ZipArchive::CREATE) )  {
-			/* This is the correct way to loop over the directory. */
+			// This is the correct way to loop over the directory.
 			while (false !== ($file = readdir($handle))) {
 				$extension = pathinfo($file, PATHINFO_EXTENSION);
 				if (in_array(strtolower($extension), array('pdf', 'jpg', 'png', 'jpeg' ))) {
@@ -144,7 +128,7 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 				}
 			}
 			$zip->close();
-
+		*/
 			// send $filename to browser
 			$finfo = finfo_open(FILEINFO_MIME_TYPE);
 			$mimeType = finfo_file($finfo, $zipFileName);
@@ -166,7 +150,7 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 
 			print readfile($zipFileName);
 			exit;
-		}
+		//}
 	}
 
 

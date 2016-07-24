@@ -26,9 +26,20 @@ Otherwise your changes will be overwritten the next time you save the extension 
       <f:link.action action="excel" pluginName="evaluation"  arguments="{candidate : candidate}" title="Export Liste erzeugen" class="btn btn-default btn-xs">
         Csv-Export
       </f:link.action>
-      <f:link.action action="download" pluginName="evaluation" title="Download der Dokumente in einer Zip-Datei" class="btn btn-default btn-xs" >
-        Dokumente herunter laden
-      </f:link.action>
+
+      <f:comment>
+        <f:link.action action="download" pluginName="evaluation" arguments="{file : 'AlleDokumente.zip'}" title="Download der Dokumente in einer Zip-Datei" class="btn btn-default btn-xs" >
+          Dokumente herunter laden
+        </f:link.action>
+        <f:link.action action="download" pluginName="evaluation" arguments="{file : 'AlleBilder.zip'}" title="Download der Bilddateien in einer Zip-Datei" class="btn btn-default btn-xs" >
+          Bilder herunter laden
+        </f:link.action>
+      </f:comment>
+
+      <a href="fileadmin/tx_tilapplication/AlleDokumente.zip" class="btn btn-default btn-xs">Dokumente herunter laden</a>
+      <f:comment>
+        <a href="fileadmin/tx_tilapplication/AlleBilder.zip" class="btn btn-default btn-xs">Alle Bilder</a>
+      </f:comment>
 
 
 
