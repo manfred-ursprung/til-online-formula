@@ -51,7 +51,8 @@ class ExportCvs{
     public function __construct(){
         //get all candidates
         $this->candidateRepository = GeneralUtility::makeInstance('MUM\TilApplication\Domain\Repository\CandidateRepository');
-        $this->candidates = $this->candidateRepository->findAllApproved();
+        //$this->candidates = $this->candidateRepository->findAllApproved();
+        $this->candidates = $this->candidateRepository->findAll();
         $this->init();
 
     }

@@ -50,8 +50,8 @@ class CandidateController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 	 * @return void
 	 */
 	public function listAction() {
-		//$candidates = $this->candidateRepository->findAll();
-		$candidates = $this->candidateRepository->findAllApproved();
+		$candidates = $this->candidateRepository->findAll();
+		//$candidates = $this->candidateRepository->findAllApproved();
 		//DebuggerUtility::var_dump($candidates, 'Step0');
 		//$family = $this->candidate->getWholeFamily(true);
 		$this->view->assign('candidates', $candidates);
