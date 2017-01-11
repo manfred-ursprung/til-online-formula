@@ -187,7 +187,11 @@
     }
   }
 }
-
+.scrolled{
+  .navbar-brand{
+    height: auto;
+  }
+}
 
 // Navbar toggle
 //
@@ -277,6 +281,14 @@
       > a {
         padding-top:    @navbar-padding-vertical;
         padding-bottom: @navbar-padding-vertical;
+      }
+    }
+    &.scrolled {
+      > li {
+        > a  {
+          padding-top: 0;
+          padding-bottom: 5px;
+        }
       }
     }
   }

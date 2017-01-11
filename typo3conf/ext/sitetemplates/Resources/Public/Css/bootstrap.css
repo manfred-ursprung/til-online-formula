@@ -4180,6 +4180,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     margin-left: -15px;
   }
 }
+.scrolled .navbar-brand {
+  height: auto;
+}
 .navbar-toggle {
   position: relative;
   float: right;
@@ -4253,6 +4256,10 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   #loginBtn {
     padding-top: 46px;
     padding-bottom: 46px;
+  }
+  .navbar-nav.scrolled > li > a {
+    padding-top: 0;
+    padding-bottom: 5px;
   }
 }
 .navbar-form {
@@ -6629,12 +6636,6 @@ button.close {
   font-family: 'Exo2.0-ThinItalic';
   src: url('../fonts/Exo2.0-ThinItalic.otf');
 }
-
-
-
-
-
-
 body {
   color: #6f6f70;
 }
@@ -6651,8 +6652,8 @@ body {
   background-color: #a2bd30;
   width: 100%;
 }
-#subheader {
-  /* height: 50px; */
+#subheader-no-image {
+  height: 150px;
 }
 .page-content-wrapper .content-wrap {
   padding-left: 0px;

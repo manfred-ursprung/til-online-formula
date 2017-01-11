@@ -16,6 +16,10 @@
         padding-top: 46px;
         padding-bottom: 34px;
     }
+    .navbar-nav-scrolled > li > a{
+        padding-top: 0;
+        padding-bottom: 0;
+    }
 }
 /* Registrierungsformular */
 .femanager_fieldset {
