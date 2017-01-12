@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-01-12T08:14:19Z" product-name="til_alumni">
+		<header/>
+		<body>
+			<trans-unit id="language_skills.description">
+				<source>languageSkills</source>
+			</trans-unit>
+			<trans-unit id="school_career.description">
+				<source>schoolCareer</source>
+			</trans-unit>
+			<trans-unit id="personel_experiences.description">
+				<source>personelExperiences</source>
+			</trans-unit>
+			<trans-unit id="advice_topics.description">
+				<source>adviceTopics</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

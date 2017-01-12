@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-01-12T08:14:19Z" product-name="til_alumni">
+		<header/>
+		<body>
+			<trans-unit id="qualification1.description">
+				<source>qualification1</source>
+			</trans-unit>
+			<trans-unit id="qualification2.description">
+				<source>qualification2</source>
+			</trans-unit>
+			<trans-unit id="opportunities_after_study.description">
+				<source>opportunitiesAfterStudy</source>
+			</trans-unit>
+			<trans-unit id="university_informations.description">
+				<source>universityInformations</source>
+			</trans-unit>
+			<trans-unit id="local_informations.description">
+				<source>localInformations</source>
+			</trans-unit>
+			<trans-unit id="prior_university_experiences.description">
+				<source>priorUniversityExperiences</source>
+			</trans-unit>
+			<trans-unit id="activities.description">
+				<source>activities</source>
+			</trans-unit>
+			<trans-unit id="scholarships.description">
+				<source>scholarships</source>
+			</trans-unit>
+			<trans-unit id="semester_abroad.description">
+				<source>semesterAbroad</source>
+			</trans-unit>
+			<trans-unit id="study_slogan.description">
+				<source>studySlogan</source>
+			</trans-unit>
+			<trans-unit id="tip1.description">
+				<source>tip1</source>
+			</trans-unit>
+			<trans-unit id="tip2.description">
+				<source>tip2</source>
+			</trans-unit>
+			<trans-unit id="tip3.description">
+				<source>tip3</source>
+			</trans-unit>
+			<trans-unit id="tip4.description">
+				<source>tip4</source>
+			</trans-unit>
+			<trans-unit id="tip5.description">
+				<source>tip5</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

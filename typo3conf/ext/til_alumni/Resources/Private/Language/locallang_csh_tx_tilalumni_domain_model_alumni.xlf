@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-01-12T08:14:19Z" product-name="til_alumni">
+		<header/>
+		<body>
+			<trans-unit id="firstname.description">
+				<source>firstname</source>
+			</trans-unit>
+			<trans-unit id="lastname.description">
+				<source>lastname</source>
+			</trans-unit>
+			<trans-unit id="gender.description">
+				<source>gender</source>
+			</trans-unit>
+			<trans-unit id="birthday.description">
+				<source>birthday</source>
+			</trans-unit>
+			<trans-unit id="city_of_birth.description">
+				<source>cityOfBirth</source>
+			</trans-unit>
+			<trans-unit id="country_of_birth.description">
+				<source>countryOfBirth</source>
+			</trans-unit>
+			<trans-unit id="hobbys.description">
+				<source>hobbys</source>
+			</trans-unit>
+			<trans-unit id="life_motto.description">
+				<source>lifeMotto</source>
+			</trans-unit>
+			<trans-unit id="strreet.description">
+				<source>strreet</source>
+			</trans-unit>
+			<trans-unit id="zip.description">
+				<source>zip</source>
+			</trans-unit>
+			<trans-unit id="city.description">
+				<source>city</source>
+			</trans-unit>
+			<trans-unit id="email.description">
+				<source>email</source>
+			</trans-unit>
+			<trans-unit id="mobile.description">
+				<source>mobile</source>
+			</trans-unit>
+			<trans-unit id="language_skills.description">
+				<source>languageSkills</source>
+			</trans-unit>
+			<trans-unit id="scholarship_period.description">
+				<source>scholarshipPeriod</source>
+			</trans-unit>
+			<trans-unit id="type_of_school.description">
+				<source>typeOfSchool</source>
+			</trans-unit>
+			<trans-unit id="university_course.description">
+				<source>universityCourse</source>
+			</trans-unit>
+			<trans-unit id="university.description">
+				<source>university</source>
+			</trans-unit>
+			<trans-unit id="graduation.description">
+				<source>graduation</source>
+			</trans-unit>
+			<trans-unit id="profession.description">
+				<source>profession</source>
+			</trans-unit>
+			<trans-unit id="student_counseilling.description">
+				<source>studentCounseilling</source>
+			</trans-unit>
+			<trans-unit id="network.description">
+				<source>network</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
