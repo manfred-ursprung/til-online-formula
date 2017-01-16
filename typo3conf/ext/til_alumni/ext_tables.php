@@ -13,3 +13,22 @@ if (!defined('TYPO3_MODE')) {
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_tilalumni_domain_model_network', 'EXT:til_alumni/Resources/Private/Language/locallang_csh_tx_tilalumni_domain_model_network.xlf');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_tilalumni_domain_model_network');
+## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+    'MUM.' . $_EXTKEY,
+    'Alumni',
+    'Alumnibuch'
+);
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+    'MUM.' . $_EXTKEY,
+    'StudentCounseilling',
+    'Studienberatung'
+);
+
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+    'MUM.' . $_EXTKEY,
+    'Network',
+    'Wir für Bayern'
+);

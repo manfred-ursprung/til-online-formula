@@ -85,7 +85,9 @@ $(document).ready(function(){
             $('.navbar .nav').removeClass('scrolled');
             $('.navbar .navbar-header').removeClass('scrolled');
         }
-    })
+    });
+
+    $('.tx-til-alumni select').select2();
 });
 /*
 ("click.bs.modal.data-api", '[data-toggle="modal"]', function (c) {

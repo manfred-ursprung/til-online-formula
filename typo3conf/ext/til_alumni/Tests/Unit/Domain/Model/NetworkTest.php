@@ -97,22 +97,22 @@ class NetworkTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
-	public function getPersonelExperiencesReturnsInitialValueForString() {
+	public function getPersonalExperiencesReturnsInitialValueForString() {
 		$this->assertSame(
 			'',
-			$this->subject->getPersonelExperiences()
+			$this->subject->getPersonalExperiences()
 		);
 	}
 
 	/**
 	 * @test
 	 */
-	public function setPersonelExperiencesForStringSetsPersonelExperiences() {
-		$this->subject->setPersonelExperiences('Conceived at T3CON10');
+	public function setPersonalExperiencesForStringSetsPersonalExperiences() {
+		$this->subject->setPersonalExperiences('Conceived at T3CON10');
 
 		$this->assertAttributeEquals(
 			'Conceived at T3CON10',
-			'personelExperiences',
+			'personalExperiences',
 			$this->subject
 		);
 	}

@@ -48,9 +48,9 @@ class Alumni extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * gender
 	 *
-	 * @var int
+	 * @var string
 	 */
-	protected $gender = 0;
+	protected $gender = '';
 
 	/**
 	 * birthday
@@ -88,11 +88,11 @@ class Alumni extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $lifeMotto = '';
 
 	/**
-	 * strreet
+	 * street
 	 *
 	 * @var string
 	 */
-	protected $strreet = '';
+	protected $street = '';
 
 	/**
 	 * zip
@@ -226,7 +226,7 @@ class Alumni extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Returns the gender
 	 *
-	 * @return int $gender
+	 * @return string $gender
 	 */
 	public function getGender() {
 		return $this->gender;
@@ -235,7 +235,7 @@ class Alumni extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Sets the gender
 	 *
-	 * @param int $gender
+	 * @param string $gender
 	 * @return void
 	 */
 	public function setGender($gender) {
@@ -338,22 +338,22 @@ class Alumni extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * Returns the strreet
+	 * Returns the street
 	 *
-	 * @return string $strreet
+	 * @return string $street
 	 */
-	public function getStrreet() {
-		return $this->strreet;
+	public function getStreet() {
+		return $this->street;
 	}
 
 	/**
-	 * Sets the strreet
+	 * Sets the street
 	 *
-	 * @param string $strreet
+	 * @param string $street
 	 * @return void
 	 */
-	public function setStrreet($strreet) {
-		$this->strreet = $strreet;
+	public function setStreet($street) {
+		$this->street = $street;
 	}
 
 	/**

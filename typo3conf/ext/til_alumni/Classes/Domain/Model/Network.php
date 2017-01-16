@@ -1,7 +1,6 @@
 <?php
 namespace MUM\TilAlumni\Domain\Model;
 
-
 /***************************************************************
  *
  *  Copyright notice
@@ -47,11 +46,11 @@ class Network extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $schoolCareer = '';
 
 	/**
-	 * personelExperiences
+	 * personalExperiences
 	 *
 	 * @var string
 	 */
-	protected $personelExperiences = '';
+	protected $personalExperiences = '';
 
 	/**
 	 * adviceTopics
@@ -99,25 +98,6 @@ class Network extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 	/**
-	 * Returns the personelExperiences
-	 *
-	 * @return string $personelExperiences
-	 */
-	public function getPersonelExperiences() {
-		return $this->personelExperiences;
-	}
-
-	/**
-	 * Sets the personelExperiences
-	 *
-	 * @param string $personelExperiences
-	 * @return void
-	 */
-	public function setPersonelExperiences($personelExperiences) {
-		$this->personelExperiences = $personelExperiences;
-	}
-
-	/**
 	 * Returns the adviceTopics
 	 *
 	 * @return string $adviceTopics
@@ -134,6 +114,25 @@ class Network extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setAdviceTopics($adviceTopics) {
 		$this->adviceTopics = $adviceTopics;
+	}
+
+	/**
+	 * Returns the personalExperiences
+	 *
+	 * @return string personalExperiences
+	 */
+	public function getPersonalExperiences() {
+		return $this->personalExperiences;
+	}
+
+	/**
+	 * Sets the personalExperiences
+	 *
+	 * @param string $personalExperiences
+	 * @return void
+	 */
+	public function setPersonalExperiences($personalExperiences) {
+		$this->personalExperiences = $personalExperiences;
 	}
 
 }

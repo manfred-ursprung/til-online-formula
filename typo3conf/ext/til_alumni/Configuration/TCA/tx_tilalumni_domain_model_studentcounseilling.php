@@ -118,137 +118,152 @@ return array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_studentcounseilling.qualification1',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 4,
 				'eval' => 'trim'
-			),
+			)
 		),
 		'qualification2' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_studentcounseilling.qualification2',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 4,
 				'eval' => 'trim'
-			),
+			)
 		),
 		'opportunities_after_study' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_studentcounseilling.opportunities_after_study',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 4,
 				'eval' => 'trim'
-			),
+			)
 		),
 		'university_informations' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_studentcounseilling.university_informations',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 4,
 				'eval' => 'trim'
-			),
+			)
 		),
 		'local_informations' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_studentcounseilling.local_informations',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 4,
 				'eval' => 'trim'
-			),
+			)
 		),
 		'prior_university_experiences' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_studentcounseilling.prior_university_experiences',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 4,
 				'eval' => 'trim'
-			),
+			)
 		),
 		'activities' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_studentcounseilling.activities',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 4,
 				'eval' => 'trim'
-			),
+			)
 		),
 		'scholarships' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_studentcounseilling.scholarships',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 4,
 				'eval' => 'trim'
-			),
+			)
 		),
 		'semester_abroad' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_studentcounseilling.semester_abroad',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 4,
 				'eval' => 'trim'
-			),
+			)
 		),
 		'study_slogan' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_studentcounseilling.study_slogan',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 4,
 				'eval' => 'trim'
-			),
+			)
 		),
 		'tip1' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_studentcounseilling.tip1',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 4,
 				'eval' => 'trim'
-			),
+			)
 		),
 		'tip2' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_studentcounseilling.tip2',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 4,
 				'eval' => 'trim'
-			),
+			)
 		),
 		'tip3' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_studentcounseilling.tip3',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 4,
 				'eval' => 'trim'
-			),
+			)
 		),
 		'tip4' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_studentcounseilling.tip4',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 4,
 				'eval' => 'trim'
-			),
+			)
 		),
 		'tip5' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_studentcounseilling.tip5',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 4,
 				'eval' => 'trim'
-			),
+			)
 		),
 		
 	),
-);
+);## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder

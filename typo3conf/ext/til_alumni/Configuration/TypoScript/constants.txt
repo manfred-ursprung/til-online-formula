@@ -1,0 +1,21 @@
+
+plugin.tx_tilalumni_alumni {
+	view {
+		# cat=plugin.tx_tilalumni_alumni/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:til_alumni/Resources/Private/Templates/
+		# cat=plugin.tx_tilalumni_alumni/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:til_alumni/Resources/Private/Partials/
+		# cat=plugin.tx_tilalumni_alumni/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:til_alumni/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_tilalumni_alumni//a; type=string; label=Default storage PID
+		storagePid =
+	}
+	frontend{
+
+	}
+}
+
+
+

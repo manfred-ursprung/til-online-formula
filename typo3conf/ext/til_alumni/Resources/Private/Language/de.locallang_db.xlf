@@ -1,146 +1,193 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2017-01-12T08:42:27Z" product-name="til_alumni">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2017-01-12T08:42:27Z" product-name="til_alumni">
 		<header/>
 		<body>
 			<trans-unit id="tx_tilalumni_domain_model_alumni">
 				<source>Alumni</source>
+				<target>Alumni</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.firstname">
 				<source>Firstname</source>
+				<target>Vorname</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.lastname">
 				<source>Lastname</source>
+				<target>Nachname</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.gender">
 				<source>Gender</source>
+				<target>Geschlecht</target>
+			</trans-unit>
+			<trans-unit id="tx_tilalumni_domain_model_alumni.gender.male">
+				<source>male</source>
+				<target>männlich</target>
+			</trans-unit>
+			<trans-unit id="tx_tilalumni_domain_model_alumni.gender.female">
+				<source>female</source>
+				<target>weiblich</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.birthday">
 				<source>Birthday</source>
+				<target>Geburtstag</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.city_of_birth">
 				<source>City Of Birth</source>
+				<target>Geburtsort</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.country_of_birth">
 				<source>Country Of Birth</source>
+				<target>Herkunftsland</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.hobbys">
 				<source>Hobbys</source>
+				<target>Hobbies</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.life_motto">
 				<source>Life Motto</source>
+				<target>Lebensmotto</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.street">
 				<source>Street</source>
+				<target>Straße</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.zip">
 				<source>Zip</source>
+				<target>Postleitzahl</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.city">
 				<source>City</source>
+				<target>Ort</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.email">
 				<source>Email</source>
+				<target>E-mail</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.mobile">
 				<source>Mobile</source>
+				<target>Handynummer</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.language_skills">
 				<source>Language Skills</source>
+				<target>Sprachkenntnisse</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.scholarship_period">
 				<source>Scholarship Period</source>
+				<target>Förderungszeitraum</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.type_of_school">
-				<source>Type Of School</source>
+				<source>School</source>
+				<target>Schulart</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.university_course">
 				<source>University Course</source>
+				<target>Studiengang</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.university">
 				<source>University</source>
+				<target>Universität</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.graduation">
 				<source>Graduation</source>
+				<target>(Angestrebter) Abschluß</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.profession">
 				<source>Profession</source>
+				<target>Beruf, Arbeitgeber</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.student_counseilling">
 				<source>Student Counseilling</source>
+				<target>Studienberatung</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.network">
 				<source>Network</source>
+				<target>Bayern Netzwerk</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_studentcounseilling">
 				<source>Student Counseilling</source>
+				<target>Studienberatung</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_studentcounseilling.qualification1">
 				<source>Qualification1</source>
+				<target>Formale Voraussetzung 1</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_studentcounseilling.qualification2">
 				<source>Qualification2</source>
+				<target>Formale Voraussetzung 2</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_studentcounseilling.opportunities_after_study">
 				<source>Opportunities After Study</source>
+				<target>Möglichkeiten nach dem Studium</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_studentcounseilling.university_informations">
 				<source>University Informations</source>
+				<target>Informationen zur Uni</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_studentcounseilling.local_informations">
 				<source>Local Informations</source>
+				<target>Wissenswertes zum Standort</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_studentcounseilling.prior_university_experiences">
 				<source>Prior University Experiences</source>
+				<target>Vorherige Hochschulstudiumserfahrung</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_studentcounseilling.activities">
 				<source>Activities</source>
+				<target>(Hochschul) aktivitäten</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_studentcounseilling.scholarships">
 				<source>Scholarships</source>
+				<target>Stipendien</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_studentcounseilling.semester_abroad">
 				<source>Semester Abroad</source>
+				<target>Praktika, Auslandssemester</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_studentcounseilling.study_slogan">
 				<source>Study Slogan</source>
+				<target>Studienmotto</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_studentcounseilling.tip1">
 				<source>Tip1</source>
+				<target>Tipp 1</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_studentcounseilling.tip2">
 				<source>Tip2</source>
+				<target>Tipp 2</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_studentcounseilling.tip3">
 				<source>Tip3</source>
+				<target>Tipp 3</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_studentcounseilling.tip4">
 				<source>Tip4</source>
+				<target>Tipp 4</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_studentcounseilling.tip5">
 				<source>Tip5</source>
+				<target>Tipp 5</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_network">
 				<source>Network</source>
+				<target>Netzwerk</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_network.language_skills">
 				<source>Language Skills</source>
+				<target>Sprachkenntnisse</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_network.school_career">
 				<source>School Career</source>
+				<target>Schullaufbahn</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_network.personal_experiences">
 				<source>Personal Experiences</source>
+				<target>Persönliche Erfahrungen</target>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_network.advice_topics">
 				<source>Advice Topics</source>
+				<target>Beratungsthemen</target>
 			</trans-unit>
-			<trans-unit id="tx_tilalumni_domain_model_alumni.strreet">
-				<source>Strreet</source>
-			</trans-unit>
-			<trans-unit id="tx_tilalumni_domain_model_network.personel_experiences">
-				<source>Personel Experiences</source>
-			</trans-unit>
+
 		</body>
 	</file>
 </xliff>

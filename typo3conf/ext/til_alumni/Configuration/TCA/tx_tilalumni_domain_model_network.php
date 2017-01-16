@@ -19,14 +19,14 @@ return array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'language_skills,school_career,personel_experiences,advice_topics,',
+		'searchFields' => 'language_skills,school_career,personal_experiences,advice_topics,',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('til_alumni') . 'Resources/Public/Icons/tx_tilalumni_domain_model_network.gif'
 	),
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, language_skills, school_career, personel_experiences, advice_topics',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, language_skills, school_career, personal_experiences, advice_topics',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, language_skills, school_career, personel_experiences, advice_topics, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, language_skills, school_career, personal_experiences, advice_topics, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -118,38 +118,42 @@ return array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_network.language_skills',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 15,
 				'eval' => 'trim'
-			),
+			)
 		),
 		'school_career' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_network.school_career',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 15,
 				'eval' => 'trim'
-			),
+			)
 		),
-		'personel_experiences' => array(
+		'personal_experiences' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_network.personel_experiences',
+			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_network.personal_experiences',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 15,
 				'eval' => 'trim'
-			),
+			)
 		),
 		'advice_topics' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_network.advice_topics',
 			'config' => array(
-				'type' => 'input',
-				'size' => 30,
+				'type' => 'text',
+				'cols' => 40,
+				'rows' => 15,
 				'eval' => 'trim'
-			),
+			)
 		),
 		
 	),
-);
+);## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder

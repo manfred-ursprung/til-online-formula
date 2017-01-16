@@ -1,0 +1,56 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers">
+
+
+<f:layout name="Default" />
+
+
+<f:section name="main">
+<h1>Übersicht über alle  Stipendiaten</h1>
+
+<f:flashMessages renderMode="div" />
+
+  <f:if condition="{alumnis -> f:count()} > 0">
+    <div class="btn-group evaluation">
+
+      <f:render partial="Alumni/Search" arguments="{domicileList: domiciles,
+                                                  zipList: zips,
+                                                  universityList: universities,
+                                                  courseList: courses}" />
+
+    </div>
+    <table  class="tx_tilapplication_evaluation candidate-list table table-striped table-bordered table-condensed table-hover" >
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name </th>
+        <th>Geschlecht</th>
+
+        <th>Eintragungs-<br />datum</th>
+        <th>Aktion</th>
+      </tr>
+      </thead>
+      <f:for each="{alumnis}" as="alumni" iteration="iterator">
+        <f:if condition="{iterator.isOdd }">
+          <f:then>
+            <v:variable.set name="class" value="odd"></v:variable.set>
+          </f:then>
+          <f:else>
+            <v:variable.set name="class" value="even"></v:variable.set>
+          </f:else>
+        </f:if>
+        <tr class="{class}">
+          <f:render partial="Alumni/Listproperties" arguments="{alumni:alumni}" />
+        </tr>
+
+      </f:for>
+
+    </table>
+  </f:if>
+
+
+</f:section>
+
+</div>

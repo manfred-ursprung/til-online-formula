@@ -209,22 +209,22 @@ class AlumniTest extends \TYPO3\CMS\Core\Tests\UnitTestCase {
 	/**
 	 * @test
 	 */
-	public function getStrreetReturnsInitialValueForString() {
+	public function getStreetReturnsInitialValueForString() {
 		$this->assertSame(
 			'',
-			$this->subject->getStrreet()
+			$this->subject->getStreet()
 		);
 	}
 
 	/**
 	 * @test
 	 */
-	public function setStrreetForStringSetsStrreet() {
-		$this->subject->setStrreet('Conceived at T3CON10');
+	public function setStreetForStringSetsStreet() {
+		$this->subject->setStreet('Conceived at T3CON10');
 
 		$this->assertAttributeEquals(
 			'Conceived at T3CON10',
-			'strreet',
+			'street',
 			$this->subject
 		);
 	}

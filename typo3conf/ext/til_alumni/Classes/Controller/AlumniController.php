@@ -1,5 +1,6 @@
 <?php
 namespace MUM\TilAlumni\Controller;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /***************************************************************
  *
@@ -45,8 +46,21 @@ class AlumniController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function listAction() {
-		$alumnis = $this->alumniRepository->findAll();
-		$this->view->assign('alumnis', $alumnis);
+		$alumnis    = $this->alumniRepository->findAll();
+        $domiciles  = $this->alumniRepository->getAllDomiciles();
+        $zips       = $this->alumniRepository->getAllZips();
+        $universities = $this->alumniRepository->getAllUniversitys();
+        $courses     = $this->alumniRepository->getAllCourses();
+		$this->view->assignMultiple(
+		    array(
+		        'alumnis' => $alumnis,
+                'domiciles' => $domiciles,
+                'zips' => $zips,
+                'universities' => $universities,
+                'courses' => $courses,
+
+            )
+        );
 	}
 
 	/**
@@ -61,11 +75,44 @@ class AlumniController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
 	/**
 	 * action search
-	 *
+	 * Respons after submitting search form
 	 * @return void
 	 */
 	public function searchAction() {
-		
+        //DebuggerUtility::var_dump($this->request->getArguments());
+        //exit;
+        
+        if($this->request->hasArgument('alumni-search')) {
+            $formArgs = $this->request->getArgument('alumni-search');
+            //DebuggerUtility::var_dump($formArgs);
+            $data = $this->alumniRepository->findByFormArgs($formArgs);
+            //return $this->debugQuery($data);
+
+            $this->view->assignMultiple(array(
+                'alumnis'  => $data,
+                'settings' => $this->settings,
+            ));
+        }
 	}
+    /**
+     * Debugs a SQL query from a QueryResult
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $queryResult
+     * @param boolean $explainOutput
+     * @return void
+     */
+    public function debugQuery(\TYPO3\CMS\Extbase\Persistence\Generic\QueryResult $queryResult, $explainOutput = FALSE){
+        $GLOBALS['TYPO3_DB']->debugOutput = 2;
+        if($explainOutput){
+            $GLOBALS['TYPO3_DB']->explainOutput = true;
+        }
+        $GLOBALS['TYPO3_DB']->store_lastBuiltQuery = true;
+        $queryResult->toArray();
+        //DebuggerUtility::var_dump($GLOBALS['TYPO3_DB']->debug_lastBuiltQuery);
+
+        $GLOBALS['TYPO3_DB']->store_lastBuiltQuery = false;
+        $GLOBALS['TYPO3_DB']->explainOutput = false;
+        $GLOBALS['TYPO3_DB']->debugOutput = false;
+    }
 
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2017-01-12T08:14:19Z" product-name="til_alumni">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-01-12T08:42:27Z" product-name="til_alumni">
 		<header/>
 		<body>
 			<trans-unit id="tx_tilalumni_domain_model_alumni">
@@ -14,6 +14,12 @@
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.gender">
 				<source>Gender</source>
+			</trans-unit>
+			<trans-unit id="tx_tilalumni_domain_model_alumni.gender.male">
+				<source>male</source>
+			</trans-unit>
+			<trans-unit id="tx_tilalumni_domain_model_alumni.gender.female">
+				<source>female</source>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.birthday">
 				<source>Birthday</source>
@@ -30,8 +36,8 @@
 			<trans-unit id="tx_tilalumni_domain_model_alumni.life_motto">
 				<source>Life Motto</source>
 			</trans-unit>
-			<trans-unit id="tx_tilalumni_domain_model_alumni.strreet">
-				<source>Strreet</source>
+			<trans-unit id="tx_tilalumni_domain_model_alumni.street">
+				<source>Street</source>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_alumni.zip">
 				<source>Zip</source>
@@ -129,12 +135,13 @@
 			<trans-unit id="tx_tilalumni_domain_model_network.school_career">
 				<source>School Career</source>
 			</trans-unit>
-			<trans-unit id="tx_tilalumni_domain_model_network.personel_experiences">
-				<source>Personel Experiences</source>
+			<trans-unit id="tx_tilalumni_domain_model_network.personal_experiences">
+				<source>Personal Experiences</source>
 			</trans-unit>
 			<trans-unit id="tx_tilalumni_domain_model_network.advice_topics">
 				<source>Advice Topics</source>
 			</trans-unit>
+
 		</body>
 	</file>
 </xliff>

@@ -121,7 +121,7 @@
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
-                            "propertyName": "strreet",
+                            "propertyName": "street",
                             "propertyType": "String",
                             "uid": "945714094029"
                         },
@@ -303,7 +303,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
                             "propertyName": "qualification1",
-                            "propertyType": "String",
+                            "propertyType": "Text",
                             "uid": "944952646654"
                         },
                         {
@@ -313,7 +313,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
                             "propertyName": "qualification2",
-                            "propertyType": "String",
+                            "propertyType": "Text",
                             "uid": "860502958963"
                         },
                         {
@@ -323,7 +323,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
                             "propertyName": "opportunitiesAfterStudy",
-                            "propertyType": "String",
+                            "propertyType": "Text",
                             "uid": "984673746132"
                         },
                         {
@@ -333,7 +333,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
                             "propertyName": "universityInformations",
-                            "propertyType": "String",
+                            "propertyType": "Text",
                             "uid": "662090409136"
                         },
                         {
@@ -343,7 +343,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
                             "propertyName": "localInformations",
-                            "propertyType": "String",
+                            "propertyType": "Text",
                             "uid": "1058985882030"
                         },
                         {
@@ -353,7 +353,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
                             "propertyName": "priorUniversityExperiences",
-                            "propertyType": "String",
+                            "propertyType": "Text",
                             "uid": "113556843099"
                         },
                         {
@@ -363,7 +363,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
                             "propertyName": "activities",
-                            "propertyType": "String",
+                            "propertyType": "Text",
                             "uid": "999545656512"
                         },
                         {
@@ -373,7 +373,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
                             "propertyName": "scholarships",
-                            "propertyType": "String",
+                            "propertyType": "Text",
                             "uid": "221725101818"
                         },
                         {
@@ -383,7 +383,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
                             "propertyName": "semesterAbroad",
-                            "propertyType": "String",
+                            "propertyType": "Text",
                             "uid": "1124654167922"
                         },
                         {
@@ -393,7 +393,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
                             "propertyName": "studySlogan",
-                            "propertyType": "String",
+                            "propertyType": "Text",
                             "uid": "538489718682"
                         },
                         {
@@ -403,7 +403,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
                             "propertyName": "tip1",
-                            "propertyType": "String",
+                            "propertyType": "Text",
                             "uid": "628636096425"
                         },
                         {
@@ -413,7 +413,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
                             "propertyName": "tip2",
-                            "propertyType": "String",
+                            "propertyType": "Text",
                             "uid": "1123912910717"
                         },
                         {
@@ -423,7 +423,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
                             "propertyName": "tip3",
-                            "propertyType": "String",
+                            "propertyType": "Text",
                             "uid": "430004755303"
                         },
                         {
@@ -433,7 +433,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
                             "propertyName": "tip4",
-                            "propertyType": "String",
+                            "propertyType": "Text",
                             "uid": "346714963960"
                         },
                         {
@@ -443,7 +443,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
                             "propertyName": "tip5",
-                            "propertyType": "String",
+                            "propertyType": "Text",
                             "uid": "1287774271106"
                         }
                     ]
@@ -493,7 +493,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
                             "propertyName": "languageSkills",
-                            "propertyType": "String",
+                            "propertyType": "Text",
                             "uid": "975794224180"
                         },
                         {
@@ -503,7 +503,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
                             "propertyName": "schoolCareer",
-                            "propertyType": "String",
+                            "propertyType": "Text",
                             "uid": "690896417972"
                         },
                         {
@@ -512,8 +512,8 @@
                             "propertyDescription": "",
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
-                            "propertyName": "personelExperiences",
-                            "propertyType": "String",
+                            "propertyName": "personalExperiences",
+                            "propertyType": "Text",
                             "uid": "632875849959"
                         },
                         {
@@ -523,7 +523,7 @@
                             "propertyIsExcludeField": true,
                             "propertyIsRequired": false,
                             "propertyName": "adviceTopics",
-                            "propertyType": "String",
+                            "propertyType": "Text",
                             "uid": "441401369121"
                         }
                     ]
@@ -589,7 +589,7 @@
         }
     ],
     "log": {
-        "last_modified": "2017-01-12 08:14",
+        "last_modified": "2017-01-12 08:42",
         "extension_builder_version": "6.2",
         "be_user": " (1)"
     }

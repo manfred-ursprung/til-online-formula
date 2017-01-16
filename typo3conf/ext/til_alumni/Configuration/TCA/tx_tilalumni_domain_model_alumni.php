@@ -19,14 +19,14 @@ return array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'firstname,lastname,gender,birthday,city_of_birth,country_of_birth,hobbys,life_motto,strreet,zip,city,email,mobile,language_skills,scholarship_period,type_of_school,university_course,university,graduation,profession,student_counseilling,network,',
+		'searchFields' => 'firstname,lastname,gender,birthday,city_of_birth,country_of_birth,hobbys,life_motto,street,zip,city,email,mobile,language_skills,scholarship_period,type_of_school,university_course,university,graduation,profession,student_counseilling,network,',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('til_alumni') . 'Resources/Public/Icons/tx_tilalumni_domain_model_alumni.gif'
 	),
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, firstname, lastname, gender, birthday, city_of_birth, country_of_birth, hobbys, life_motto, strreet, zip, city, email, mobile, language_skills, scholarship_period, type_of_school, university_course, university, graduation, profession, student_counseilling, network',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, firstname, lastname, gender, birthday, city_of_birth, country_of_birth, hobbys, life_motto, street, zip, city, email, mobile, language_skills, scholarship_period, type_of_school, university_course, university, graduation, profession, student_counseilling, network',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, firstname, lastname, gender, birthday, city_of_birth, country_of_birth, hobbys, life_motto, strreet, zip, city, email, mobile, language_skills, scholarship_period, type_of_school, university_course, university, graduation, profession, student_counseilling, network, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, firstname, lastname, gender, birthday, city_of_birth, country_of_birth, hobbys, life_motto, street, zip, city, email, mobile, language_skills, scholarship_period, type_of_school, university_course, university, graduation, profession, student_counseilling, network, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -137,9 +137,10 @@ return array(
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_alumni.gender',
 			'config' => array(
 				'type' => 'select',
-				'items' => array(
-					array('-- Label --', 0),
-				),
+                'items' => array(
+                    array('LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_alumni.gender.male', 'male'),
+                    array('LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_alumni.gender.female', 'female')
+                ),
 				'size' => 1,
 				'maxitems' => 1,
 				'eval' => ''
@@ -151,9 +152,9 @@ return array(
 			'config' => array(
 				'type' => 'input',
 				'size' => 6,
-				'eval' => 'timesec',
+				'eval' => 'date',
 				'checkbox' => 1,
-				'default' => time()
+				'default' => date('d.m.Y')
 			)
 		),
 		'city_of_birth' => array(
@@ -192,9 +193,9 @@ return array(
 				'eval' => 'trim'
 			),
 		),
-		'strreet' => array(
+		'street' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_alumni.strreet',
+			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_alumni.street',
 			'config' => array(
 				'type' => 'input',
 				'size' => 30,
@@ -206,7 +207,7 @@ return array(
 			'label' => 'LLL:EXT:til_alumni/Resources/Private/Language/locallang_db.xlf:tx_tilalumni_domain_model_alumni.zip',
 			'config' => array(
 				'type' => 'input',
-				'size' => 30,
+				'size' => 10,
 				'eval' => 'trim'
 			),
 		),
@@ -336,4 +337,4 @@ return array(
 		),
 		
 	),
-);
+);## EXTENSION BUILDER DEFAULTS END TOKEN - Everything BEFORE this line is overwritten with the defaults of the extension builder

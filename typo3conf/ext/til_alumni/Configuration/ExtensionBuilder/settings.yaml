@@ -47,19 +47,19 @@ overwriteSettings:
       Repository: merge
 
   Configuration:
-    #TCA: merge
+    TCA: merge
     #TypoScript: keep
 
   Resources:
     Private:
-      #Language: merge
+      Language: merge
       #Templates: keep
 
   ext_icon.gif: keep
 
-#  ext_localconf.php: merge
+  ext_localconf.php: merge
 
-#  ext_tables.php: merge
+  ext_tables.php: merge
 
 #  ext_tables.sql: merge
 
