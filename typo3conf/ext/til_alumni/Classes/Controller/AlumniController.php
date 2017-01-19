@@ -1,6 +1,8 @@
 <?php
 namespace MUM\TilAlumni\Controller;
+
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 /***************************************************************
  *
@@ -30,15 +32,9 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 /**
  * AlumniController
  */
-class AlumniController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class AlumniController extends AlumniBaseController {
 
-	/**
-	 * alumniRepository
-	 *
-	 * @var \MUM\TilAlumni\Domain\Repository\AlumniRepository
-	 * @inject
-	 */
-	protected $alumniRepository = NULL;
+
 
 	/**
 	 * action list
@@ -46,11 +42,15 @@ class AlumniController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function listAction() {
+	    DebuggerUtility::var_dump($this->settings, 'Settings');
+	    $platform = $this->settings['platform'];
 		$alumnis    = $this->alumniRepository->findAll();
         $domiciles  = $this->alumniRepository->getAllDomiciles();
         $zips       = $this->alumniRepository->getAllZips();
         $universities = $this->alumniRepository->getAllUniversitys();
         $courses     = $this->alumniRepository->getAllCourses();
+        // @TODO public ermitteln
+        $public = 1;
 		$this->view->assignMultiple(
 		    array(
 		        'alumnis' => $alumnis,
@@ -58,14 +58,15 @@ class AlumniController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 'zips' => $zips,
                 'universities' => $universities,
                 'courses' => $courses,
-
+                'platform' => $platform,
+                'public'    => $public
             )
         );
 	}
 
 	/**
 	 * action show
-	 *
+	 * not used til now, it is a standard method
 	 * @param \MUM\TilAlumni\Domain\Model\Alumni $alumni
 	 * @return void
 	 */
@@ -75,24 +76,26 @@ class AlumniController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
 	/**
 	 * action search
-	 * Respons after submitting search form
+	 * Respons after submitting search form, ajax driven
 	 * @return void
 	 */
 	public function searchAction() {
-        //DebuggerUtility::var_dump($this->request->getArguments());
-        //exit;
-        
+
         if($this->request->hasArgument('alumni-search')) {
             $formArgs = $this->request->getArgument('alumni-search');
             //DebuggerUtility::var_dump($formArgs);
             $data = $this->alumniRepository->findByFormArgs($formArgs);
             //return $this->debugQuery($data);
 
-            $this->view->assignMultiple(array(
+           $this->view->assignMultiple(array(
                 'alumnis'  => $data,
-                'settings' => $this->settings,
+
             ));
+
+        }else{
+            return "no Argument found";
         }
+
 	}
     /**
      * Debugs a SQL query from a QueryResult
@@ -114,5 +117,6 @@ class AlumniController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $GLOBALS['TYPO3_DB']->explainOutput = false;
         $GLOBALS['TYPO3_DB']->debugOutput = false;
     }
+
 
 }

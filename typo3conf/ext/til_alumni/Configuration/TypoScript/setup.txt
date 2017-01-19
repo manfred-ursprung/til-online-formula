@@ -10,8 +10,35 @@ plugin.tx_tilalumni_alumni {
 	}
 	settings{
 
-	}
+        javascript {
+            main = {$plugin.tx_tilalumni_alumni.settings.javascript}
+            tabulus = EXT:til_alumni/Resources/Public/Js/tabulous.js
+        }
+        css {
+            tabulous = EXT:til_alumni/Resources/Public/Css/tabulous.css
+            alumni   = EXT:til_alumni/Resources/Public/Css/alumni.css
+        }
+    }
 }
+plugin.tx_tilalumni_counseilling < plugin.tx_tilalumni_alumni
+plugin.tx_tilalumni_network      < plugin.tx_tilalumni_alumni
+
+
+tilAlumniAlumniAjax = PAGE
+tilAlumniAlumniAjax {
+    typeNum = 14545
+    config {
+        disableAllHeaderCode = 1
+        xhtml_cleaning = 0
+        admPanel = 0
+        additionalHeaders = Content-type: text/plain
+        no_cache = 1
+        debug = 0
+      }
+
+      10 < tt_content.list.20.tilalumni_alumni
+}
+
 
 plugin.tx_tilalumni_studentcounseilling {
 	view {

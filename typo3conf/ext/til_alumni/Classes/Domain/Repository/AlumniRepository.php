@@ -29,24 +29,29 @@ namespace MUM\TilAlumni\Domain\Repository;
 /**
  * The repository for Alumnis
  */
-class AlumniRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+class AlumniRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+{
 
-	public function getAllDomiciles(){
+    public function getAllDomiciles()
+    {
 
         return $this->getAllFromField('city');
     }
 
-    public function getAllZips(){
+    public function getAllZips()
+    {
 
         return $this->getAllFromField('zip');
     }
 
-    public function getAllUniversitys(){
+    public function getAllUniversitys()
+    {
 
         return $this->getAllFromField('university');
     }
 
-    public function getAllCourses(){
+    public function getAllCourses()
+    {
 
         return $this->getAllFromField('university_course');
     }
@@ -58,17 +63,18 @@ class AlumniRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
      *
      * Performs a request  on the database for search criteria in formArgs
      */
-    public function findByFormArgs($formArgs){
+    public function findByFormArgs($formArgs)
+    {
 
-        foreach($formArgs as $k => $v) {
-            if(empty($v)) {
+        foreach ($formArgs as $k => $v) {
+            if (empty($v)) {
                 unset($formArgs[$k]);
             }
         }
 
         $query = $this->createQuery();
         $fullConstraints = $this->createConstraints($formArgs, $query);
-        if(!empty($fullConstraints)) {
+        if (!empty($fullConstraints)) {
             $query->matching($query->logicalAnd($fullConstraints));
         }
         //DebuggerUtility::var_dump($fullConstraints);
@@ -76,19 +82,19 @@ class AlumniRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
     }
 
 
-
-    protected function getAllFromField($field){
+    protected function getAllFromField($field)
+    {
         $query = $this->createQuery();
         $result = $query->execute(true);
         $all = array();
-        foreach($result as $row){
-            if(strpos($row[$field], '/') !== FALSE){
+        foreach ($result as $row) {
+            if (strpos($row[$field], '/') !== FALSE) {
                 // merge all with an array keys equal to values
                 $all = array_merge($all, array_combine(explode('/', $row[$field]), explode('/', $row[$field])));
-            }elseif(strpos($row[$field], ',') !== FALSE){
+            } elseif (strpos($row[$field], ',') !== FALSE) {
                 // merge all with an array keys equal to values
                 $all = array_merge($all, array_combine(explode(',', $row[$field]), explode(',', $row[$field])));
-            }else{
+            } else {
                 $all[$row[$field]] = $row[$field];
             }
 
@@ -125,4 +131,27 @@ class AlumniRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
         }
         return $fullConstraints;
     }
+
+    /**
+     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * all alumnis where network is set
+     */
+    public function findAllNetwork()
+    {
+        $query = $this->createQuery();
+        $query->matching($query->greaterThan('network', 0));
+        return $query->execute();
+    }
+
+    /**
+     * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * all alumnis where studentCounseilling is set
+     */
+    public function findAllStudentCounseilling()
+    {
+        $query = $this->createQuery();
+        $query->matching($query->greaterThan('studentCounseilling', 0));
+        return $query->execute();
+    }
+
 }

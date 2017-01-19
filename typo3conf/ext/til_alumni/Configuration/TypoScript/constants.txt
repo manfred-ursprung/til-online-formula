@@ -15,6 +15,10 @@ plugin.tx_tilalumni_alumni {
 	frontend{
 
 	}
+	settings{
+	    # cat=plugin.tx_tilalumni_alumni/f type=string; label=Javascript Datei für alle Plugins der Extension
+        javascript = EXT:til_alumni/Resources/Public/Js/alumni.js
+	}
 }
 
 

@@ -6792,6 +6792,101 @@ span.tilgreen {
 .news .article .teaser-text p {
   margin-bottom: 0;
 }
+.tx-til-alumni .custom-select {
+  width: 90%;
+}
+.tx-til-alumni .form-horizontal {
+  margin-bottom: 20px;
+}
+/* Tabs for Alumni  */
+#tabs {
+  width: auto;
+}
+#tabs ul {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+#tabs li {
+  list-style-type: none;
+  margin-right: 0;
+}
+#tabs li a {
+  background: white;
+  color: #999;
+  border: 1px solid #eee;
+}
+#tabs li a.tabulous_active {
+  background: #8faadc;
+  color: #5c6c1b;
+  border: 1px solid #999;
+  border-bottom: none;
+  font-weight: bold;
+}
+#tabs li a.tabulous_active:hover {
+  background-color: #688dd0;
+}
+#tabs li a:hover {
+  background-color: #cccccc;
+}
+.tabulous {
+  /* und noch der Doppelpunkt */
+  /* einen Clearfix für Folge-dd-Elemente */
+}
+.tabulous #tabs_container {
+  padding: 0px 20px 20px 0px;
+  border-left: 1px solid #aaaaaa;
+  border-right: 1px solid #aaaaaa;
+  border-bottom: 1px solid #aaaaaa;
+  position: relative;
+  top: -5px;
+  background-color: #8faadc;
+}
+.tabulous #tabs_container .tab-content {
+  padding-left: 20px;
+  padding-top: 20px;
+}
+.tabulous dt {
+  float: left;
+  font-weight: bold;
+  margin-right: 0.5em;
+  width: 40%;
+  color: #222222;
+}
+.tabulous dt.label {
+  float: none;
+  display: block;
+  font-size: 100%;
+  margin-left: 0;
+  padding-left: 0;
+  text-align: left;
+}
+.tabulous dt::after {
+  content: ": ";
+}
+.tabulous dd {
+  color: #222222;
+}
+.tabulous dd::after {
+  clear: left;
+  content: " ";
+  display: block;
+}
+dl.subcontainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 5px;
+}
+dl.subcontainer dt {
+  width: 40%;
+}
+dl.subcontainer dd {
+  width: 60%;
+}
+dl.subcontainer.last {
+  margin-bottom: 28px;
+}
 /* Styles for the sidebar */
 #sidebar-wrapper li {
   list-style: none;

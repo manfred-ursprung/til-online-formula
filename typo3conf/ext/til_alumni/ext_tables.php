@@ -23,7 +23,7 @@ if (!defined('TYPO3_MODE')) {
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'MUM.' . $_EXTKEY,
-    'StudentCounseilling',
+    'Counseilling',
     'Studienberatung'
 );
 
@@ -32,3 +32,9 @@ if (!defined('TYPO3_MODE')) {
     'Network',
     'Wir für Bayern'
 );
+
+// Flexform
+$pluginSignature = str_replace('_','',$_EXTKEY) . '_alumni';
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_alumni.xml');
+
