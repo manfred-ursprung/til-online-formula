@@ -1,0 +1,32 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+     xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
+     xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers">
+
+
+    <f:layout name="Ajax"/>
+
+
+    <f:section name="main">
+
+        <ul class="list-unstyled" role="tablist">
+
+
+            <f:for each="{alumnis}" as="alumni" iteration="iterator">
+                <li><a href="#tabs-{iterator.cycle}" title="">{alumni.firstname}</a></li>
+            </f:for>
+        </ul>
+        <div id="tabs_container">
+            <f:for each="{alumnis}" as="alumni" iteration="iterator">
+                <div id="tabs-{iterator.cycle}" class="tab-content" role="tabpanel">
+                    <f:render partial="Network/Tabs" arguments="{alumni:alumni,
+                                                     public: 1,
+                                                     platform: 'network'}"/>
+                </div>
+            </f:for>
+
+        </div><!--End tabs container-->
+
+    </f:section>
+
+</div>

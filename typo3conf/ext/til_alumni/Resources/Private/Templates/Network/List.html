@@ -18,7 +18,9 @@
                 <f:render partial="Alumni/Search" arguments="{domicileList: domiciles,
                                                   zipList: zips,
                                                   universityList: universities,
-                                                  courseList: courses}"/>
+                                                  courseList: courses,
+                                                  plugin: plugin,
+                                                  typeNum: typeNum}" />
 
             </div>
             <div id="tabs" class="tabulous">
@@ -33,7 +35,7 @@
                     <f:for each="{alumnis}" as="alumni" iteration="iterator">
                         <div id="tabs-{iterator.cycle}" class="tab-content" role="tabpanel">
                             <f:render partial="Network/Tabs" arguments="{alumni:alumni,
-                                                             public: 1,
+                                                             public: public,
                                                              platform: 'network'}"/>
                         </div>
                     </f:for>

@@ -1,7 +1,9 @@
 <?php
 namespace MUM\TilAlumni\Controller;
+
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use MUM\TilAlumni\Service\AjaxSearch;
 
 /***************************************************************
  *
@@ -48,12 +50,44 @@ class AlumniBaseController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContr
      */
     protected $pageRenderer;
 
+    /**
+     * @var boolean
+     */
+    protected $activeSession;
+
 
     public function initializeListAction(){
         $this->addJsToPage();
         $this->addCssToPage();
+        $this->activeSession = $GLOBALS['TSFE']->loginUser;
     }
 
+    /**
+     * action search
+     * Respons after submitting search form, ajax driven
+     * @return void
+     */
+    public function searchAction() {
+
+        if($this->request->hasArgument('alumni-search')) {
+            $formArgs = $this->request->getArgument('alumni-search');
+            //DebuggerUtility::var_dump($formArgs);
+            /** @var AjaxSearch $ajaxSearch */
+            $ajaxSearch = $this->objectManager->get(AjaxSearch::class);
+            $data = $ajaxSearch->search($formArgs);
+            //$data = $this->alumniRepository->findByFormArgs($formArgs);
+            //return $this->debugQuery($data);
+//return serialize($data);
+            $this->view->assignMultiple(array(
+                'alumnis'  => $data,
+                'public'    => !$this->activeSession,
+            ));
+
+        }else{
+            return "no Argument found";
+        }
+
+    }
 
     /**
      * add javascript file to page

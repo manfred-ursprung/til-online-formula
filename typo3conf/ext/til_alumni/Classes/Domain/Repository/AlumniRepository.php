@@ -125,6 +125,11 @@ class AlumniRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                         $operand = '%' . $value . '%';
                         $fullConstraints[] = $query->like($property, $operand, false);
                         break;
+                    case 'network':
+                    case 'studentCounseilling' :
+                        $fullConstraints[] = $query->greaterThanOrEqual($property, $value);
+                        break;
+
 
                 }
             }

@@ -8,6 +8,10 @@
 <f:form action="search" controller="Alumni"   class="form-horizontal row" object="{alumni}"
         enctype="application/x-www-form-urlencoded" id="topic-search"
         name="alumni-search"  method="post" additionalAttributes="{accept-charset: 'UTF-8'}">
+    <div class="hidden">
+        <f:form.hidden id="searchKeyPlugin" name="tx_tilalumni_alumni[alumni-search][plugin]" value="{plugin}" />
+        <f:form.hidden id="searchKeyTypeNum" name="tx_tilalumni_alumni[alumni-search][typenum]" value="{typeNum}" />
+    </div>
     <div class="col-xs-12 col-md-3">
         <f:form.select property="city" options="{domicileList}" optionValueField="uid" optionLabelField="title" value=""
                        id="searchKeyCity"     class=" custom-select"

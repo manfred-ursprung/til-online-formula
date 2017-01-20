@@ -46,14 +46,18 @@ class CounseillingController extends AlumniBaseController
         $zips       = $this->alumniRepository->getAllZips();
         $universities = $this->alumniRepository->getAllUniversitys();
         $courses     = $this->alumniRepository->getAllCourses();
+        //DebuggerUtility::var_dump($GLOBALS['TSFE']->fe_user);
+        //DebuggerUtility::var_dump($GLOBALS['TSFE']->loginUser);
         $this->view->assignMultiple(
             array(
-                'alumnis' => $alumnis,
+                'alumnis'   => $alumnis,
                 'domiciles' => $domiciles,
-                'zips' => $zips,
+                'zips'      => $zips,
                 'universities' => $universities,
-                'courses' => $courses,
-
+                'courses'   => $courses,
+                'plugin'    => 'studentCounseilling',
+                'typeNum'    => '14546',
+                'public'    => !$this->activeSession,
             )
         );
   

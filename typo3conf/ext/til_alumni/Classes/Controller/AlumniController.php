@@ -2,7 +2,7 @@
 namespace MUM\TilAlumni\Controller;
 
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use MUM\TilAlumni\Service\AjaxSearch;
 
 /***************************************************************
  *
@@ -42,9 +42,8 @@ class AlumniController extends AlumniBaseController {
 	 * @return void
 	 */
 	public function listAction() {
-	    DebuggerUtility::var_dump($this->settings, 'Settings');
-	    $platform = $this->settings['platform'];
-		$alumnis    = $this->alumniRepository->findAll();
+
+	    $alumnis    = $this->alumniRepository->findAll();
         $domiciles  = $this->alumniRepository->getAllDomiciles();
         $zips       = $this->alumniRepository->getAllZips();
         $universities = $this->alumniRepository->getAllUniversitys();
@@ -53,12 +52,13 @@ class AlumniController extends AlumniBaseController {
         $public = 1;
 		$this->view->assignMultiple(
 		    array(
-		        'alumnis' => $alumnis,
+		        'alumnis'   => $alumnis,
                 'domiciles' => $domiciles,
-                'zips' => $zips,
+                'zips'      => $zips,
                 'universities' => $universities,
-                'courses' => $courses,
-                'platform' => $platform,
+                'courses'   => $courses,
+                'plugin'    => 'alumni',
+                'typeNum'    => '14545',
                 'public'    => $public
             )
         );
@@ -74,29 +74,7 @@ class AlumniController extends AlumniBaseController {
 		$this->view->assign('alumni', $alumni);
 	}
 
-	/**
-	 * action search
-	 * Respons after submitting search form, ajax driven
-	 * @return void
-	 */
-	public function searchAction() {
 
-        if($this->request->hasArgument('alumni-search')) {
-            $formArgs = $this->request->getArgument('alumni-search');
-            //DebuggerUtility::var_dump($formArgs);
-            $data = $this->alumniRepository->findByFormArgs($formArgs);
-            //return $this->debugQuery($data);
-
-           $this->view->assignMultiple(array(
-                'alumnis'  => $data,
-
-            ));
-
-        }else{
-            return "no Argument found";
-        }
-
-	}
     /**
      * Debugs a SQL query from a QueryResult
      *

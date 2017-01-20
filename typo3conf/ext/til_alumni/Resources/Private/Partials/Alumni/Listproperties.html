@@ -6,7 +6,7 @@
 </dl>
     <f:if condition="{public} == 0">
         <dl class="subcontainer">
-            <dt>Geburtstag</dt> <dd>{alumni.birthday} </dd>
+            <dt>Geburtstag</dt> <dd><f:format.date date="{alumni.birthday}"  format="d.m.Y" /> </dd>
         </dl>
         <dl class="subcontainer">
             <dt>Straße </dt> <dd>{alumni.street}</dd>
@@ -50,12 +50,13 @@
 </dl>
 <dl class="subcontainer">
     <dt>Email</dt> <dd>{alumni.email}</dd>
+</dl>
     <f:if condition="{public} == 0">
         <dl class="subcontainer">
             <dt>Handynummer</dt> <dd>{alumni.mobile}</dd>
         </dl>
     </f:if>
-</dl>
+
 <dl class="subcontainer last">
     <dt>Lebensmotto</dt> <dd>{alumni.lifeMotto}</dd>
 

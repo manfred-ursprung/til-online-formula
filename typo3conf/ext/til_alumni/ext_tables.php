@@ -33,8 +33,17 @@ if (!defined('TYPO3_MODE')) {
     'Wir für Bayern'
 );
 
-// Flexform
+// Flexform for alumni plugin
 $pluginSignature = str_replace('_','',$_EXTKEY) . '_alumni';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_alumni.xml');
 
+// Flexform for counseilling plugin
+$pluginSignature = str_replace('_','',$_EXTKEY) . '_counseilling';
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_counseilling.xml');
+
+// Flexform for network plugin
+$pluginSignature = str_replace('_','',$_EXTKEY) . '_network';
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_network.xml');
