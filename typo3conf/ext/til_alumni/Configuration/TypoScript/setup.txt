@@ -51,5 +51,11 @@ tilAlumniNetworkAjax{
     10 < tt_content.list.20.tilalumni_network
 }
 
-
+# Backend Module
+module.tx_tilalumni < plugin.tx_tilalumni_alumni
+module.tx_tilalumni{
+    settings {
+        alumniPid = 95
+    }
+}
 

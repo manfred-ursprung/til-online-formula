@@ -47,3 +47,21 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignat
 $pluginSignature = str_replace('_','',$_EXTKEY) . '_network';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_network.xml');
+
+if (TYPO3_MODE == 'BE'){
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
+        'MUM.' . $_EXTKEY,
+        //'MUM.' . 'TilAlumni',
+        'web',
+        'Importer',
+        '',
+        array(
+            'Importer' => 'import,list',
+        ),
+        array(
+            'access'    => 'admin',
+            'icon'      => 'EXT:' . $_EXTKEY . '/ext_icon.gif',
+            'labels'   => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_mod.xlf'
+        )
+    );
+}

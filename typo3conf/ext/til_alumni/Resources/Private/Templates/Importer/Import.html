@@ -1,0 +1,82 @@
+
+<f:be.container>
+    <div class="typo3-fullDoc">
+        <div id="typo3-docheader">
+            <div class="typo3-docheader-functions">
+                <div class="left">
+                    <f:be.buttons.csh/>
+                    <div>
+                        <f:be.menus.actionMenu>
+                            <f:be.menus.actionMenuItem label="Alumni Import" controller="Importer"
+                                                       action="Import" />
+                            <f:be.menus.actionMenuItem label="Alumni List" controller="Importer"
+                                                       action="List" />
+                            <f:be.menus.actionMenuItem label="Alumni Delete" controller="Importer"
+                                                       action="Delete" />
+                        </f:be.menus.actionMenu>
+                    </div>
+                </div>
+                <div class="right">
+
+                </div>
+            </div>
+            <div class="typo3-docheader-buttons">
+                <div class="left">
+
+                </div>
+                <div class="right">
+                    <f:be.buttons.shortcut />
+                </div>
+            </div>
+        </div>
+        <div id="typo3-docbody">
+            <div id="typo3-inner-docbody">
+                <f:flashMessages renderMode="div" />
+                <h2>Alumni Import</h2>
+                <f:form action="import" controller="Importer"   class="form-horizontal row"
+                        enctype="multipart/form-data" id="mod-alumni-import"
+                        name="alumni-import"  method="post" additionalAttributes="{accept-charset: 'UTF-8'}">
+                    <f:form.hidden id="" name="alumni-import[submitted]" value="1" />
+                    <f:form.hidden id="" name="alumni-import[pid]" value="{pid}" />
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    <label for="tx_tilalumni_importer[alumni-import][fileuploaded]" style="padding-right: 20px">
+                                        CSV Datei hochladen
+                                    </label>
+                                </td>
+                                <td>
+                                    <f:form.upload name="alumni-import[fileuploaded]" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <f:form.submit name="alumni-import[filsubmit]" value="Upload & Import" />
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </f:form>
+                <div>
+                    <f:if condition="{success.error}">
+                        <f:then>
+                            <div style="color:red">
+                                {success.message}
+                            </div>
+                        </f:then>
+                        <f:else>
+                            <div style="color: green">
+                                {success.message}
+                            </div>
+                        </f:else>
+                    </f:if>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</f:be.container>

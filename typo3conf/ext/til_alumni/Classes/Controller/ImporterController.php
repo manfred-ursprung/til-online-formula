@@ -2,7 +2,8 @@
 namespace MUM\TilAlumni\Controller;
 
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-use MUM\TilAlumni\Service\AjaxSearch;
+
+
 
 /***************************************************************
  *
@@ -32,7 +33,7 @@ use MUM\TilAlumni\Service\AjaxSearch;
 /**
  * AlumniController
  */
-class AlumniController extends AlumniBaseController {
+class ImporterController extends AlumniBaseController {
 
 
 
@@ -48,7 +49,8 @@ class AlumniController extends AlumniBaseController {
         $zips       = $this->alumniRepository->getAllZips();
         $universities = $this->alumniRepository->getAllUniversitys();
         $courses     = $this->alumniRepository->getAllCourses();
-
+        // @TODO public ermitteln
+        $public = 1;
 		$this->view->assignMultiple(
 		    array(
 		        'alumnis'   => $alumnis,
@@ -58,7 +60,7 @@ class AlumniController extends AlumniBaseController {
                 'courses'   => $courses,
                 'plugin'    => 'alumni',
                 'typeNum'    => '14545',
-                'public'    => !$this->activeSession,
+                'public'    => $public
             )
         );
 	}
@@ -69,10 +71,40 @@ class AlumniController extends AlumniBaseController {
 	 * @param \MUM\TilAlumni\Domain\Model\Alumni $alumni
 	 * @return void
 	 */
-	public function showAction(\MUM\TilAlumni\Domain\Model\Alumni $alumni) {
+	public function importAction()
+    {
+        $pid = $this->objectManager->get(\TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager::class)
+            ->getDefaultBackendStoragePid();
+
+        //DebuggerUtility::var_dump($pid, 'Settings');
+        $alumni = $this->alumniRepository->findByUid(1);
+        if(count($_FILES) > 0)
+        {
+            //DebuggerUtility::var_dump($_POST, 'Arguments');
+            $mapArr = $this->getUploadeFileInfo($_FILES['tx_tilalumni_web_tilalumniimporter']);
+            /** @var  $importer \MUM\TilAlumni\Service\Importer */
+            $importer = $this->objectManager->get(\MUM\TilAlumni\Service\Importer::class);
+            $importer->startImport($mapArr['tmpName']);
+            //$fileContent = $this->doImport($mapArr);
+            //DebuggerUtility::var_dump($_FILES, 'Files');
+            $this->view->assign('success', $importer->getImportSummary());
+        }
+
+        //DebuggerUtility::var_dump($alumni, 'Alumni');
 		$this->view->assign('alumni', $alumni);
+		$this->view->assign('pid', $pid);
 	}
 
+
+	public function insertAction()
+    {
+
+    }
+
+    public function deleteAction(\MUM\TilAlumni\Domain\Model\Alumni $alumni)
+    {
+
+    }
 
     /**
      * Debugs a SQL query from a QueryResult
@@ -93,6 +125,27 @@ class AlumniController extends AlumniBaseController {
         $GLOBALS['TYPO3_DB']->store_lastBuiltQuery = false;
         $GLOBALS['TYPO3_DB']->explainOutput = false;
         $GLOBALS['TYPO3_DB']->debugOutput = false;
+    }
+
+    /**
+     * @param \array $tempArr
+     * @return mixed
+     */
+    protected function getUploadeFileInfo($tmpArr)
+    {
+        $mapArr['name'] = $tmpArr['name']['alumni-import']['fileuploaded'];
+        $mapArr['type'] = $tmpArr['type']['alumni-import']['fileuploaded'];
+        $mapArr['tmpName'] = $tmpArr['tmp_name']['alumni-import']['fileuploaded'];
+        $mapArr['error'] = $tmpArr['error']['alumni-import']['fileuploaded'];
+        $mapArr['size'] = $tmpArr['size']['alumni-import']['fileuploaded'];
+        return $mapArr;
+    }
+
+
+    protected function doImport($uploadedFile)
+    {
+        $fileContent = file_get_contents($uploadedFile['tmpName']);
+        return $fileContent;
     }
 
 

@@ -257,7 +257,7 @@ class Alumni extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @param int $birthday
 	 * @return void
 	 */
-	public function setBirthday(int $birthday) {
+	public function setBirthday($birthday) {
 		$this->birthday = $birthday;
 	}
 
