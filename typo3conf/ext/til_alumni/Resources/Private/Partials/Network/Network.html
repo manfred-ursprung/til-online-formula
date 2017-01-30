@@ -1,19 +1,27 @@
-<dl class="subrow">
-    <dt class="label">Sprachkenntnisse </dt>
-    <dd class="description">{alumni.network.languageSkills}</dd>
-</dl>
+<f:if condition="{alumni.network.languageSkills}">
+    <dl class="subrow">
+        <dt class="label">Sprachkenntnisse </dt>
+        <dd class="description">{alumni.network.languageSkills}</dd>
+    </dl>
+</f:if>
 
+<f:if condition="{alumni.network.languageSkills}">
 <dl class="subrow">
     <dt class="label">Schullaufbahn </dt>
-    <dd class="description">{alumni.network.languageSkills}</dd>
+    <dd class="description">{alumni.network.schoolCareer}</dd>
 </dl>
+</f:if>
 
-<dl class="subrow">
-    <dt class="label">Persönliche Erfahrungen </dt>
-    <dd class="description">{alumni.network.languageSkills}</dd>
-</dl>
+<f:if condition="{alumni.network.languageSkills}">
+    <dl class="subrow">
+        <dt class="label">Persönliche Erfahrungen </dt>
+        <dd class="description">{alumni.network.personalExperiences}</dd>
+    </dl>
+</f:if>
 
-<dl class="subrow">
-    <dt class="label">Beratungsthemen</dt>
-    <dd class="description">{alumni.network.languageSkills}</dd>
-</dl>
+<f:if condition="{alumni.network.languageSkills}">
+    <dl class="subrow">
+        <dt class="label">Beratungsthemen</dt>
+        <dd class="description">{alumni.network.adviceTopics}</dd>
+    </dl>
+</f:if>

@@ -1,63 +1,116 @@
-
-
 <dl class="subcontainer">
     <dt>Vorname, Nachname</dt>
     <dd>{alumni.firstname} {alumni.lastname}</dd>
 </dl>
-    <f:if condition="{public} == 0">
+<f:if condition="{public} == 0">
+    <dl class="subcontainer">
+        <dt>Geburtstag</dt>
+        <dd>
+            <f:format.date date="{alumni.birthday}" format="d.m.Y"/>
+        </dd>
+    </dl>
+    <dl class="subcontainer">
+        <dt>Straße</dt>
+        <dd>{alumni.street}</dd>
+    </dl>
+    <dl class="subcontainer">
+        <dt>PLZ</dt>
+        <dd>{alumni.zip}</dd>
+    </dl>
+</f:if>
+<dl class="subcontainer">
+    <dt>Wohnort</dt>
+    <dd>{alumni.city}</dd>
+</dl>
+<f:if condition="{alumni.cityOfBirth}">
+    <dl class="subcontainer">
+        <dt>Geburtsort</dt>
+        <dd>{alumni.cityOfBirth}</dd>
+    </dl>
+</f:if>
+<f:if condition="{alumni.countryOfBirth}">
+    <dl class="subcontainer">
+        <dt>Herkunftsland</dt>
+        <dd>{alumni.countryOfBirth}</dd>
+    </dl>
+</f:if>
+
+<f:if condition="{alumni.languageSkills}">
+    <dl class="subcontainer">
+        <dt>Sprachkenntnisse</dt>
+        <dd>{alumni.languageSkills}</dd>
+    </dl>
+</f:if>
+
+<f:if condition="{alumni.scholarshipPeriod}">
+    <dl class="subcontainer">
+        <dt>Förderungszeitraum</dt>
+        <dd>{alumni.scholarshipPeriod}</dd>
+    </dl>
+</f:if>
+
+<f:if condition="{alumni.typeOfSchool}">
+    <dl class="subcontainer">
+        <dt>Schulart</dt>
+        <dd>{alumni.typeOfSchool}</dd>
+    </dl>
+</f:if>
+
+<f:if condition="{alumni.universityCourse}">
+    <dl class="subcontainer">
+        <dt>Studiengang</dt>
+        <dd><span>{alumni.universityCourse}</span></dd>
+    </dl>
+</f:if>
+
+<f:if condition="{alumni.university}">
+    <dl class="subcontainer">
+        <dt>Universität</dt>
+        <dd>{alumni.university}</dd>
+    </dl>
+</f:if>
+
+<f:if condition="{alumni.graduation}">
+    <dl class="subcontainer">
+        <dt>(Angestrebter) Abschluß</dt>
+        <dd>{alumni.graduation}</dd>
+    </dl>
+</f:if>
+
+<f:if condition="{alumni.profession}">
+    <dl class="subcontainer">
+        <dt>Beruf, Arbeitgeber</dt>
+        <dd>{alumni.profession}</dd>
+    </dl>
+</f:if>
+
+<f:if condition="{alumni.hobbys}">
+    <dl class="subcontainer">
+        <dt>Hobbies</dt>
+        <dd>{alumni.hobbys}</dd>
+    </dl>
+</f:if>
+
+<f:if condition="{alumni.email}">
+    <dl class="subcontainer">
+        <dt>Email</dt>
+        <dd>{alumni.email}</dd>
+    </dl>
+</f:if>
+
+<f:if condition="{public} == 0">
+    <f:if condition="{alumni.mobile}">
         <dl class="subcontainer">
-            <dt>Geburtstag</dt> <dd><f:format.date date="{alumni.birthday}"  format="d.m.Y" /> </dd>
-        </dl>
-        <dl class="subcontainer">
-            <dt>Straße </dt> <dd>{alumni.street}</dd>
-        </dl>
-        <dl class="subcontainer">
-            <dt>PLZ </dt> <dd>{alumni.zip}</dd>
+            <dt>Handynummer</dt>
+            <dd>{alumni.mobile}</dd>
         </dl>
     </f:if>
-<dl class="subcontainer">
-    <dt>Wohnort </dt> <dd>{alumni.city}</dd>
-</dl>
-<dl class="subcontainer">
-    <dt>Geburtsort </dt> <dd>{alumni.cityOfBirth}</dd>
-</dl>
-<dl class="subcontainer">
-    <dt>Herkunftsland </dt> <dd>{alumni.countryOfBirth}</dd>
-</dl>
-<dl class="subcontainer">
-    <dt>Sprachkenntnisse </dt> <dd>{alumni.languageSkills}</dd>
-</dl>
-<dl class="subcontainer">
-    <dt>Förderungszeitraum </dt> <dd>{alumni.scholarshipPeriod}</dd>
-</dl>
-<dl class="subcontainer">
-    <dt>Schulart </dt> <dd>{alumni.typeOfSchool}</dd>
-</dl>
-<dl class="subcontainer">
-    <dt>Studiengang </dt> <dd><span>{alumni.universityCourse}</span></dd>
-</dl>
-<dl class="subcontainer">
-    <dt>Universität </dt> <dd>{alumni.university}</dd>
-</dl>
-<dl class="subcontainer">
-    <dt>(Angestrebter) Abschluß </dt> <dd>{alumni.graduation}</dd>
-</dl>
-<dl class="subcontainer">
-    <dt>Beruf, Arbeitgeber</dt> <dd>{alumni.profession}</dd>
-</dl>
-<dl class="subcontainer">
-    <dt>Hobbies</dt> <dd>{alumni.hobbys}</dd>
-</dl>
-<dl class="subcontainer">
-    <dt>Email</dt> <dd>{alumni.email}</dd>
-</dl>
-    <f:if condition="{public} == 0">
-        <dl class="subcontainer">
-            <dt>Handynummer</dt> <dd>{alumni.mobile}</dd>
-        </dl>
-    </f:if>
+</f:if>
 
-<dl class="subcontainer last">
-    <dt>Lebensmotto</dt> <dd>{alumni.lifeMotto}</dd>
+<f:if condition="{alumni.lifeMotto}">
+    <dl class="subcontainer last">
+        <dt>Lebensmotto</dt>
+        <dd>{alumni.lifeMotto}</dd>
 
-</dl>
+    </dl>
+</f:if>
