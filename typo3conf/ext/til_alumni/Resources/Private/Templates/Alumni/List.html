@@ -23,55 +23,29 @@
                                                   typeNum: typeNum}" />
 
     </div>
-    <div id="tabs" class="tabulous">
-      <ul class="list-unstyled" role="tablist">
+
+    <f:widget.paginate objects="{alumnis}" as="paginatedAlumnis" configuration="{itemsPerPage: 6, insertAbove: 'true', insertBelow: 'false'}">
+      <div id="tabs" class="tabulous">
+
+          <ul class="list-unstyled" role="tablist">
+          <f:for each="{paginatedAlumnis}" as="alumni" iteration="iterator">
+            <li><a href="#tabs-{iterator.cycle}" title="">{alumni.firstname}</a></li>
+          </f:for>
+          </ul>
 
 
-        <f:for each="{alumnis}" as="alumni" iteration="iterator">
-          <li><a href="#tabs-{iterator.cycle}" title="">{alumni.firstname}</a></li>
-        </f:for>
-      </ul>
-      <div id="tabs_container">
-        <f:for each="{alumnis}" as="alumni" iteration="iterator">
-          <div id="tabs-{iterator.cycle}" class="tab-content" role="tabpanel">
-            <f:render partial="Alumni/Listproperties" arguments="{alumni:alumni,
-                                                                  public: public,
-                                                                  platform: platform}" />
-          </div>
-        </f:for>
+        <div id="tabs_container">
+          <f:for each="{paginatedAlumnis}" as="alumni" iteration="iterator">
+            <div id="tabs-{iterator.cycle}" class="tab-content" role="tabpanel">
+              <f:render partial="Alumni/Listproperties" arguments="{alumni:alumni,
+                                                                    public: public,
+                                                                    platform: platform}" />
+            </div>
+          </f:for>
+        </div><!--End tabs container-->
 
-
-      </div><!--End tabs container-->
-      <f:comment>
-      <table  class="tx_tilapplication_evaluation candidate-list table table-striped table-bordered table-condensed table-hover" >
-        <thead>
-        <tr>
-          <th>Id</th>
-          <th>Name </th>
-          <th>Geschlecht</th>
-
-          <th>Eintragungs-<br />datum</th>
-          <th>Aktion</th>
-        </tr>
-        </thead>
-        <f:for each="{alumnis}" as="alumni" iteration="iterator">
-          <f:if condition="{iterator.isOdd }">
-            <f:then>
-              <v:variable.set name="class" value="odd"></v:variable.set>
-            </f:then>
-            <f:else>
-              <v:variable.set name="class" value="even"></v:variable.set>
-            </f:else>
-          </f:if>
-          <tr class="{class}">
-            <f:render partial="Alumni/Listproperties" arguments="{alumni:alumni}" />
-          </tr>
-
-        </f:for>
-
-      </table>
-      </f:comment>
-    </div>
+      </div>
+    </f:widget.paginate>
   </f:if>
 
 

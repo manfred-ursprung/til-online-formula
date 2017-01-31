@@ -1,0 +1,34 @@
+<f:if condition="{configuration.insertAbove}">
+	<f:render section="paginator" arguments="{pagination: pagination, configuration: configuration}" />
+</f:if>
+
+<f:renderChildren arguments="{contentArguments}" />
+
+<f:if condition="{configuration.insertBelow}">
+	<f:render section="paginator" arguments="{pagination: pagination, configuration: configuration}" />
+</f:if>
+
+<f:section name="paginator">
+	<div class="til-alumni-widget-paginator">
+		<f:if condition="{pagination.previousPage}">
+			<div class="previous prev-next">
+				<f:if condition="{pagination.previousPage} > 1">
+					<f:then>
+						<f:widget.link arguments="{currentPage: pagination.previousPage}" addQueryStringMethod="{configuration.addQueryStringMethod}"><f:translate key="widget.pagination.previous" /></f:widget.link>
+					</f:then>
+					<f:else>
+						<f:widget.link addQueryStringMethod="{configuration.addQueryStringMethod}"><f:translate key="widget.pagination.previous" /></f:widget.link>
+					</f:else>
+				</f:if>
+			</div>
+		</f:if>
+
+
+
+		<f:if condition="{pagination.nextPage}">
+			<div class="next prev-next">
+				<f:widget.link arguments="{currentPage: pagination.nextPage}" addQueryStringMethod="{configuration.addQueryStringMethod}"><f:translate key="widget.pagination.next" /></f:widget.link>
+			</div>
+		</f:if>
+	</div>
+</f:section>

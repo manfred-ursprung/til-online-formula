@@ -20,6 +20,15 @@ plugin.tx_tilalumni_alumni {
         }
     }
 }
+plugin.tx_tilalumni_alumni {
+	view {
+      widget {
+          TYPO3\CMS\Fluid\ViewHelpers\Widget\PaginateViewHelper {
+            templateRootPath = {$plugin.tx_tilalumni_alumni.view.templateRootPath}
+          }
+      }
+	}
+}
 plugin.tx_tilalumni_counseilling < plugin.tx_tilalumni_alumni
 plugin.tx_tilalumni_network      < plugin.tx_tilalumni_alumni
 

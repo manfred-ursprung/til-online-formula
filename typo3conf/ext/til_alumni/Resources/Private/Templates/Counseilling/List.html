@@ -23,27 +23,29 @@
                                                   typeNum: typeNum}" />
 
             </div>
-            <div id="tabs" class="tabulous">
-                <ul class="list-unstyled" role="tablist">
+            <f:widget.paginate objects="{alumnis}" as="paginatedAlumnis" configuration="{itemsPerPage: 6, insertAbove: 'true', insertBelow: 'false'}">
+                <div id="tabs" class="tabulous">
+                    <ul class="list-unstyled" role="tablist">
 
 
-                    <f:for each="{alumnis}" as="alumni" iteration="iterator">
-                        <li><a href="#tabs-{iterator.cycle}" title="">{alumni.firstname}</a></li>
-                    </f:for>
-                </ul>
-                <div id="tabs_container">
-                    <f:for each="{alumnis}" as="alumni" iteration="iterator">
-                        <div id="tabs-{iterator.cycle}" class="tab-content" role="tabpanel">
-                            <f:render partial="Counseilling/Tabs" arguments="{alumni:alumni,
-                                                             public: public,
-                                                             platform: 'counseilling'}"/>
-                        </div>
-                    </f:for>
+                        <f:for each="{paginatedAlumnis}" as="alumni" iteration="iterator">
+                            <li><a href="#tabs-{iterator.cycle}" title="">{alumni.firstname}</a></li>
+                        </f:for>
+                    </ul>
+                    <div id="tabs_container">
+                        <f:for each="{paginatedAlumnis}" as="alumni" iteration="iterator">
+                            <div id="tabs-{iterator.cycle}" class="tab-content" role="tabpanel">
+                                <f:render partial="Counseilling/Tabs" arguments="{alumni:alumni,
+                                                                 public: public,
+                                                                 platform: 'counseilling'}"/>
+                            </div>
+                        </f:for>
 
 
-                </div><!--End tabs container-->
+                    </div><!--End tabs container-->
 
-            </div>
+                </div>
+            </f:widget.paginate>
         </f:if>
 
 

@@ -37,3 +37,33 @@
 .femanager_submit{
     margin-top: 20px;
 }
+
+/* Alumni */
+.til-alumni-widget-paginator{
+    position: relative;
+}
+.prev-next {
+    position: absolute;
+}
+.til-alumni-widget-paginator .previous {
+    top: -10px;
+    left: -30px;
+}
+.til-alumni-widget-paginator .previous a {
+    width: 20px;
+    height: 46px;
+    font-size: 0;
+    background: url(../Img/slider_left.png) no-repeat;
+    display: inline-block;
+}
+.til-alumni-widget-paginator .next {
+    top: -10px;
+    left: 105%;
+}
+.til-alumni-widget-paginator .next a{
+    width: 20px;
+    height: 46px;
+    font-size: 0;
+    background: url(../Img/slider_right.png) no-repeat;
+    display: inline-block;
+}
